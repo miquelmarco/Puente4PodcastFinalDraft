@@ -17,16 +17,16 @@ public class Comentary {
     private Episode episode;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User user;
+    private PodcastUser podcastUser;
 
     public Comentary() {
     }
 
-    public Comentary(String text, String date, Episode episode, User user) {
+    public Comentary(String text, String date, Episode episode, PodcastUser podcastUser) {
         this.text = text;
         this.date = date;
-        this.episode = episode;
-        this.user = user;
+//        this.episode = episode;
+//        this.user = user;
     }
 
     public Long getId() {
@@ -57,11 +57,11 @@ public class Comentary {
         this.episode = episode;
     }
 
-    public User getUser() {
-        return user;
+    public PodcastUser getUser() {
+        return podcastUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(PodcastUser podcastUser) {
+        this.podcastUser = podcastUser;
     }
 }

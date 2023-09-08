@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class User {
+public class PodcastUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -18,15 +18,24 @@ public class User {
     private String mail;
     private String nacionality;
     private String password;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "podcastUser", fetch = FetchType.EAGER)
     private Set<Comentary> comentarySet = new HashSet<>();
-    @OneToMany(mappedBy = "userFav")
+    @OneToMany(mappedBy = "podcastUserFav")
     private Set<Favorite> favoriteSet = new HashSet<>();
 
-    public User() {
+    public PodcastUser() {
     }
 
-    public User(String firstName, String lastName, String userName, String mail, String nacionality, String password, Set<Comentary> comentarySet, Set<Favorite> favoriteSet) {
+    public PodcastUser(String firstName, String lastName, String userName, String mail, String nacionality, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.mail = mail;
+        this.nacionality = nacionality;
+        this.password = password;
+    }
+
+    public PodcastUser(String firstName, String lastName, String userName, String mail, String nacionality, String password, Set<Comentary> comentarySet, Set<Favorite> favoriteSet) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;

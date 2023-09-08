@@ -1,5 +1,6 @@
 package com.puente4podcast.puente4podcast.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -20,12 +21,12 @@ public class Archive {
     private String category;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "archive_id")
-    private Podcast podcast;
+    private Podcast podcastArchive;
 
     public Archive() {
     }
 
-    public Archive(Byte seasonNumber, Byte archiveNumber, String name, String img, String linkYt, String linkIvoox, String duration, String category, Podcast podcast) {
+    public Archive(Byte seasonNumber, Byte archiveNumber, String name, String img, String linkYt, String linkIvoox, String duration, String category, Podcast podcastArchive) {
         this.seasonNumber = seasonNumber;
         this.archiveNumber = archiveNumber;
         this.name = name;
@@ -34,7 +35,7 @@ public class Archive {
         this.linkIvoox = linkIvoox;
         this.duration = duration;
         this.category = category;
-        this.podcast = podcast;
+        this.podcastArchive = podcastArchive;
     }
 
     public Long getId() {
@@ -105,11 +106,12 @@ public class Archive {
         this.category = category;
     }
 
+    @JsonIgnore
     public Podcast getPodcast() {
-        return podcast;
+        return podcastArchive;
     }
 
     public void setPodcast(Podcast podcast) {
-        this.podcast = podcast;
+        this.podcastArchive = podcast;
     }
 }

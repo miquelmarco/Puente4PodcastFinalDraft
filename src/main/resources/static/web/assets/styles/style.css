@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box !important;
+    font-family: 'M PLUS 1 Code', monospace !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* border: solid red 1px; */
+}
+
+body {
+    background-color: black;
+}
+
+header {
+    min-height: 10vh;
+}
+
+main {
+    min-height: 90vh;
+}
+
+footer {
+    min-height: 10vh;
+}
+
+/* header edit */
+
+.logoHeader {
+    height: 6.5vh;
+}
+
+.navbar {
+    min-height: 10vh;
+    color: black !important;
+    font-weight: 900;
+    z-index: 1;
+}
+
+.btnLoginRegister {
+    padding: 0.3rem !important;
+    width: 10rem;
+}
+
+.btnSearch {
+    border: none;
+}
+
+/* main edit */
+
+/* .podcastTitle {
+    
+} */
+
+.podcastSubTitle {
+    font-size: 1.3rem;
+}
+
+.podcastSubTitleSpan {
+    font-family: 'Caveat', cursive !important;
+    font-size: 1.9rem !important;
+    color: red;
+    text-shadow: white 0.6px 0.45px;
+}
+
+.podcastSubTitle {
+    display: block;
+    white-space: nowrap;
+    border-right: 4px solid;
+    width: 52ch;
+    color: White;
+
+    animation: typing 5s steps(52),
+        blink 0.5s infinite step-end alternate;
+    overflow: hidden;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
+/* carrousel edit */
+
+.carousel-inner {
+    height: 300px;
+    border: solid red 5px;
+}

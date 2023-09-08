@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <section>
+                <nav class="navbar navbar-expand-lg bg-body-tertiary position-fixed w-100">
+                    <div class="container-fluid px-3">
+                        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Episodios</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Archivos</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">Integrantes</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item text-center" href="#">Sergio Monroy</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item text-center" href="#">David Álvaro</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item text-center" href="#">Roberto Álvaro</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Tu Perfil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Favoritos</a>
+                                </li>
+                                <!-- <img class="logoHeader" src="./assets/images/P4_B.jpg" alt="logo"> -->
+                                <!-- <li class="nav-item">
+                                    <a class="nav-link disabled" aria-disabled="true">Puente4Podcast</a>
+                                </li> -->
+                            </ul>
+                            <div class="mx-3">
+                                <button class="btn btn-outline-danger btnLoginRegister">LOGIN</button>
+                                <button class="btn btn-outline-danger btnLoginRegister">REGISTER</button>
+                            </div>
+                            <div class="d-flex">
+                                <!-- <img class="logoHeader px-2" src="./assets/images/P4_B.jpg" alt="logo"> -->
+                                <form class="d-flex align-items-center p-1" role="search">
+                                    <input class="form-control me-2" type="search" placeholder="Busca un episodio ..."
+                                        aria-label="Search">
+                                    <button class="btn btn-outline-danger btnSearch" type="submit"><i
+                                            class="bi bi-search text-black h-75"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </section>
+        </header>
+        <main>
+            <!-- title edit -->
+            <div class="podcastTitle text-white d-flex flex-column align-items-center p-3 m-2">
+                <div class="d-flex">
+                    <img class="logoHeader px-2" src="./assets/images/P4_W.jpg" alt="logo">
+                    <h1>Puente4Podcast</h1>
+                </div>
+                <div>
+                    <p class="podcastSubTitle">el podcast de la gente que ve el mundo,<span class="podcastSubTitleSpan">
+                            de otra manera</span></p>
+                </div>
+            </div>
+            <!-- carrousel edit -->
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./assets/images/banner1.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./assets/images/banner1.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./assets/images/banner1.png" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

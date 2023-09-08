@@ -12,7 +12,7 @@ public class Favorite {
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User userFav;
+    private PodcastUser podcastUserFav;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "episode_id")
     private Episode episodeFav;
@@ -20,8 +20,8 @@ public class Favorite {
     public Favorite() {
     }
 
-    public Favorite(User userFav, Episode episodeFav) {
-        this.userFav = userFav;
+    public Favorite(PodcastUser podcastUserFav, Episode episodeFav) {
+        this.podcastUserFav = podcastUserFav;
         this.episodeFav = episodeFav;
     }
 
@@ -29,12 +29,12 @@ public class Favorite {
         return id;
     }
 
-    public User getUserFav() {
-        return userFav;
+    public PodcastUser getUserFav() {
+        return podcastUserFav;
     }
 
-    public void setUserFav(User userFav) {
-        this.userFav = userFav;
+    public void setUserFav(PodcastUser podcastUserFav) {
+        this.podcastUserFav = podcastUserFav;
     }
 
     public Episode getEpisodeFav() {

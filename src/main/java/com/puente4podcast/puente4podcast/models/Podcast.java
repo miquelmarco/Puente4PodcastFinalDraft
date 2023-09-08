@@ -1,7 +1,6 @@
 package com.puente4podcast.puente4podcast.models;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,9 +14,9 @@ public class Podcast {
     private String name;
     private String description;
     private String banner;
-    @OneToMany(mappedBy = "podcast", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "podcastSeason", fetch = FetchType.EAGER)
     private Set<Season> season = new HashSet<>();
-    @OneToMany(mappedBy = "archive", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "podcastArchive", fetch = FetchType.EAGER)
     private Set<Archive> archive = new HashSet<>();
 
     public Podcast() {

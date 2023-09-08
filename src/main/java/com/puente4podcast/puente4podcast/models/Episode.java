@@ -1,5 +1,6 @@
 package com.puente4podcast.puente4podcast.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -31,7 +32,7 @@ public class Episode {
     public Episode() {
     }
 
-    public Episode(Byte seasonNumber, Byte episode, String name, String img, String linkYt, String linkIvoox, String duration, String category, Season season, Set<Comentary> comentarySet, Set<Favorite> favoriteSet) {
+    public Episode(Byte seasonNumber, Byte episode, String name, String img, String linkYt, String linkIvoox, String duration, String category) {
         this.seasonNumber = seasonNumber;
         this.episode = episode;
         this.name = name;
@@ -40,9 +41,9 @@ public class Episode {
         this.linkIvoox = linkIvoox;
         this.duration = duration;
         this.category = category;
-        this.season = season;
-        this.comentarySet = comentarySet;
-        this.favoriteSet = favoriteSet;
+//        this.season = season;
+//        this.comentarySet = comentarySet;
+//        this.favoriteSet = favoriteSet;
     }
 
     public Long getId() {
@@ -113,6 +114,7 @@ public class Episode {
         this.category = category;
     }
 
+    @JsonIgnore
     public Season getSeason() {
         return season;
     }
@@ -121,6 +123,7 @@ public class Episode {
         this.season = season;
     }
 
+    @JsonIgnore
     public Set<Comentary> getComentarySet() {
         return comentarySet;
     }
@@ -129,6 +132,7 @@ public class Episode {
         this.comentarySet = comentarySet;
     }
 
+    @JsonIgnore
     public Set<Favorite> getFavoriteSet() {
         return favoriteSet;
     }
