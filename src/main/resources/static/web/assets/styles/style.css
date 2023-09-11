@@ -65,11 +65,13 @@ footer {
     display: block;
     white-space: nowrap;
     border-right: 4px solid;
-    width: 52ch;
+    width: 56ch;
     color: White;
 
-    animation: typing 5s steps(52),
+    animation: typing 5s steps(56),
         blink 0.5s infinite step-end alternate;
+        /* animation-iteration-count: infinite;
+        animation-delay: 3s; */
     overflow: hidden;
 }
 
