@@ -41,9 +41,6 @@ public class Episode {
         this.linkIvoox = linkIvoox;
         this.duration = duration;
         this.category = category;
-//        this.season = season;
-//        this.comentarySet = comentarySet;
-//        this.favoriteSet = favoriteSet;
     }
 
     public Long getId() {
