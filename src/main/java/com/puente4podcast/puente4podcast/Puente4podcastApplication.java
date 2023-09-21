@@ -52,7 +52,6 @@ public class Puente4podcastApplication {
 			Episode episode2x01 = new Episode((byte) 2, (byte) 1, "Cosas como Black Lotus, Pena de Muerte y Leyendas Pokemon: Arceus", "https://i.ytimg.com/an_webp/WhqO4-dJCMc/mqdefault_6s.webp?du=3000&sqp=CNPdiKgG&rs=AOn4CLAx-czD_1Ch5Jn2Z18o0EkK834PPA", "https://www.youtube.com/watch?v=WhqO4-dJCMc&t=3s", "https://www.ivoox.com/2x01-cosas-como-black-lotus-pena-muerte-audios-mp3_rf_75556705_1.html", "2:02:02", "canon");
 			Episode episode2x02 = new Episode((byte) 2, (byte) 2, "Cosas como Mundos, Malaz de Steven Erikson y Sumos", "https://i.ytimg.com/an_webp/HaCfSvvcNUU/mqdefault_6s.webp?du=3000&sqp=CMHTiKgG&rs=AOn4CLANV4WgWp6YEggwa4oS0Zo2WD_URg", "https://www.youtube.com/watch?v=HaCfSvvcNUU&t=5390s", "https://www.ivoox.com/2x02-cosas-como-mundos-malaz-steven-erikson-audios-mp3_rf_75823690_1.html", "2:02:02", "canon");
 
-
 		};
 	}
 }
