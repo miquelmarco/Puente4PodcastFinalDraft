@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,17 +17,15 @@ public class Season {
     private Long number;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "podcast_id")
-    private Podcast podcastSeason;
-    @OneToMany(mappedBy = "season", fetch = FetchType.EAGER)
-    private Set<Episode> episode = new HashSet<>();
+    private Podcast podcastsSeason;
+    @OneToMany(mappedBy = "epSeason", fetch = FetchType.EAGER)
+    private Set<Episode> episodes = new HashSet<>();
 
     public Season() {
     }
 
-    public Season(Long number, Podcast podcastSeason, Set<Episode> episode) {
+    public Season(Long number) {
         this.number = number;
-        this.podcastSeason = podcastSeason;
-        this.episode = episode;
     }
 
     public Long getId() {
@@ -42,18 +41,29 @@ public class Season {
     }
 
     public Set<Episode> getEpisode() {
-        return episode;
+        return episodes;
     }
 
     public void setEpisode(Set<Episode> episode) {
-        this.episode = episode;
+        this.episodes = episode;
     }
     @JsonIgnore
     public Podcast getPodcast() {
-        return podcastSeason;
+        return podcastsSeason;
     }
 
     public void setPodcast(Podcast podcast) {
-        this.podcastSeason = podcast;
+        this.podcastsSeason = podcast;
+    }
+
+    public void addEpisode (Episode episode) {
+        episode.setSeason(this);
+        episodes.add(episode);
+    }
+
+    public void addAllEpisodes(List<Episode> episodeList) {
+        for (Episode episode : episodeList) {
+            this.addEpisode(episode);
+        }
     }
 }

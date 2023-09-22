@@ -18,6 +18,9 @@ public class PodcastUser {
     private String mail;
     private String nacionality;
     private String password;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "podcastOw_id")
+    private Podcast podcastUser;
     @OneToMany(mappedBy = "podcastUser", fetch = FetchType.EAGER)
     private Set<Comentary> comentarySet = new HashSet<>();
     @OneToMany(mappedBy = "podcastUserFav")
@@ -112,5 +115,13 @@ public class PodcastUser {
 
     public void setFavoriteSet(Set<Favorite> favoriteSet) {
         this.favoriteSet = favoriteSet;
+    }
+
+    public Podcast getPodcastOw() {
+        return podcastUser;
+    }
+
+    public void setPodcastOw(Podcast podcastOw) {
+        this.podcastUser = podcastOw;
     }
 }

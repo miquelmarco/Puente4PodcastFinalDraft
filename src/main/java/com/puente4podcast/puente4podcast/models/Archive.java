@@ -11,7 +11,6 @@ public class Archive {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private Byte seasonNumber;
     private Byte archiveNumber;
     private String name;
     private String img;
@@ -20,14 +19,13 @@ public class Archive {
     private String duration;
     private String category;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "archive_id")
-    private Podcast podcastArchive;
+    @JoinColumn(name = "podcast_id")
+    private Podcast podcastArchives;
 
     public Archive() {
     }
 
-    public Archive(Byte seasonNumber, Byte archiveNumber, String name, String img, String linkYt, String linkIvoox, String duration, String category, Podcast podcastArchive) {
-        this.seasonNumber = seasonNumber;
+    public Archive(Byte archiveNumber, String name, String img, String linkYt, String linkIvoox, String duration, String category) {
         this.archiveNumber = archiveNumber;
         this.name = name;
         this.img = img;
@@ -35,19 +33,10 @@ public class Archive {
         this.linkIvoox = linkIvoox;
         this.duration = duration;
         this.category = category;
-        this.podcastArchive = podcastArchive;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public Byte getSeasonNumber() {
-        return seasonNumber;
-    }
-
-    public void setSeasonNumber(Byte seasonNumber) {
-        this.seasonNumber = seasonNumber;
     }
 
     public Byte getArchiveNumber() {
@@ -108,10 +97,10 @@ public class Archive {
 
     @JsonIgnore
     public Podcast getPodcast() {
-        return podcastArchive;
+        return podcastArchives;
     }
 
     public void setPodcast(Podcast podcast) {
-        this.podcastArchive = podcast;
+        this.podcastArchives = podcast;
     }
 }

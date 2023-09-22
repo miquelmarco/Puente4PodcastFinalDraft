@@ -23,7 +23,7 @@ public class Episode {
     private String category;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "season_id")
-    private Season season;
+    private Season epSeason;
     @OneToMany(mappedBy = "episode", fetch = FetchType.EAGER)
     private Set<Comentary> comentarySet = new HashSet<>();
     @OneToMany(mappedBy = "episodeFav", fetch = FetchType.EAGER)
@@ -113,11 +113,11 @@ public class Episode {
 
     @JsonIgnore
     public Season getSeason() {
-        return season;
+        return epSeason;
     }
 
     public void setSeason(Season season) {
-        this.season = season;
+        this.epSeason = season;
     }
 
     @JsonIgnore
