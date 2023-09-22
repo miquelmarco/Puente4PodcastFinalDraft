@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +20,7 @@ public class Puente4podcastApplication {
 		SpringApplication.run(Puente4podcastApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner initData(PodcastUserRepository podcastUserRepository, PodcastRepository podcastRepository, SeasonRepository seasonRepository, EpisodeRepository episodeRepository, ArchiveRepository archiveRepository) {
+	public CommandLineRunner initData(PodcastUserRepository podcastUserRepository, PodcastRepository podcastRepository, SeasonRepository seasonRepository, EpisodeRepository episodeRepository, ArchiveRepository archiveRepository, FavoriteRepository favoriteRepository, ComentaryRepository comentaryRepository) {
 		return args -> {
 			PodcastUser adminUser = new PodcastUser("admin", "admin", "admin", "admin@puente4podcast.com", "chile", "admin");
 
@@ -104,6 +106,10 @@ public class Puente4podcastApplication {
 
 			Archive archivex001 = new Archive((byte) 1, "EL ARCHIVO DE LAS TORMENTAS: RESEÑA BRANDON SANDERSON", "https://i.ytimg.com/vi/qZwE2LDw42E/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLASV5xu-_TjTt0VYh0u-Ih0HI8K9A", "https://www.youtube.com/watch?v=qZwE2LDw42E", "https://www.ivoox.com/arch-1-brandon-sanderson-archivo-de-audios-mp3_rf_62210556_1.html", "2:09:39", "archive");
 
+			Comentary testCommentary = new Comentary("This is a test commentary, and is too short so i will put something more", LocalDateTime.now());
+
+			Favorite testFavorite = new Favorite();
+
 			List<Season> seasonList = Arrays.asList(season1, season2, season3);
 			List<Episode> episodeListS1 = Arrays.asList(episode1x01, episode1x02, episode1x03, episode1x04, episode1x05, episode1x06, episode1x07, episode1x08, episode1x09, episode1x10,
 					episode1x11, episode1x12, episode1x13, episode1x14, episode1x15, episode1x16, episode1x17, episode1x18, episode1x19, episode1x20, episode1x21, episode1x22, episode1x23);
@@ -120,6 +126,10 @@ public class Puente4podcastApplication {
 			season1.addAllEpisodes(episodeListS1);
 			season2.addAllEpisodes(episodeListS2);
 			season3.addAllEpisodes(episodeListS3);
+			episode1x01.addComentary(testCommentary);
+			episode1x01.addFavorite(testFavorite);
+			adminUser.addFavorite(testFavorite);
+			adminUser.addComentary(testCommentary);
 
 			podcastRepository.save(puente4podcast);
 			podcastUserRepository.save(adminUser);
@@ -128,6 +138,9 @@ public class Puente4podcastApplication {
 			episodeRepository.saveAll(episodeListS1);
 			episodeRepository.saveAll(episodeListS2);
 			episodeRepository.saveAll(episodeListS3);
+			favoriteRepository.save(testFavorite);
+			comentaryRepository.save(testCommentary);
+
 		};
 	}
 }

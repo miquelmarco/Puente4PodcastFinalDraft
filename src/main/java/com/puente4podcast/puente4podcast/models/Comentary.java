@@ -3,6 +3,7 @@ package com.puente4podcast.puente4podcast.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Comentary {
@@ -11,22 +12,19 @@ public class Comentary {
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     private String text;
-    private String date;
+    private LocalDateTime date;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private PodcastUser podcastUserCom;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "episode_id")
     private Episode episode;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private PodcastUser podcastUser;
-
     public Comentary() {
     }
 
-    public Comentary(String text, String date, Episode episode, PodcastUser podcastUser) {
+    public Comentary(String text, LocalDateTime date) {
         this.text = text;
         this.date = date;
-//        this.episode = episode;
-//        this.user = user;
     }
 
     public Long getId() {
@@ -41,11 +39,11 @@ public class Comentary {
         this.text = text;
     }
 
-    public String getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -57,11 +55,11 @@ public class Comentary {
         this.episode = episode;
     }
 
-    public PodcastUser getUser() {
-        return podcastUser;
+    public PodcastUser podcastUser() {
+        return podcastUserCom;
     }
 
-    public void setUser(PodcastUser podcastUser) {
-        this.podcastUser = podcastUser;
+    public void setPodcastUser(PodcastUser podcastUser) {
+        this.podcastUserCom = podcastUser;
     }
 }

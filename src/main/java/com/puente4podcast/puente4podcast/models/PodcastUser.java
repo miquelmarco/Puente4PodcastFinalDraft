@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,7 +22,7 @@ public class PodcastUser {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "podcastOw_id")
     private Podcast podcastUser;
-    @OneToMany(mappedBy = "podcastUser", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "podcastUserCom", fetch = FetchType.EAGER)
     private Set<Comentary> comentarySet = new HashSet<>();
     @OneToMany(mappedBy = "podcastUserFav")
     private Set<Favorite> favoriteSet = new HashSet<>();
@@ -123,5 +124,24 @@ public class PodcastUser {
 
     public void setPodcastOw(Podcast podcastOw) {
         this.podcastUser = podcastOw;
+    }
+
+    public void addComentary(Comentary comentary) {
+        comentary.setPodcastUser(this);
+        comentarySet.add(comentary);
+    }
+    public void addAllComentary(List<Comentary> comentaryList) {
+        for (Comentary comentary : comentaryList) {
+            this.addComentary(comentary);
+        }
+    }
+    public void addFavorite(Favorite favorite) {
+        favorite.setUserFav(this);
+        favoriteSet.add(favorite);
+    }
+    public void addAllFavorite(List<Favorite> favoriteList) {
+        for (Favorite favorite : favoriteList) {
+            this.addFavorite(favorite);
+        }
     }
 }
