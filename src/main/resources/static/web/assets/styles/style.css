@@ -22,6 +22,16 @@ footer {
     min-height: 10vh;
 }
 
+[v-cloak]>* {
+    display: none;
+}
+
+[v-cloak]::before {
+    content: "LOADING...";
+    color: white !important;
+    font-size: 2.5rem !important;
+}
+
 /* btn edit */
 
 .button-30 {
@@ -139,7 +149,7 @@ li > a:hover {
     border-right: 4px solid;
     width: 66ch;
     color: White;
-    animation: typing 2.5s steps(66),
+    animation: typing 3.5s steps(66),
         blink 0.5s infinite step-end alternate;
     overflow: hidden;
 }

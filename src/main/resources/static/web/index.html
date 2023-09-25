@@ -17,8 +17,7 @@
 </head>
 
 <body>
-
-    <div id="app">
+    <div id="app" v-cloak>
 
         <header class="headerIndex">
             <section>
@@ -100,7 +99,7 @@
                     <a target="_blank" :href="featured.linkYt"><img class="cardImg w-100" :src="featured.img"
                             :alt="featured.name" :title="featured.name"></a>
                     <div>
-                        <a class="text-decoration-none" target="_blank" href="https://www.youtube.com/@Puente4Podcast">
+                        <a class="text-decoration-none" target="_blank" :href="featured.linkYt">
                             <p class="cardName text-white text-center m-1">{{featured.name}}</p>
                         </a>
                     </div>
@@ -133,15 +132,13 @@
                     <a target="_blank" :href="featured.linkYt"><img class="cardImg w-100" :src="featured.img"
                             :alt="featured.name" :title="featured.name"></a>
                     <div>
-                        <a class="text-decoration-none" target="_blank" href="https://www.youtube.com/@Puente4Podcast">
+                        <a class="text-decoration-none" target="_blank" :href="featured.linkYt">
                             <p class="cardName text-white text-center m-1">{{featured.name}}</p>
                         </a>
                     </div>
                     <div>
                         <div>
-                            <p class="text-white text-end mx-2 seasonDetail">Temporada {{featured.seasonNumber}},
-                                episodio
-                                {{featured.episode}}</p>
+                            <p class="text-white text-end mx-2 seasonDetail">Archivo Número {{featured.archiveNumber}}</p>
                             <p class="text-white text-end mx-2 seasonDetail">{{featured.duration}} hrs</p>
                         </div>
                         <div class="d-flex justify-content-center align-items-center m-1 gap-1">

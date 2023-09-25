@@ -22,6 +22,8 @@ public class Episode {
     private String linkIvoox;
     private String duration;
     private String category;
+    @Column(length = 1000)
+    private String description;
     private boolean featured;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "season_id")
@@ -34,7 +36,7 @@ public class Episode {
     public Episode() {
     }
 
-    public Episode(Byte seasonNumber, Byte episode, String name, String img, String linkYt, String linkIvoox, String duration, String category, boolean featured) {
+    public Episode(Byte seasonNumber, Byte episode, String name, String img, String linkYt, String linkIvoox, String duration, String category, String description, boolean featured) {
         this.seasonNumber = seasonNumber;
         this.episode = episode;
         this.name = name;
@@ -43,6 +45,7 @@ public class Episode {
         this.linkIvoox = linkIvoox;
         this.duration = duration;
         this.category = category;
+        this.description = description;
         this.featured = featured;
     }
 
@@ -112,6 +115,14 @@ public class Episode {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isFeatured() {

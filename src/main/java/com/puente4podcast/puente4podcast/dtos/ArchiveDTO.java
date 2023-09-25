@@ -11,6 +11,7 @@ public class ArchiveDTO {
     private String linkIvoox;
     private String duration;
     private String category;
+    private String description;
     private boolean featured;
 
     public ArchiveDTO() {
@@ -25,6 +26,7 @@ public class ArchiveDTO {
         this.linkIvoox = archive.getLinkIvoox();
         this.duration = archive.getDuration();
         this.category = archive.getCategory();
+        this.description = archive.getDescription();
         this.featured = archive.isFeatured();
     }
 
@@ -58,6 +60,10 @@ public class ArchiveDTO {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public boolean isFeatured() {

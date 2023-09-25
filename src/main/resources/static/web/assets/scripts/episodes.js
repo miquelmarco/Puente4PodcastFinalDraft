@@ -1,22 +1,23 @@
-let { createApp } = Vue;
-createApp({
-    data() {
-        return {
-            episodes: [],
-            filteredEp: [],
-            seasons: [],
-            checked: [],
-            searchInput: ''
-        }
-    },
-    created() {
-        axios.get(`/api/episodes`)
-        .then(res => {
-            this.episodes = res.data
-            console.log(this.episodes)
-            this.seasons = Array.from(new Set(this.episodes.map(episode => episode.seasonNumber)))
-        }).catch(err => console.log(err))
-    },
+setTimeout(() => {
+    let { createApp } = Vue;
+    createApp({
+        data() {
+            return {
+                episodes: [],
+                filteredEp: [],
+                seasons: [],
+                checked: [],
+                searchInput: ''
+            }
+        },
+        created() {
+            axios.get(`/api/episodes`)
+            .then(res => {
+                this.episodes = res.data
+                console.log(this.episodes)
+                this.seasons = Array.from(new Set(this.episodes.map(episode => episode.seasonNumber)))
+            }).catch(err => console.log(err))
+        },
     methods: {
         filtroEpCheckSearc2() {
             this.filteredEp = this.episodes.filter(episode => episode.name.toLowerCase().includes(this.searchInput.toLowerCase())
@@ -30,3 +31,4 @@ createApp({
         }
     }
 }).mount("#app")
+},1000)

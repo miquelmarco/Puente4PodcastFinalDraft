@@ -18,6 +18,8 @@ public class Archive {
     private String linkIvoox;
     private String duration;
     private String category;
+    @Column(length = 1000)
+    private String description;
     private boolean featured;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "podcast_id")
@@ -26,7 +28,7 @@ public class Archive {
     public Archive() {
     }
 
-    public Archive(Byte archiveNumber, String name, String img, String linkYt, String linkIvoox, String duration, String category, boolean featured) {
+    public Archive(Byte archiveNumber, String name, String img, String linkYt, String linkIvoox, String duration, String category, String description, boolean featured) {
         this.archiveNumber = archiveNumber;
         this.name = name;
         this.img = img;
@@ -34,6 +36,7 @@ public class Archive {
         this.linkIvoox = linkIvoox;
         this.duration = duration;
         this.category = category;
+        this.description = description;
         this.featured = featured;
     }
 
@@ -112,6 +115,14 @@ public class Archive {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @JsonIgnore
