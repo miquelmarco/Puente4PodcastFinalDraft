@@ -18,6 +18,7 @@ public class Archive {
     private String linkIvoox;
     private String duration;
     private String category;
+    private boolean featured;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "podcast_id")
     private Podcast podcastArchives;
@@ -25,7 +26,7 @@ public class Archive {
     public Archive() {
     }
 
-    public Archive(Byte archiveNumber, String name, String img, String linkYt, String linkIvoox, String duration, String category) {
+    public Archive(Byte archiveNumber, String name, String img, String linkYt, String linkIvoox, String duration, String category, boolean featured) {
         this.archiveNumber = archiveNumber;
         this.name = name;
         this.img = img;
@@ -33,6 +34,7 @@ public class Archive {
         this.linkIvoox = linkIvoox;
         this.duration = duration;
         this.category = category;
+        this.featured = featured;
     }
 
     public Long getId() {
@@ -53,6 +55,23 @@ public class Archive {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
+    }
+
+    @JsonIgnore
+    public Podcast getPodcastArchives() {
+        return podcastArchives;
+    }
+
+    public void setPodcastArchives(Podcast podcastArchives) {
+        this.podcastArchives = podcastArchives;
     }
 
     public String getImg() {

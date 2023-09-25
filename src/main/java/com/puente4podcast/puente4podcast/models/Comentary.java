@@ -1,10 +1,7 @@
 package com.puente4podcast.puente4podcast.models;
-
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
 @Entity
 public class Comentary {
     @Id
@@ -21,44 +18,34 @@ public class Comentary {
     private Episode episode;
     public Comentary() {
     }
-
     public Comentary(String text, LocalDateTime date) {
         this.text = text;
         this.date = date;
     }
-
     public Long getId() {
         return id;
     }
-
     public String getText() {
         return text;
     }
-
     public void setText(String text) {
         this.text = text;
     }
-
     public LocalDateTime getDate() {
         return date;
     }
-
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
-
     public Episode getEpisode() {
         return episode;
     }
-
     public void setEpisode(Episode episode) {
         this.episode = episode;
     }
-
     public PodcastUser podcastUser() {
         return podcastUserCom;
     }
-
     public void setPodcastUser(PodcastUser podcastUser) {
         this.podcastUserCom = podcastUser;
     }
