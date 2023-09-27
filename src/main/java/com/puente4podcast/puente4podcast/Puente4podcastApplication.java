@@ -1,24 +1,31 @@
 package com.puente4podcast.puente4podcast;
 import com.puente4podcast.puente4podcast.models.*;
 import com.puente4podcast.puente4podcast.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 @SpringBootApplication
 public class Puente4podcastApplication {
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	public static void main(String[] args) {
 		SpringApplication.run(Puente4podcastApplication.class, args);
 	}
 	@Bean
 	public CommandLineRunner initData(PodcastUserRepository podcastUserRepository, PodcastRepository podcastRepository, SeasonRepository seasonRepository, EpisodeRepository episodeRepository, ArchiveRepository archiveRepository, FavoriteRepository favoriteRepository, ComentaryRepository comentaryRepository) {
 		return args -> {
-			PodcastUser adminUser = new PodcastUser("admin", "admin", "admin", "admin@puente4podcast.com", "chile", "admin");
-			PodcastUser testUser = new PodcastUser("Marco", "Miquel", "NetRunner", "miquel.marco@outlook.com", "chile", "123");
+
 			Podcast puente4podcast = new Podcast("puente4podcast", "El podcast de la gente que ve el mundo, de otra manera!", "https://imgur.com/rJh1nKq");
+
+			PodcastUser adminUser = new PodcastUser("admin", "admin", "admin", "admin@puente4podcast.com", "chile", passwordEncoder.encode("admin"), true, puente4podcast);
+			PodcastUser testUser = new PodcastUser("Marco", "Miquel", "NetRunner", "miquel.marco@outlook.com", "chile", passwordEncoder.encode("123"), false, puente4podcast);
 
 			Season season1 = new Season((long) 1);
 			Season season2 = new Season((long) 2);
@@ -103,7 +110,11 @@ public class Puente4podcastApplication {
 
 			Archive archivex001 = new Archive((byte) 1, "El Archivo de las Tormentas: Reseña Brandon Sanderson", "https://i.ytimg.com/vi/qZwE2LDw42E/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLASV5xu-_TjTt0VYh0u-Ih0HI8K9A", "https://www.youtube.com/watch?v=qZwE2LDw42E", "https://www.ivoox.com/arch-1-brandon-sanderson-archivo-de-audios-mp3_rf_62210556_1.html", "2:09:39", "archive", "Estrenamos un nuevo formato! Los Archivos del Puente 4 serán programas especiales, de tipo monográfico que se irán publicando cada cierto tiempo de forma paralela a los programas normales. En este Archivo Primero, hablamos de Brandon Sanderson y su saga El Archivo de las Tormentas. Si como a nosotros os gusta la lectura y las buenas historias, en este programa desgranamos los tres primeros libros de esta decalogía.", true);
 
-			Comentary testCommentary = new Comentary("This is a test commentary, and is too short so i will put something more", LocalDateTime.now());
+			Comentary testCommentary1 = new Comentary("This is a test commentary, and is too short so i will put something more", LocalDateTime.now());
+			Comentary testCommentary2 = new Comentary("This is a test commentary, and is too short so i will put something more", LocalDateTime.now());
+			Comentary testCommentary3 = new Comentary("This is a test commentary, and is too short so i will put something more", LocalDateTime.now());
+			Comentary testCommentary4 = new Comentary("This is a test commentary, and is too short so i will put something more", LocalDateTime.now());
+			Comentary testCommentary5 = new Comentary("This is a test commentary, and is too short so i will put something more", LocalDateTime.now());
 
 			Favorite testFavorite = new Favorite();
 
@@ -119,16 +130,25 @@ public class Puente4podcastApplication {
 
 
 			puente4podcast.addPodcastUser(adminUser);
+			puente4podcast.addPodcastUser(testUser);
 			puente4podcast.addAllSeasons(seasonList);
 			puente4podcast.addArchive(archivex001);
 			season1.addAllEpisodes(episodeListS1);
 			season2.addAllEpisodes(episodeListS2);
 			season3.addAllEpisodes(episodeListS3);
 			season4.addAllEpisodes(episodeListS4);
-			episode1x01.addComentary(testCommentary);
+			episode1x01.addComentary(testCommentary1);
+			episode1x01.addComentary(testCommentary2);
+			episode1x01.addComentary(testCommentary3);
+			episode1x01.addComentary(testCommentary4);
+			episode1x01.addComentary(testCommentary5);
 			episode1x01.addFavorite(testFavorite);
-			adminUser.addFavorite(testFavorite);
-			adminUser.addComentary(testCommentary);
+			testUser.addFavorite(testFavorite);
+			testUser.addComentary(testCommentary1);
+			testUser.addComentary(testCommentary2);
+			testUser.addComentary(testCommentary3);
+			testUser.addComentary(testCommentary4);
+			testUser.addComentary(testCommentary5);
 
 			podcastRepository.save(puente4podcast);
 			podcastUserRepository.save(adminUser);
@@ -140,7 +160,11 @@ public class Puente4podcastApplication {
 			episodeRepository.saveAll(episodeListS3);
 			episodeRepository.saveAll(episodeListS4);
 			favoriteRepository.save(testFavorite);
-			comentaryRepository.save(testCommentary);
+			comentaryRepository.save(testCommentary1);
+			comentaryRepository.save(testCommentary2);
+			comentaryRepository.save(testCommentary3);
+			comentaryRepository.save(testCommentary4);
+			comentaryRepository.save(testCommentary5);
 		};
 	}
 }

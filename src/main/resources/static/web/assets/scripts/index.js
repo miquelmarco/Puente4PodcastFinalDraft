@@ -1,12 +1,11 @@
 setTimeout(() => {
-
-    
     let { createApp } = Vue;
     createApp({
         data() {
             return {
             featuredEp: [],
-            featuredAr: []
+            featuredAr: [],
+            isLoading: false
         }
     },
     created() {

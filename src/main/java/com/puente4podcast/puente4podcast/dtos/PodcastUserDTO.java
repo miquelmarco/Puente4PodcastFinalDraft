@@ -1,8 +1,11 @@
 package com.puente4podcast.puente4podcast.dtos;
+
 import com.puente4podcast.puente4podcast.models.Podcast;
 import com.puente4podcast.puente4podcast.models.PodcastUser;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 public class PodcastUserDTO {
     private Long id;
     private String firstName;
@@ -12,10 +15,13 @@ public class PodcastUserDTO {
     private String nacionality;
     private String password;
     private Podcast podcastUser;
+    private boolean isAdmin;
     private List<ComentaryDTO> comentarySet;
     private List<FavoriteDTO> favoriteSet;
+
     public PodcastUserDTO() {
     }
+
     public PodcastUserDTO(PodcastUser podcastUser) {
         this.id = podcastUser.getId();
         this.firstName = podcastUser.getFirstName();
@@ -25,6 +31,7 @@ public class PodcastUserDTO {
         this.nacionality = podcastUser.getNacionality();
         this.password = podcastUser.getPassword();
         this.podcastUser = podcastUser.getPodcastOw();
+        this.isAdmin = podcastUser.isAdmin();
         this.comentarySet = podcastUser.getComentarySet().stream().map(comentary -> new ComentaryDTO(comentary)).collect(Collectors.toList());
         this.favoriteSet = podcastUser.getFavoriteSet().stream().map(favorite -> new FavoriteDTO(favorite)).collect(Collectors.toList());
     }
@@ -32,30 +39,43 @@ public class PodcastUserDTO {
     public Long getId() {
         return id;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public String getUserName() {
         return userName;
     }
+
     public String getMail() {
         return mail;
     }
+
     public String getNacionality() {
         return nacionality;
     }
+
     public String getPassword() {
         return password;
     }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
     public Podcast getPodcastUser() {
         return podcastUser;
     }
+
     public List<ComentaryDTO> getComentarySet() {
         return comentarySet;
     }
+
     public List<FavoriteDTO> getFavoriteSet() {
         return favoriteSet;
     }

@@ -7,4 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface PodcastUserRepository extends JpaRepository<PodcastUser, Long> {
     PodcastUser findByMail(String mail);
+
+    PodcastUser findByUserName(String userName);
 }

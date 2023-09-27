@@ -7,14 +7,14 @@ setTimeout(() => {
                 filteredEp: [],
                 seasons: [],
                 checked: [],
-                searchInput: ''
+                searchInput: '',
+                isLoading: false
             }
         },
         created() {
             axios.get(`/api/episodes`)
             .then(res => {
                 this.episodes = res.data
-                console.log(this.episodes)
                 this.seasons = Array.from(new Set(this.episodes.map(episode => episode.seasonNumber)))
             }).catch(err => console.log(err))
         },
