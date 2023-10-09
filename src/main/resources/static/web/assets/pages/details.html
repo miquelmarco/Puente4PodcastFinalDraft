@@ -80,19 +80,19 @@
         </header>
 
         <main v-cloak class="mainIndex d-flex flex-column justify-content-center align-items-center">
-            <div class="w-75 bg-white m-2" v-for="selected of selectEp">
-                <h3 class="text-black text-center m-2 p-2">{{selected.name}}</h3>
+            <div class="w-75 bg-white m-2">
+                <h3 class="text-black text-center m-2 p-2">{{episode.name}}</h3>
                 <div class="d-flex justify-content-around align-items-center">
-                    <img class="object-fit-cover w-25 m-2 p-2" :src="selected.img" :alt="selected.name"
-                        :title="selected.name">
+                    <img class="object-fit-cover w-25 m-2 p-2" :src="episode.img" :alt="episode.name"
+                        :title="episode.name">
                     <div class="d-flex flex-column align-items-center gap-2">
-                        <p>{{selected.duration}}</p>
-                        <p>Temporada {{selected.seasonNumber}} Episodio {{selected.episode}}</p>
-                        <p>Categoría: {{selected.category}}</p>
+                        <p>Duración: {{episode.duration}}</p>
+                        <p>Temporada {{episode.seasonNumber}} Episodio {{episode.episode}}</p>
+                        <p>Categoría: {{episode.category}}</p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <p class="m-2 p-2 fw-bolder w-75">{{selected.description}}</p>
+                    <p class="m-2 p-2 fw-bolder w-75">{{episode.description}}</p>
                 </div>
             </div>
             <div>
@@ -102,9 +102,9 @@
                         rows="10"></textarea>
                     <button class="button-30 m-3">Comentar!</button>
                 </div>
-                <div class="bg-white m-2 p-2 mb-4" v-for="item of selectedComentaries">
+                <div class="bg-white m-2 p-2 mb-4" v-for="item of comentaries">
                     <p class="text-black">{{item.text}}</p>
-                    <p class="text-black">{{item.date.slice(8,10)}}-{{item.date.slice(5,7)}}-{{item.date.slice(0,4)}}
+                    <p class="text-black m-2 text-end fw-bolder">{{item.date.slice(8,10)}}-{{item.date.slice(5,7)}}-{{item.date.slice(0,4)}}
                     </p>
                 </div>
             </div>

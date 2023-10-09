@@ -79,9 +79,10 @@
             </section>
         </header>
 
-        <main v-cloak class="mainIndex d-flex justify-content-center align-items-center">
+        <main v-cloak class="mainIndex d-flex flex-column justify-content-center align-items-center">
+
             <section
-                class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-25">
+                class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-3 mx-5 w-25">
                 <h2 class="text-white p-1 m-2">Ingresa</h2>
                 <form class="text-white d-flex flex-column gap-2 m-3 w-100">
                     <label for="mailLog">Ingresa tu e-mail</label>
@@ -94,8 +95,8 @@
 
 
             <section
-                class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
-                <h2 class="text-white p-1 m-2">Registro</h2>
+                class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-3 mx-5 w-75">
+                <h2 class="text-white p-1 m-2">No tienes cuenta? Regístrate!</h2>
                 <div class="w-100 d-flex text-white">
                     <form class="d-flex flex-column justify-content-between w-50 p-3 gap-2">
                         <label for="firstName">Nombre</label>
@@ -149,6 +150,7 @@
                 </div>
                 <button @click="register()" class="button-30 w-25 fw-bolder m-3">Resgistrarse</button>
             </section>
+
         </main>
 
         <footer class="footerIndex d-flex justify-content-around align-items-center">

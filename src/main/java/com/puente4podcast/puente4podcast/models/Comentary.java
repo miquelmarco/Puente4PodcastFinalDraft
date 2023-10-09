@@ -1,6 +1,7 @@
 package com.puente4podcast.puente4podcast.models;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
 public class Comentary {
@@ -9,7 +10,7 @@ public class Comentary {
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     private String text;
-    private LocalDateTime date;
+    private LocalDate date;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private PodcastUser podcastUserCom;
@@ -18,7 +19,7 @@ public class Comentary {
     private Episode episode;
     public Comentary() {
     }
-    public Comentary(String text, LocalDateTime date) {
+    public Comentary(String text, LocalDate date) {
         this.text = text;
         this.date = date;
     }
@@ -31,10 +32,10 @@ public class Comentary {
     public void setText(String text) {
         this.text = text;
     }
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
     public Episode getEpisode() {

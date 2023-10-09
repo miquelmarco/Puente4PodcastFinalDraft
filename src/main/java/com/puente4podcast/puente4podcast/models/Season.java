@@ -11,7 +11,7 @@ public class Season {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private Long number;
+    private Byte number;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "podcast_id")
     private Podcast podcastsSeason;
@@ -19,16 +19,16 @@ public class Season {
     private Set<Episode> episodes = new HashSet<>();
     public Season() {
     }
-    public Season(Long number) {
+    public Season(Byte number) {
         this.number = number;
     }
     public Long getId() {
         return id;
     }
-    public Long getNumber() {
+    public Byte getNumber() {
         return number;
     }
-    public void setNumber(Long number) {
+    public void setNumber(Byte number) {
         this.number = number;
     }
     @JsonIgnore

@@ -63,22 +63,22 @@ public class PodcastUserController {
                                                       @RequestParam String userName, @RequestParam String mail,
                                                       @RequestParam String nacionality, @RequestParam String password) {
         if (password.isBlank()) {
-            return new ResponseEntity<>("Ingresa tu contraseña", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Ingresa Contraseña", HttpStatus.FORBIDDEN);
         }
         if (firstName.isBlank()) {
-            return new ResponseEntity<>("Ingresa tu nombre", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Ingresa Nombre", HttpStatus.FORBIDDEN);
         }
         if (lastName.isBlank()) {
-            return new ResponseEntity<>("Ingresa tu apellido", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Ingresa Apellido", HttpStatus.FORBIDDEN);
         }
         if (userName.isBlank()) {
-            return new ResponseEntity<>("Ingresa tu nombre de usuario", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Ingresa Nombre de Usuario", HttpStatus.FORBIDDEN);
         }
         if (mail.isBlank()) {
-            return new ResponseEntity<>("Ingresa tu mail", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Ingresa Mail", HttpStatus.FORBIDDEN);
         }
         if (nacionality.isBlank()) {
-            return new ResponseEntity<>("Indica tu nacionalidad", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Indica Nacionalidad", HttpStatus.FORBIDDEN);
         }
         if (podcastUserRepository.findByMail(mail) != null) {
             return new ResponseEntity<>("Usuario ya existe", HttpStatus.FORBIDDEN);
@@ -90,6 +90,6 @@ public class PodcastUserController {
         PodcastUser podcastUser = new PodcastUser(firstName, lastName, userName, mail, nacionality, passwordEncoder.encode(password), true, podcast);
 
         podcastUserRepository.save(podcastUser);
-        return new ResponseEntity<>("Admin creado", HttpStatus.CREATED);
+        return new ResponseEntity<>("Administrador Creado", HttpStatus.CREATED);
     }
 }
