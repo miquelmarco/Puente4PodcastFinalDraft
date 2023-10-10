@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box !important;
     font-family: 'M PLUS 1 Code', monospace !important;
-    border: solid red 1px;
+    /* border: solid red 1px; */
 }
 
 body {

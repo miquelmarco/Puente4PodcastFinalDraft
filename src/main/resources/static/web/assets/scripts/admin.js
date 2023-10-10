@@ -70,25 +70,49 @@ setTimeout(() => {
                 }
             },
             newEpisode() {
-                let dataDTO = {
-                    epSeason: this.epSeason,
-                    epEpisode: this.epEpisode,
-                    epName: this.epName,
-                    epLinkYt: this.epLinkYt,
-                    epLinkIVoox: this.epLinkIVoox,
-                    epImg: this.epImg,
-                    epDuration: this.epDuration,
-                    epDescription: this.epDescription,
-                    epFeatured: this.epFeatured,
-                }
-                axios.post('/api/episodes/newEpisode', `epSeason=${this.epSeason}&epEpisode=${this.epEpisode}
+                if (this.epSeason &&
+                    this.epEpisode &&
+                    this.epName &&
+                    this.epLinkYt &&
+                    this.epLinkIVoox &&
+                    this.epImg &&
+                    this.epDuration &&
+                    this.epDescription) {
+                    axios.post(`/api/episodes/newEpisode`, `epSeason=${this.epSeason}&epEpisode=${this.epEpisode}
                 &epName=${this.epName}&epLinkYt=${this.epLinkYt}&epLinkIVoox=${this.epLinkIVoox}
                 &epImg=${this.epImg}&epDuration=${this.epDuration}&epDescription=${this.epDescription}&epFeatured=${this.epFeatured}`)
-                    .then(res => {
-                        console.log('creado')
-                    }).catch(err => {
-                        console.log('no creado')
-                    })
+                        // const requestData = {
+                        //     epSeason: this.epSeason,
+                        //     epEpisode: this.epEpisode,
+                        //     epName: this.epName,
+                        //     epLinkYt: this.epLinkYt,
+                        //     epLinkIVoox: this.epLinkIVoox,
+                        //     epImg: this.epImg,
+                        //     epDuration: this.epDuration,
+                        //     epDescription: this.epDescription,
+                        //     epFeatured: this.epFeatured
+                        // }
+                        // axios.post(`/api/episodes/newEpisode`, requestData)
+                        .then(res => {
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        })
+                }
             },
             eraseFields() {
                 this.firstName = ''
@@ -97,7 +121,16 @@ setTimeout(() => {
                 this.mail = ''
                 this.nacionality = ''
                 this.password = ''
-                this.passwordConfirm = ''
+                this.passwordConfirm = '',
+                this.epSeason = null,
+                this.epEpisode = null,
+                this.epName = '',
+                this.epLinkYt = '',
+                this.epLinkIVoox = '',
+                this.epImg = '',
+                this.epDuration = '',
+                this.epDescription = '',
+                this.epFeatured = false
             }
         },
         computed: {
