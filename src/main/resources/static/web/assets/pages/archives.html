@@ -11,9 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../styles/details.css">
+    <link rel="stylesheet" href="../styles/archives.css">
     <link rel="shortcut icon" href="../images/P4_W.png" type="image/x-icon">
-    <title>DETALLES || Puente4Podcast</title>
+    <title>ARCHIVOS || Puente4Podcast</title>
 </head>
 
 <body>
@@ -42,7 +42,7 @@
                                     <a class="nav-link" href="./episodes.html">EPISODIOS</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="./archives.html">ARCHIVOS</a>
+                                    <a class="nav-link" href="#">ARCHIVOS</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="#">BACKSTAGE</a>
@@ -79,39 +79,56 @@
             </section>
         </header>
 
-        <main v-cloak class="mainIndex d-flex flex-column justify-content-center align-items-center">
-            <div class="w-75 bg-white m-2">
-                <h3 class="text-black text-center m-2 p-2">{{episode.name}}</h3>
-                <div class="d-flex justify-content-around align-items-center">
-                    <img class="object-fit-cover w-25 m-2 p-2" :src="episode.img" :alt="episode.name"
-                        :title="episode.name">
-                    <div class="d-flex flex-column align-items-center gap-2">
-                        <p>Duración: {{episode.duration}}</p>
-                        <p>Temporada {{episode.seasonNumber}} Episodio {{episode.episode}}</p>
-                        <p>Categoría: {{episode.category}}</p>
+        <main v-cloak class="mainIndex">
+            <!-- title edit -->
+            <section v-cloak class="text-white d-flex flex-column align-items-center p-3 m-2">
+                <div v-cloak class="d-flex m-1">
+                    <img class="logoTitle px-2" src="../images/P4_W.png" alt="logo">
+                    <h1>Puente4Podcast</h1>
+                </div>
+                <div v-cloak class="m-1">
+                    <p class="podcastSubTitleEp">Abrimos las puertas del Archivo, y sed bienvenidos!</p>
+                </div>
+            </section>
+
+            <section v-cloak class="d-flex justify-content-center align-items-center gap-3 bg-secondary flex-wrap">
+                <p class="text-white">Episodios monográficos de larga duración!</p>
+                <div v-cloak class="d-flex justify-content-center align-items-center m-2">
+                    <form v-cloak class="d-flex align-items-center p-1" role="search">
+                        <input class="form-control me-2 px-2" type="search" placeholder="Buscar archivo...  "
+                            aria-label="Search" v-model="searchInput">
+                    </form>
+                </div>
+            </section>
+            <section v-cloak class=" d-flex justify-content-center gap-3 m-4 flex-wrap">
+                <div v-cloak class="archiveContainer d-flex" v-for="archive of filteredAr">
+                    <div v-cloak class="containerOne d-flex flex-column justify-content-between bg-white text-black">
+                        <div v-cloak class="d-flex flex-column">
+                            <a :href="archive.linkYt"><img class="cardImg w-100" :src="archive.img"
+                                    :alt="archive.img"></a>
+                            <a class="text-decoration-none" :href="archive.linkYt">
+                                <p class="cardName text-center m-1 p-1 text-black">{{archive.name}}</p>
+                            </a>
+                            <p class="fw-medium text-center m-1 p-1">Duración {{archive.duration}} hrs</p>
+                            <p class="fw-medium text-center m-1 p-1">Archivo Número {{archive.archiveNumber}}
+                            </p>
+                        </div>
+                        <div v-cloak class="d-flex justify-content-center align-items-center m-1 gap-1">
+                            <a target="_blank" :href="archive.linkYt"><button
+                                    class="button-30 btnCardYt">Youtube</button></a>
+                            <a target="_blank" :href="archive.linkIvoox"><button
+                                    class="button-30 btnCardIv">Ivoox</button></a>
+                        </div>
+                    </div>
+                    <div v-cloak class="d-flex justify-content-center align-items-center">
+                        <p class="p-2 m-2 text-white fw-lighter">{{archive.description}}</p>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <p class="m-2 p-2 fw-bolder w-75">{{episode.description}}</p>
-                </div>
-            </div>
-            <div>
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    <h1 class="text-white m-2 p-2">Deja tu comentario!</h1>
-                    <textarea class="textareaDetails m-3 p-3" name="textarea" id="textarea" cols="30"
-                        rows="10"></textarea>
-                    <button class="button-30 m-3">Comentar!</button>
-                </div>
-                <div class="bg-white m-2 p-2 mb-4" v-for="item of comentaries">
-                    <p class="text-black">{{item.text}}</p>
-                    <p class="text-black m-2 text-end fw-bolder">{{item.date.slice(8,10)}}-{{item.date.slice(5,7)}}-{{item.date.slice(0,4)}}
-                    </p>
-                </div>
-            </div>
+            </section>
         </main>
 
         <footer class="footerIndex d-flex justify-content-around align-items-center">
-            <div class="footerTxtContainer d-flex flex-column justify-content-center">
+            <div v-cloak class="footerTxtContainer d-flex flex-column justify-content-center">
                 <a class="text-decoration-none" href="mailto:puente4podcast@gmail.com">
                     <p class="footerPs bg-black text-white m-1 p-1">@Envíanos un mail a @Puente4Podcast!</p>
                 </a>
@@ -126,8 +143,8 @@
                     </p>
                 </a>
             </div>
-            <div class="footerLogosContainer d-flex flex-column align-items-center justify-content-between">
-                <div class="m-3 w-75 d-flex justify-content-around">
+            <div v-cloak class="footerLogosContainer d-flex flex-column align-items-center justify-content-between">
+                <div v-cloak class="m-3 w-75 d-flex justify-content-around">
                     <a target="_blank" href="https://www.youtube.com/@Puente4Podcast"><img class="redLogos p-1"
                             src="../../assets/images/icons8-youtube-50.png" alt="rrsslogo"></a>
                     <a target="_blank" href="https://www.instagram.com/puente4podcast/"><img class="redLogos p-1"
@@ -141,15 +158,16 @@
                     <a target="_blank" href="https://www.ivoox.com/podcast-puente4podcast_sq_f11105139_1.html"><img
                             class="redLogos p-1" src="../../assets/images/ivoox.png" alt="rrsslogo"></a>
                 </div>
-                <div>
+                <div v-cloak>
                     <p>Síguenos en nuestras redes sociales!</p>
                 </div>
-                <div class="d-flex flex-column justify-content-center align-items-center m-3">
+                <div v-cloak class="d-flex flex-column justify-content-center align-items-center m-3">
                     <img class="logoFooter m-1" src="../../assets/images/P4_B.png" alt="logop4p">
                     <p>®Puente4Podcast</p>
                 </div>
             </div>
         </footer>
+        {{filtroEpCheckSearch}}
 
     </div>
 
@@ -159,7 +177,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../scripts/details.js"></script>
+    <script src="../scripts/archives.js"></script>
 </body>
 
 </html>

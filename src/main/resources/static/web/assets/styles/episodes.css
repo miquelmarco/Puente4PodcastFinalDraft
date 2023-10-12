@@ -178,6 +178,7 @@ li>a:hover {
 /* sub episode card edit */
 
 .cardContainer {
+    transition: 0.3s;
     min-height: 20rem;
     max-width: 13rem;
     border: solid white 1px;
@@ -242,6 +243,7 @@ li>a:hover {
 .redLogos {
     height: 3rem;
     margin: 0.5rem !important;
+    transition: 0.3s;
 }
 
 .redLogos:hover {
@@ -258,6 +260,10 @@ li>a:hover {
 
 .footerTxtContainer {
     height: 40vh;
+}
+
+.footerPs {
+    transition: 0.3s;
 }
 
 .footerPs:hover {

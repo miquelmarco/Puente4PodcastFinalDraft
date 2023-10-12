@@ -92,7 +92,7 @@ footer {
     transform: translateY(2px);
 }
 
-/* detail header edit */
+/* archive header edit */
 
 .logoHeader {
     height: 3rem;
@@ -131,7 +131,109 @@ li>a:hover {
     transition: 0.3s !important;
 }
 
-/* detail footer edit */
+/* archive main edit */
+
+.mainIndex {
+    min-height: 90vh;
+}
+
+.logoTitle {
+    height: 3rem;
+}
+
+.podcastSubTitle {
+    font-size: 1.3rem;
+}
+
+.podcastSubTitleSpan {
+    font-family: 'Caveat', cursive !important;
+    font-size: 1.9rem !important;
+    color: red;
+    text-shadow: rgb(147, 134, 134) 0.6px 0.45px;
+}
+
+.podcastSubTitleEp {
+    display: block;
+    white-space: nowrap;
+    border-right: 4px solid;
+    width: 52ch;
+    color: White;
+    animation: typing 4s steps(52),
+        blink 0.5s infinite step-end alternate;
+    overflow: hidden;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
+/* sub episode card edit */
+
+.archiveContainer {
+    min-height: 35vh;
+    max-width: 40vw;
+    border: solid white 1px;
+}
+
+.containerOne {
+    border: solid white 1px;
+    transition: 0.3s;
+}
+
+.containerOne:hover {
+    transform: translate(-3px, -8px);
+    border-radius: 0.3rem;
+    box-shadow: rgba(0, 0, 0, 0.105) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.133) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.139) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    transition: 0.3s;
+}
+
+.cardImg {
+    border: solid white 1px;
+}
+
+.cardName {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.cardName:hover {
+    color: rgb(234, 60, 60) !important;
+    transition: 0.3s !important;
+}
+
+.seasonDetail {
+    font-size: 0.7rem;
+}
+
+.btnCardYt,
+.btnCardIv,
+.btnDetails {
+    height: 1.5rem;
+}
+
+.btnCardYt:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #ffffff 0 -3px 0 inset;
+    background-color: red;
+    transform: translateY(-2.5px);
+    transition: 0.3s;
+}
+
+.btnCardIv:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #ffffff 0 -3px 0 inset;
+    background-color: orange;
+    transform: translateY(-2.5px);
+    transition: 0.3s;
+}
+
+/* archive footer edit */
 
 .footerIndex {
     min-height: 50vh;
@@ -174,12 +276,4 @@ li>a:hover {
     color: black !important;
     transition: 0.3s;
     font-weight: 900 !important;
-}
-
-/* container details edit */
-
-.textareaDetails {
-    width: 30rem;
-    height: 7rem;
-    resize: none;
 }

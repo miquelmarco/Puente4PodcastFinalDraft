@@ -19,4 +19,9 @@ public class ArchiveController {
     public List<ArchiveDTO> getFeatured() {
         return archiveRepository.findAll().stream().filter(Archive::isFeatured).map(ArchiveDTO::new).collect(Collectors.toList());
     }
+
+    @GetMapping("/archives/getArchives")
+    public List<ArchiveDTO> getArchives() {
+        return archiveRepository.findAll().stream().map(ArchiveDTO::new).collect(Collectors.toList());
+    }
 }

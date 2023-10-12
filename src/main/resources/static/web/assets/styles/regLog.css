@@ -189,6 +189,7 @@ li>a:hover {
 .redLogos {
     height: 3rem;
     margin: 0.5rem !important;
+    transition: 0.3s;
 }
 
 .redLogos:hover {
@@ -205,6 +206,10 @@ li>a:hover {
 
 .footerTxtContainer {
     height: 40vh;
+}
+
+.footerPs {
+    transition: 0.3s;
 }
 
 .footerPs:hover {

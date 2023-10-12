@@ -109,6 +109,8 @@ public class Puente4podcastApplication {
 			Episode episode4x01 = new Episode((byte) 4, (byte) 1, "Baldur's Gate 3 GOTY, One Piece Live Action (no spoilers), H.P. Lovecraft", "https://i.ytimg.com/vi/mcUi41gUfCo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAwo5zuGihapur_EcwLtGzI-2ht-w", "https://www.youtube.com/watch?v=mcUi41gUfCo&t=6371s", "https://www.ivoox.com/4x01-cosas-como-baldur-s-gate-3-one-piece-audios-mp3_rf_116010809_1.html", "2:00:17", "Canon", "En primer lugar y como no podía ser de otra manera, hablamos del Baldur's Gate 3, el último juego de Larian Studios, que se postula como un firme candidato para los GOTY de este año, os contamos lo que nos ha parecido y si deberíais jugarlo! Welcome to Faerun! Después, comentamos las primeras impresiones del Live Action de One Piece creado por Netflix, con  muchísimas dudas iniciales y miedo, esta serie al final ha calado entre los seguidores, recordad que la comentaremos de manera completa y con spoilers en el siguiente Archivo! Y para cerrar, una guía introductoria para leer al creador del Cthulhu, H.P. Lovecraft, os contamos por donde empezar a leer su obra, y os guiamos para que contaros cómo se estructura para que empecéis por donde más os convenga!!", true);
 
 			Archive archivex001 = new Archive((byte) 1, "El Archivo de las Tormentas: Reseña Brandon Sanderson", "https://i.ytimg.com/vi/qZwE2LDw42E/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLASV5xu-_TjTt0VYh0u-Ih0HI8K9A", "https://www.youtube.com/watch?v=qZwE2LDw42E", "https://www.ivoox.com/arch-1-brandon-sanderson-archivo-de-audios-mp3_rf_62210556_1.html", "2:09:39", "Archivo", "Estrenamos un nuevo formato! Los Archivos del Puente 4 serán programas especiales, de tipo monográfico que se irán publicando cada cierto tiempo de forma paralela a los programas normales. En este Archivo Primero, hablamos de Brandon Sanderson y su saga El Archivo de las Tormentas. Si como a nosotros os gusta la lectura y las buenas historias, en este programa desgranamos los tres primeros libros de esta decalogía.", true);
+			Archive archivex002 = new Archive((byte) 2, "EL RITMO DE LA GUERRA: Reseña Brandon Sanderson", "https://i.ytimg.com/vi/0lJAb6Ygmw8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCUN67qgBuXpyqo_amx-zCFWKfxQg", "https://www.youtube.com/watch?v=0lJAb6Ygmw8", "https://www.ivoox.com/arch-2-brandon-sanderson-ritmo-de-audios-mp3_rf_64366321_1.html", "2:42:08", "Archivo", "Comentamos y analizamos en profundidad el 4º libro de la saga el Archivo de las Tormentas, el Ritmo de la Guerra. Diseccionamos personajes, trama, contexto y mucho más. Hacemos también un resumen de cuáles han sido nuestras partes favoritas, y qué partes nos han gustado menos Al final del programa, además, comentamos los nexos de esta saga con otros libros del Cosmere de Brandon Sanderon.", true);
+			Archive archivex003 = new Archive((byte) 3, "Brandon Sanderson y el Imperio Final", "https://i.ytimg.com/vi/NWFJX0cVybk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAOt_YAu7QD5rLlzSOxvexvOZSe5w", "https://www.youtube.com/watch?v=NWFJX0cVybk&t=650s", "https://www.ivoox.com/arch-3-brandon-sanderson-imperio-final-audios-mp3_rf_66051152_1.html", "1:58:39", "Archivo", "Reseña de el Imperio Final de Brandon Sanderson, de su conocida saga Nacidos de la Bruma, o Mistborn en su versión inglesa. Hablamos sobre el argumento, personajes, sistema de magias, partes favoritas, críticas y mucho más! Escucha el podcast y descubre estos libros basados en el Cosmere, y escucha lo que opinamos del primer libro El Imperio Final, de la saga Nacidos de la Bruma, de Brandon Sanderson.", true);
 
 			Comentary testCommentary1 = new Comentary("This is a test commentary, and is too short so i will put something more 1", LocalDate.now());
 			Comentary testCommentary2 = new Comentary("This is a test commentary, and is too short so i will put something more 2", LocalDate.now());
@@ -133,6 +135,8 @@ public class Puente4podcastApplication {
 			puente4podcast.addPodcastUser(testUser);
 			puente4podcast.addAllSeasons(seasonList);
 			puente4podcast.addArchive(archivex001);
+			puente4podcast.addArchive(archivex002);
+			puente4podcast.addArchive(archivex003);
 			season1.addAllEpisodes(episodeListS1);
 			season2.addAllEpisodes(episodeListS2);
 			season3.addAllEpisodes(episodeListS3);
@@ -155,6 +159,8 @@ public class Puente4podcastApplication {
 			podcastUserRepository.save(testUser);
 			seasonRepository.saveAll(seasonList);
 			archiveRepository.save(archivex001);
+			archiveRepository.save(archivex002);
+			archiveRepository.save(archivex003);
 			episodeRepository.saveAll(episodeListS1);
 			episodeRepository.saveAll(episodeListS2);
 			episodeRepository.saveAll(episodeListS3);
