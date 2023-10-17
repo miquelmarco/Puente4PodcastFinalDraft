@@ -130,7 +130,6 @@ public class Puente4podcastApplication {
 					episode3x11, episode3x12, episode3x13, episode3x14, episode3x15, episode3x16, episode3x17, episode3x18, episode3x19, episode3x20,episode3x21, episode3x22, episode3x23);
 			List<Episode> episodeListS4 = Arrays.asList(episode4x01);
 
-
 			puente4podcast.addPodcastUser(adminUser);
 			puente4podcast.addPodcastUser(testUser);
 			puente4podcast.addAllSeasons(seasonList);
