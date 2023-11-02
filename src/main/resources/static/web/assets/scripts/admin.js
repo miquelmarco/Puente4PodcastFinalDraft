@@ -23,6 +23,16 @@ setTimeout(() => {
                 epDescription: '',
                 epFeatured: false,
 
+                //new archive
+
+                archNumber: null,
+                archName: '',
+                archImg: '',
+                archLinkYt: '',
+                archLinkIVoox: '',
+                archDuration: '',
+                archDescription: '',
+
                 //others
                 isLoading: false,
                 backMsg: ''
@@ -81,18 +91,39 @@ setTimeout(() => {
                     axios.post(`/api/episodes/newEpisode`, `epSeason=${this.epSeason}&epEpisode=${this.epEpisode}
                 &epName=${this.epName}&epLinkYt=${this.epLinkYt}&epLinkIVoox=${this.epLinkIVoox}
                 &epImg=${this.epImg}&epDuration=${this.epDuration}&epDescription=${this.epDescription}&epFeatured=${this.epFeatured}`)
-                        // const requestData = {
-                        //     epSeason: this.epSeason,
-                        //     epEpisode: this.epEpisode,
-                        //     epName: this.epName,
-                        //     epLinkYt: this.epLinkYt,
-                        //     epLinkIVoox: this.epLinkIVoox,
-                        //     epImg: this.epImg,
-                        //     epDuration: this.epDuration,
-                        //     epDescription: this.epDescription,
-                        //     epFeatured: this.epFeatured
-                        // }
-                        // axios.post(`/api/episodes/newEpisode`, requestData)
+                        .then(res => {
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        })
+                }
+            },
+            newArchive() {
+                if (
+                    this.archNumber &&
+                    this.archName &&
+                    this.archImg &&
+                    this.archLinkYt &&
+                    this.archLinkIVoox &&
+                    this.archDuration &&
+                    this.archDescription
+                ) {
+                    axios.post(`/api/archives/newArchive`, `archNumber=${this.archNumber}&archName=${this.archName}&archImg=${this.archImg}
+                    &archLinkYt=${this.archLinkYt}&archLinkIVoox=${this.epLinkIVoox}&archDuration=${this.archDuration}&archDescription==${this.archDescription}`)
                         .then(res => {
                             this.backMsg = res.data
                             Swal.fire({
@@ -122,15 +153,15 @@ setTimeout(() => {
                 this.nacionality = ''
                 this.password = ''
                 this.passwordConfirm = '',
-                this.epSeason = null,
-                this.epEpisode = null,
-                this.epName = '',
-                this.epLinkYt = '',
-                this.epLinkIVoox = '',
-                this.epImg = '',
-                this.epDuration = '',
-                this.epDescription = '',
-                this.epFeatured = false
+                    this.epSeason = null,
+                    this.epEpisode = null,
+                    this.epName = '',
+                    this.epLinkYt = '',
+                    this.epLinkIVoox = '',
+                    this.epImg = '',
+                    this.epDuration = '',
+                    this.epDescription = '',
+                    this.epFeatured = false
             }
         },
         computed: {

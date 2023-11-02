@@ -13,7 +13,7 @@ setTimeout(() => {
         created() {
             axios.get(`/api/archives/getArchives`)
                 .then(res => {
-                    this.archives = res.data
+                    this.archives = res.data.sort((a, b) => b.id - a.id)
                     console.log(this.archives)
                 }).catch(err => console.log(err))
         },

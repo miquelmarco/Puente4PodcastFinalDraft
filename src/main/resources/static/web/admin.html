@@ -180,10 +180,32 @@
                 <button @click="newEpisode" class="button-30 w-25 fw-bolder m-3">Ingresar Episodio</button>
             </section>
 
-            <!-- <section
+            <section
                 class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
-                
-            </section> -->
+                <h3 class="p-2 m-3 text-black bg-white">Ingresar Archivo</h3>
+                <form class="text-white d-flex flex-column gap-2">
+                    <label for="archNumber">Número de archivo</label>
+                    <input type="number" id="archNumber">
+
+                    <label for="archName">Nombre del archivo</label>
+                    <input type="text" id="archName">
+
+                    <label for="archImg">Url Miniatura</label>
+                    <input type="text" id="archImg">
+
+                    <label for="archLinkYt">Url Youtube</label>
+                    <input type="text" id="archLinkYt">
+
+                    <label for="archLinkIVoox">Url Ivoox</label>
+                    <input type="text" id="archLinkIVoox">
+
+                    <label for="archDuration">Duración (Formato 1:11:11)</label>
+                    <input type="text" id="archDuration">
+
+                    <label for="archDescription">Descripción del archivo</label>
+                    <textarea v-model="epDescription" id="archDescription" cols="40" rows="3"></textarea>
+                </form>
+            </section>
         </main>
 
         <footer>

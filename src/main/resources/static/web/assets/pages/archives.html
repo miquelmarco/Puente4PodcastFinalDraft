@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../styles/archives.css">
     <link rel="shortcut icon" href="../images/P4_W.png" type="image/x-icon">
-    <title>ARCHIVOS || Puente4Podcast</title>
+    <title>ARCHIVOS DEL PUENTE 4|| Puente4Podcast</title>
 </head>
 
 <body>
@@ -104,23 +104,23 @@
                 <div v-cloak class="archiveContainer d-flex" v-for="archive of filteredAr">
                     <div v-cloak class="containerOne d-flex flex-column justify-content-between bg-white text-black">
                         <div v-cloak class="d-flex flex-column">
-                            <a :href="archive.linkYt"><img class="cardImg w-100" :src="archive.img"
+                            <a target="_blank" :href="archive.linkYt"><img class="cardImg w-100" :src="archive.img"
                                     :alt="archive.img"></a>
-                            <a class="text-decoration-none" :href="archive.linkYt">
-                                <p class="cardName text-center m-1 p-1 text-black">{{archive.name}}</p>
+                            <a class="text-decoration-none" target="_blank" :href="archive.linkYt">
+                                <p class="cardName text-center p-1 m-2 text-black">{{archive.name}}</p>
                             </a>
-                            <p class="fw-medium text-center m-1 p-1">Duración {{archive.duration}} hrs</p>
-                            <p class="fw-medium text-center m-1 p-1">Archivo Número {{archive.archiveNumber}}
+                            <p class="fw-medium m-1 p-1 text-center">Duración {{archive.duration}} hrs</p>
+                            <p class="fw-medium m-1 p-1 text-center">Archivo Número {{archive.archiveNumber}}
                             </p>
                         </div>
-                        <div v-cloak class="d-flex justify-content-center align-items-center m-1 gap-1">
+                        <div v-cloak class="d-flex justify-content-center align-items-center mb-2 gap-1">
                             <a target="_blank" :href="archive.linkYt"><button
                                     class="button-30 btnCardYt">Youtube</button></a>
                             <a target="_blank" :href="archive.linkIvoox"><button
                                     class="button-30 btnCardIv">Ivoox</button></a>
                         </div>
                     </div>
-                    <div v-cloak class="d-flex justify-content-center align-items-center">
+                    <div v-cloak class="d-flex justify-content-center align-items-center w-50">
                         <p class="p-2 m-2 text-white fw-lighter">{{archive.description}}</p>
                     </div>
                 </div>

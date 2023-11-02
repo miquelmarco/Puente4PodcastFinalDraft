@@ -178,14 +178,16 @@ li>a:hover {
 /* sub episode card edit */
 
 .archiveContainer {
-    min-height: 35vh;
-    max-width: 40vw;
+    height: 60vh;
+    width: 40vw;
     border: solid white 1px;
 }
 
 .containerOne {
     border: solid white 1px;
     transition: 0.3s;
+    width: 50%;
+    height: 100%;
 }
 
 .containerOne:hover {
