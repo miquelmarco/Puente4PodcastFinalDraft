@@ -2,14 +2,8 @@ package com.puente4podcast.puente4podcast.controllers;
 
 import com.puente4podcast.puente4podcast.dtos.EpisodeDTO;
 import com.puente4podcast.puente4podcast.dtos.NewEpisodeDTO;
-import com.puente4podcast.puente4podcast.models.Episode;
-import com.puente4podcast.puente4podcast.models.Podcast;
-import com.puente4podcast.puente4podcast.models.PodcastUser;
-import com.puente4podcast.puente4podcast.models.Season;
-import com.puente4podcast.puente4podcast.repositories.EpisodeRepository;
-import com.puente4podcast.puente4podcast.repositories.PodcastRepository;
-import com.puente4podcast.puente4podcast.repositories.PodcastUserRepository;
-import com.puente4podcast.puente4podcast.repositories.SeasonRepository;
+import com.puente4podcast.puente4podcast.models.*;
+import com.puente4podcast.puente4podcast.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +24,8 @@ public class EpisodeController {
     private PodcastUserRepository podcastUserRepository;
     @Autowired
     private SeasonRepository seasonRepository;
+    @Autowired
+    private ArchiveRepository archiveRepository;
 
     @GetMapping("/episodes")
     public List<EpisodeDTO> getAllEps() {
@@ -73,5 +69,69 @@ public class EpisodeController {
         } else {
             return new ResponseEntity<>("Sólo un admin puede ingresar un episodio!", HttpStatus.FORBIDDEN);
         }
+    }
+
+    @PatchMapping("/modEpFeatured")
+    public ResponseEntity<?> modEpFeatured(Authentication authentication, @RequestParam Long id) {
+        if (podcastUserRepository.findByMail(authentication.getName()).isAdmin()) {
+            Episode epFeatured = episodeRepository.findById(id).orElse(null);
+            if (epFeatured == null) {
+                return new ResponseEntity<>("Episodio no Existe", HttpStatus.NOT_FOUND);
+            }
+            if (epFeatured.isFeatured()) {
+                epFeatured.setFeatured(false);
+                episodeRepository.save(epFeatured);
+                return new ResponseEntity<>("Destacado Retirado", HttpStatus.OK);
+            }
+            if (!epFeatured.isFeatured()) {
+                epFeatured.setFeatured(true);
+                episodeRepository.save(epFeatured);
+                return new ResponseEntity<>("Destacado Agregado", HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("Faltan Atribuciones", HttpStatus.CONFLICT);
+    }
+
+    @PatchMapping("/modArFeatured")
+    public ResponseEntity<?> modArFeatured(Authentication authentication, @RequestParam Long id) {
+        if (podcastUserRepository.findByMail(authentication.getName()).isAdmin()) {
+            Archive arFeatured = archiveRepository.findById(id).orElse(null);
+            if (arFeatured == null) {
+                return new ResponseEntity<>("Archivo no Existe", HttpStatus.NOT_FOUND);
+            }
+            if (arFeatured.isFeatured()) {
+                arFeatured.setFeatured(false);
+                archiveRepository.save(arFeatured);
+                return new ResponseEntity<>("Destacado Retirado", HttpStatus.OK);
+            }
+            if (!arFeatured.isFeatured()) {
+                arFeatured.setFeatured(true);
+                archiveRepository.save(arFeatured);
+                return new ResponseEntity<>("Destacado Agregado", HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("Faltan Atribuciones", HttpStatus.CONFLICT);
+    }
+
+    @DeleteMapping("/deleteEp")
+    public ResponseEntity<?> deleteEp(Authentication authentication, @RequestParam Long id) {
+        if (podcastUserRepository.findByMail(authentication.getName()).isAdmin()) {
+            Episode ep = episodeRepository.findById(id).orElse(null);
+            assert ep != null;
+            episodeRepository.delete(ep);
+            return new ResponseEntity<>("Episodio Borrado", HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>("No autorizado para realizar esta acción", HttpStatus.FORBIDDEN);
+    }
+
+    @DeleteMapping("/deleteAr")
+    public ResponseEntity<?> deleteAr(Authentication authentication, @RequestParam Long id) {
+        if (podcastUserRepository.findByMail(authentication.getName()).isAdmin()) {
+            Archive ar = archiveRepository.findById(id).orElse(null);
+            assert ar != null;
+            archiveRepository.delete(ar);
+            return new ResponseEntity<>("Archivo Borrado", HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>("No autorizado para realizar esta acción", HttpStatus.FORBIDDEN);
     }
 }

@@ -3,6 +3,13 @@ setTimeout(() => {
     createApp({
         data() {
             return {
+                //data
+                episodes: [],
+                archives: [],
+
+                //main
+                selectedAdminPanel: '',
+
                 //new admin
                 firstName: '',
                 lastName: '',
@@ -33,14 +40,36 @@ setTimeout(() => {
                 archDuration: '',
                 archDescription: '',
 
+                //mod featured Ep Ar
+                selectTypeMod: '',
+                modEpFeatured: null,
+                modArFeatured: null,
+
                 //others
                 isLoading: false,
                 backMsg: ''
             }
         },
         created() {
+            this.getEpisodes()
+            this.getArchives()
         },
         methods: {
+            getEpisodes() {
+                axios.get(`/api/episodes`)
+                    .then(res => {
+                        this.episodes = res.data.sort((a, b) => b.id - a.id)
+                    }).catch(err => console.log(err))
+            },
+            getArchives() {
+                axios.get(`/api/archives/getArchives`)
+                .then(res => {
+                    this.archives = res.data.sort((a, b) => b.id - a.id)
+                }).catch(err => console.log(err))
+            },
+            select(){
+                console.log(this.selectedAdminPanel)
+            },
             registerAdmin() {
                 if (this.firstName &&
                     this.lastName &&
@@ -63,6 +92,7 @@ setTimeout(() => {
                             })
                             setTimeout(() => {
                                 this.eraseFields()
+                                location.reload()
                             }, 1600)
                         }).catch(err => {
                             this.backMsg = err.response.data
@@ -100,6 +130,9 @@ setTimeout(() => {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1600)
                         }).catch(err => {
                             this.backMsg = err.response.data
                             Swal.fire({
@@ -133,6 +166,9 @@ setTimeout(() => {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1600)
                         }).catch(err => {
                             this.backMsg = err.response.data
                             Swal.fire({
@@ -143,6 +179,86 @@ setTimeout(() => {
                                 timer: 1500
                             })
                         })
+                }
+            },
+            modEFeatured() {
+                if (this.modEpFeatured) {
+                    axios.patch(`/api/modEpFeatured`, `id=${this.modEpFeatured}`)
+                        .then(res => {
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            this.deleteFeatured = null
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1600)
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            this.deleteFeatured = null
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1600)
+                        })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: `Ingrese número de episodio`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            },
+            modAFeatured() {
+                if (this.modArFeatured) {
+                    axios.patch(`/api/modArFeatured`, `id=${this.modArFeatured}`)
+                        .then(res => {
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            this.deleteFeatured = null
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1600)
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            this.deleteFeatured = null
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1600)
+                        })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: `Ingrese número de episodio`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                 }
             },
             eraseFields() {

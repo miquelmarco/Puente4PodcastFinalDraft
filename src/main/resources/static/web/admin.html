@@ -77,17 +77,34 @@
             </section>
         </header>
 
-        <main class="mainIndex d-flex flex-column justify-content-center align-items-center">
+        <main class="mainIndex d-flex flex-column align-items-center">
 
             <section class="text-white d-flex flex-column align-items-center p-3 m-2">
+
                 <div class="d-flex m-1">
                     <img class="logoTitle px-2" src="./assets/images/P4_W.jpg" alt="logo">
                     <h1>Panel de Admin</h1>
                 </div>
+
+                <div class="d-flex gap-3 flex-wrap">
+                    <input name="selectedOption" type="radio" id="addAdmin" value="addAdmin"
+                        v-model="selectedAdminPanel">
+                    <label for="addAdmin">Agregar Administrador</label>
+
+                    <input name="selectedOption" type="radio" id="addEp" value="addEp" v-model="selectedAdminPanel">
+                    <label for="addEp">Agregar Episodio</label>
+
+                    <input name="selectedOption" type="radio" id="addAr" value="addAr" v-model="selectedAdminPanel">
+                    <label for="addAr">Agregar Archivo</label>
+
+                    <input name="selectedOption" type="radio" id="modFeatured" value="modFeatured" v-model="selectedAdminPanel">
+                    <label for="modFeatured">Modificar Ep/Ar Destacado</label>
+                </div>
+
             </section>
 
-            <section
-                class="d-none sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
+            <section v-if="selectedAdminPanel == 'addAdmin'"
+                class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
                 <h3 class="p-2 m-3 text-black bg-white">Crear Perfil Admin</h3>
                 <div class="w-100 d-flex text-white">
                     <form class="d-flex flex-column justify-content-between w-50 p-3 gap-2">
@@ -143,8 +160,8 @@
                 <button @click="registerAdmin" class="button-30 w-25 fw-bolder m-3">Crear Admin</button>
             </section>
 
-            <section
-                class="d-none sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
+            <section v-if="selectedAdminPanel == 'addEp'"
+                class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
                 <h3 class="p-2 m-3 text-black bg-white">Ingresar Episodio</h3>
                 <form class="text-white d-flex flex-column">
                     <div class="d-flex flex-column">
@@ -180,7 +197,7 @@
                 <button @click="newEpisode" class="button-30 w-25 fw-bolder m-3">Ingresar Episodio</button>
             </section>
 
-            <section
+            <section v-if="selectedAdminPanel == 'addAr'"
                 class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
                 <h3 class="p-2 m-3 text-black bg-white">Ingresar Archivo</h3>
                 <form class="text-white d-flex flex-column gap-2">
@@ -205,7 +222,43 @@
                     <label for="archDescription">Descripción del archivo</label>
                     <textarea v-model="epDescription" id="archDescription" cols="40" rows="3"></textarea>
                 </form>
+                <button @click="newArchive" class="button-30 w-25 fw-bolder m-3">Ingresar Episodio</button>
             </section>
+
+            <section v-if="selectedAdminPanel == 'modFeatured'"
+                class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75 gap-3">
+                <h3 class="p-2 m-3 text-black bg-white">Modificar Destacado</h3>
+
+                <div class="d-flex flex-column gap-2">
+                    <label class="text-white" for="selArOrEp">Selecciona el tipo a modificar</label>
+                    <select name="selArOrEp" id="selArOrEp" v-model="selectTypeMod">
+                        <option value="Arch">Archivo</option>
+                        <option value="Epis">Episodio</option>
+                    </select>
+                </div>
+
+                <div v-if="selectTypeMod == 'Epis'">
+                    <label class="text-white px-3" for="epFeatured">Ingresa Id Episodio</label>
+                    <input type="number" id="epFeatured">
+                    <button @click="modEFeatured" class="button-30 w-25 fw-bolder m-3">Modificar Destacado</button>
+                </div>
+
+                <div v-if="selectTypeMod == 'Arch'">
+                    <label class="text-white px-3" for="epFeatured">Ingresa Id Archivo</label>
+                    <input type="number" id="epFeatured">
+                    <button @click="modAFeatured" class="button-30 w-25 fw-bolder m-3">Modificar Destacado</button>
+                </div>
+
+                <div v-if="selectTypeMod == 'Epis'" v-for="episode of episodes">
+                    <p class="text-white bg-danger p-1">Episode: {{episode.seasonNumber}} X {{episode.episode}} Usar id:
+                        {{episode.id}}</p>
+                </div>
+
+                <div v-if="selectTypeMod == 'Arch'" v-for="archive of archives">
+                    <p class="text-white bg-danger p-1">Archive: {{archive.archiveNumber}} Usar id: {{archive.id}}</p>
+                </div>
+            </section>
+
         </main>
 
         <footer>
