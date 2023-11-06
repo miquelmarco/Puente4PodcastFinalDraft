@@ -70,4 +70,3 @@ public class ArchiveDTO {
         return featured;
     }
 }
-
