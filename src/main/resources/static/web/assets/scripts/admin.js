@@ -63,11 +63,11 @@ setTimeout(() => {
             },
             getArchives() {
                 axios.get(`/api/archives/getArchives`)
-                .then(res => {
-                    this.archives = res.data.sort((a, b) => b.id - a.id)
-                }).catch(err => console.log(err))
+                    .then(res => {
+                        this.archives = res.data.sort((a, b) => b.id - a.id)
+                    }).catch(err => console.log(err))
             },
-            select(){
+            select() {
                 console.log(this.selectedAdminPanel)
             },
             registerAdmin() {
