@@ -54,6 +54,5 @@ public class ArchiveController {
             return new ResponseEntity<>("Sólo un admin puede ingresar un Archivo!", HttpStatus.FORBIDDEN);
         }
     }
-
-
 }
+
