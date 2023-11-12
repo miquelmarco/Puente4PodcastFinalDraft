@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div id="app" v-cloak>
+    <div id="app">
 
         <header class="headerIndex">
             <section>
@@ -77,7 +77,7 @@
             </section>
         </header>
 
-        <main class="mainIndex d-flex flex-column align-items-center">
+        <main v-cloak class="mainIndex d-flex flex-column align-items-center text-white">
 
             <section class="text-white d-flex flex-column align-items-center p-3 m-2">
 
@@ -97,10 +97,19 @@
                     <input name="selectedOption" type="radio" id="addAr" value="addAr" v-model="selectedAdminPanel">
                     <label for="addAr">Agregar Archivo</label>
 
-                    <input name="selectedOption" type="radio" id="modFeatured" value="modFeatured" v-model="selectedAdminPanel">
+                    <input name="selectedOption" type="radio" id="modFeatured" value="modFeatured"
+                        v-model="selectedAdminPanel">
                     <label for="modFeatured">Modificar Ep/Ar Destacado</label>
+
+                    <input name="selectedOption" type="radio" id="modAdmin" value="modAdmin"
+                        v-model="selectedAdminPanel">
+                    <label for="modAdmin">Modificar Admin</label>
                 </div>
 
+            </section>
+
+            <section v-if="selectedAdminPanel == ''">
+                <h2>ELIGE UNA OPCION</h2>
             </section>
 
             <section v-if="selectedAdminPanel == 'addAdmin'"
@@ -230,7 +239,7 @@
                 <h3 class="p-2 m-3 text-black bg-white">Modificar Destacado</h3>
 
                 <div class="d-flex flex-column gap-2">
-                    <label class="text-white" for="selArOrEp">Selecciona el tipo a modificar</label>
+                    <label for="selArOrEp">Selecciona el tipo a modificar</label>
                     <select name="selArOrEp" id="selArOrEp" v-model="selectTypeMod">
                         <option value="Arch">Archivo</option>
                         <option value="Epis">Episodio</option>
@@ -238,25 +247,63 @@
                 </div>
 
                 <div v-if="selectTypeMod == 'Epis'">
-                    <label class="text-white px-3" for="epFeatured">Ingresa Id Episodio</label>
-                    <input type="number" id="epFeatured">
+                    <label class="px-3" for="epFeatured">Ingresa Id Episodio</label>
+                    <input type="number" id="epFeatured" v-model="modEpFeatured">
                     <button @click="modEFeatured" class="button-30 w-25 fw-bolder m-3">Modificar Destacado</button>
                 </div>
 
                 <div v-if="selectTypeMod == 'Arch'">
-                    <label class="text-white px-3" for="epFeatured">Ingresa Id Archivo</label>
-                    <input type="number" id="epFeatured">
+                    <label class="px-3" for="epFeatured">Ingresa Id Archivo</label>
+                    <input type="number" id="epFeatured" v-model="modArFeatured">
                     <button @click="modAFeatured" class="button-30 w-25 fw-bolder m-3">Modificar Destacado</button>
                 </div>
 
                 <div v-if="selectTypeMod == 'Epis'" v-for="episode of episodes">
-                    <p class="text-white bg-danger p-1">Episode: {{episode.seasonNumber}} X {{episode.episode}} Usar id:
+                    <p class="bg-danger p-1">Episode: {{episode.seasonNumber}} X {{episode.episode}} Usar id:
                         {{episode.id}}</p>
                 </div>
 
-                <div v-if="selectTypeMod == 'Arch'" v-for="archive of archives">
-                    <p class="text-white bg-danger p-1">Archive: {{archive.archiveNumber}} Usar id: {{archive.id}}</p>
+                <div v-for="archive of archives">
+                    <p class="bg-danger p-1">Archive: {{archive.archiveNumber}} Usar id: {{archive.id}}</p>
                 </div>
+
+            </section>
+
+            <section v-if="selectedAdminPanel == 'modAdmin'"
+                class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75 gap-3">
+                <h3 class="p-2 m-3 text-black bg-white">Modificar Admin</h3>
+
+                <label for="modAdminStatus">Modificar Admins</label>
+                <select name="modAdminStatus" id="modAdminStatus" v-model="modAdminStatus">
+                    <option value="giveAdmin">Dar Admin</option>
+                    <option value="deleteAdmin">Quitar Admin</option>
+                </select>
+
+                <div v-if="modAdminStatus == 'giveAdmin'">
+                    <label for="adminStatusMail">Ingresa Mail</label>
+                    <input type="mail" name="adminStatusMail" id="adminStatusMail" v-model="adminStatusMail">
+                    <button @click="giveAdmin">Dar Admin</button>
+                </div>
+
+                <div v-if="modAdminStatus == 'deleteAdmin'">
+                    <label for="adminStatusMail">Ingresa Mail</label>
+                    <input type="mail" name="adminStatusMail" id="adminStatusMail" v-model="adminStatusMail">
+                    <button @click="deleteAdmin">Quitar Admin</button>
+                </div>
+
+                <table>
+                    <legend class="text-center">Lista de Admins</legend>
+                    <thead class="border-3 border-white">
+                        <th class="border-3 border-white w-25">Nombre</th>
+                        <th class="border-3 border-white w-25">Apellido</th>
+                        <th class="border-3 border-white w-25">Mail</th>
+                    </thead>
+                    <tbody class="border-3 border-white" v-for="admin of admins">
+                        <td class="border-3 border-white w-25">{{admin.firstName}}</td>
+                        <td class="border-3 border-white w-25">{{admin.lastName}}</td>
+                        <td class="border-3 border-white w-25">{{admin.mail}}</td>
+                    </tbody>
+                </table>
             </section>
 
         </main>

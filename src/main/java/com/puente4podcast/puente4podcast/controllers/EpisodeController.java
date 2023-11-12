@@ -92,26 +92,7 @@ public class EpisodeController {
         return new ResponseEntity<>("Faltan Atribuciones", HttpStatus.CONFLICT);
     }
 
-    @PatchMapping("/modArFeatured")
-    public ResponseEntity<?> modArFeatured(Authentication authentication, @RequestParam Long id) {
-        if (podcastUserRepository.findByMail(authentication.getName()).isAdmin()) {
-            Archive arFeatured = archiveRepository.findById(id).orElse(null);
-            if (arFeatured == null) {
-                return new ResponseEntity<>("Archivo no Existe", HttpStatus.NOT_FOUND);
-            }
-            if (arFeatured.isFeatured()) {
-                arFeatured.setFeatured(false);
-                archiveRepository.save(arFeatured);
-                return new ResponseEntity<>("Destacado Retirado", HttpStatus.OK);
-            }
-            if (!arFeatured.isFeatured()) {
-                arFeatured.setFeatured(true);
-                archiveRepository.save(arFeatured);
-                return new ResponseEntity<>("Destacado Agregado", HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<>("Faltan Atribuciones", HttpStatus.CONFLICT);
-    }
+
 
     @DeleteMapping("/deleteEp")
     public ResponseEntity<?> deleteEp(Authentication authentication, @RequestParam Long id) {

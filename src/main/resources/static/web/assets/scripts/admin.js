@@ -6,6 +6,7 @@ setTimeout(() => {
                 //data
                 episodes: [],
                 archives: [],
+                admins: [],
 
                 //main
                 selectedAdminPanel: '',
@@ -45,6 +46,10 @@ setTimeout(() => {
                 modEpFeatured: null,
                 modArFeatured: null,
 
+                //mod admin
+                modAdminStatus: '',
+                adminStatusMail: '',
+
                 //others
                 isLoading: false,
                 backMsg: ''
@@ -53,6 +58,7 @@ setTimeout(() => {
         created() {
             this.getEpisodes()
             this.getArchives()
+            this.getAdmins()
         },
         methods: {
             getEpisodes() {
@@ -65,6 +71,13 @@ setTimeout(() => {
                 axios.get(`/api/archives/getArchives`)
                     .then(res => {
                         this.archives = res.data.sort((a, b) => b.id - a.id)
+                    }).catch(err => console.log(err))
+            },
+            getAdmins() {
+                axios.get(`/api/podcastUsers/getAdmins`)
+                    .then(res => {
+                        console.log(res.data)
+                        this.admins = res.data
                     }).catch(err => console.log(err))
             },
             select() {
@@ -259,6 +272,60 @@ setTimeout(() => {
                         showConfirmButton: false,
                         timer: 1500
                     })
+                }
+            },
+            giveAdmin() {
+                if (this.adminStatusMail) {
+                    axios.patch(`/api/podcastUsers/giveAdmin`, `giveAdminMail=${this.adminStatusMail}`)
+                        .then(res => {
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1600)
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        })
+                }
+            },
+            deleteAdmin() {
+                if (this.adminStatusMail) {
+                    axios.patch(`/api/podcastUsers/deleteAdmin`, `deleteAdminMail=${this.adminStatusMail}`)
+                        .then(res => {
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1600)
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        })
                 }
             },
             eraseFields() {
