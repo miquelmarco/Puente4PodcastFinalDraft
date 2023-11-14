@@ -163,8 +163,6 @@ public class Puente4podcastApplication {
 			Comentary testCommentary4 = new Comentary("This is a test commentary, and is too short so i will put something more 4", LocalDate.now());
 			Comentary testCommentary5 = new Comentary("This is a test commentary, and is too short so i will put something more 5", LocalDate.now());
 
-			Favorite testFavorite = new Favorite();
-
 			List<Season> seasonList = Arrays.asList(season1, season2, season3, season4);
 			List<Episode> episodeListS1 = Arrays.asList(episode1x01, episode1x02, episode1x03, episode1x04, episode1x05, episode1x06, episode1x07, episode1x08, episode1x09, episode1x10,
 					episode1x11, episode1x12, episode1x13, episode1x14, episode1x15, episode1x16, episode1x17, episode1x18, episode1x19, episode1x20, episode1x21, episode1x22, episode1x23);
@@ -193,8 +191,6 @@ public class Puente4podcastApplication {
 			episode1x01.addComentary(testCommentary3);
 			episode1x01.addComentary(testCommentary4);
 			episode1x01.addComentary(testCommentary5);
-			episode1x01.addFavorite(testFavorite);
-			testUser.addFavorite(testFavorite);
 			testUser.addComentary(testCommentary1);
 			testUser.addComentary(testCommentary2);
 			testUser.addComentary(testCommentary3);
@@ -210,7 +206,6 @@ public class Puente4podcastApplication {
 			episodeRepository.saveAll(episodeListS2);
 			episodeRepository.saveAll(episodeListS3);
 			episodeRepository.saveAll(episodeListS4);
-			favoriteRepository.save(testFavorite);
 			comentaryRepository.save(testCommentary1);
 			comentaryRepository.save(testCommentary2);
 			comentaryRepository.save(testCommentary3);

@@ -3,6 +3,7 @@ setTimeout(() => {
     createApp({
         data() {
             return {
+                current: [],
                 firstName: '',
                 lastName: '',
                 userName: '',
@@ -16,9 +17,16 @@ setTimeout(() => {
             }
         },
         created() {
-            
+            this.getCurrent()
         },
     methods: {
+        getCurrent(){
+            axios.get(`/api/getCurrent`)
+            .then(res => {
+                this.current = res.data
+                console.log(this.current)
+            }).catch(err => console.log(err))
+        },
         register(){
             if(this.firstName &&
                 this.lastName &&

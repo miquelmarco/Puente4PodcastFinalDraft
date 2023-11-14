@@ -3,24 +3,15 @@ setTimeout(() => {
     createApp({
         data() {
             return {
+                //data
                 current: [],
-                episode: {},
-                selectEp: [],
-                comentaries: [],
-                queryId: '',
+
+                //others
                 isLoading: false
             }
         },
         created() {
             this.getCurrent()
-            this.queryId = new URLSearchParams(location.search).get('id')
-            axios.get(`/api/episodes/${this.queryId}`)
-                .then(res => {
-                    this.episode = res.data
-                    console.log(res.data)
-                    this.comentaries = this.episode.comentarySet.sort((a, b) => a.id - b.id)
-                    console.log(this.comentaries)
-                }).catch(err => console.log(err))
         },
         methods: {
             getCurrent(){
@@ -32,6 +23,7 @@ setTimeout(() => {
             }
         },
         computed: {
+            
         }
     }).mount("#app")
 }, 1000)

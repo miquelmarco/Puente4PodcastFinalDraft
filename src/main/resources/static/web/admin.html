@@ -18,6 +18,9 @@
 
 <body>
     <div id="app">
+        <div class="loading-overlay" v-if="isLoading">
+            LOADING...
+        </div>
 
         <header class="headerIndex">
             <section>
@@ -40,12 +43,9 @@
                                     <a class="nav-link" href="./assets/pages/episodes.html">EPISODIOS</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">ARCHIVOS</a>
+                                    <a class="nav-link" href="./assets/pages/archives.html">ARCHIVOS</a>
                                 </li>
-                                <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">BACKSTAGE</a>
-                                </li>
-                                <li class="nav-item dropdown d-flex justify-content-center align-items-center">
+                                <!-- <li class="nav-item dropdown d-flex justify-content-center align-items-center">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">INTEGRANTES</a>
                                     <ul class="dropdown-menu">
@@ -59,17 +59,20 @@
                                         </li>
                                         <li><a class="dropdown-item text-center" href="#">Roberto Álvaro</a></li>
                                     </ul>
+                                </li> -->
+                                <li class="nav-item d-flex justify-content-center align-items-center">
+                                    <a class="nav-link" href="./assets/pages/myProfile.html">TU PERFIL</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">TU PERFIL</a>
-                                </li>
-                                <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">FAVORITOS</a>
+                                    <a class="nav-link" href="./assets/pages/favs.html">FAVORITOS</a>
                                 </li>
                             </ul>
-                            <div class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
-                                <button class="button-30" role="button">Login</button>
-                                <button class="button-30" role="button">Register</button>
+                            <div v-if="current.length === 0"
+                                class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
+                                <a href="./assets/pages/regLog.html"><button class="button-30" role="button">Login</button></a>
+                            </div>
+                            <div v-cloak v-if="current.length != 0">
+                                <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
                             </div>
                         </div>
                     </div>

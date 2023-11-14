@@ -42,12 +42,9 @@
                                     <a class="nav-link" href="./episodes.html">EPISODIOS</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">ARCHIVOS</a>
+                                    <a class="nav-link" href="./archives.html">ARCHIVOS</a>
                                 </li>
-                                <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">BACKSTAGE</a>
-                                </li>
-                                <li class="nav-item dropdown d-flex justify-content-center align-items-center">
+                                <!-- <li class="nav-item dropdown d-flex justify-content-center align-items-center">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">INTEGRANTES</a>
                                     <ul class="dropdown-menu">
@@ -61,18 +58,21 @@
                                         </li>
                                         <li><a class="dropdown-item text-center" href="#">Roberto Álvaro</a></li>
                                     </ul>
+                                </li> -->
+                                <li class="nav-item d-flex justify-content-center align-items-center">
+                                    <a class="nav-link" href="./myProfile.html">TU PERFIL</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">TU PERFIL</a>
-                                </li>
-                                <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">FAVORITOS</a>
+                                    <a class="nav-link" href="./favs.html">FAVORITOS</a>
                                 </li>
                             </ul>
-                            <!-- <div class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
-                                <button class="button-30" role="button">Login</button>
-                                <button class="button-30" role="button">Register</button>
-                            </div> -->
+                            <div v-if="current.length === 0"
+                                class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
+                                <a href="./regLog.html"><button class="button-30" role="button">Login</button></a>
+                            </div>
+                            <div v-cloak v-if="current.length != 0">
+                                <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -88,7 +88,7 @@
                     <label for="mailLog">Ingresa tu e-mail</label>
                     <input type="email" id="mailLog" v-model="mailLog">
                     <label for="passwordLog">Contraseña</label>
-                    <input type="text" id="passwordLog" v-model="passwordLog">
+                    <input type="password" id="passwordLog" v-model="passwordLog">
                 </form>
                 <button @click="login()" class="button-30 w-75 fw-bolder m-3">Ingresar</button>
             </section>

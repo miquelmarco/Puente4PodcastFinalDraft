@@ -7,6 +7,7 @@ setTimeout(() => {
                 episodes: [],
                 archives: [],
                 admins: [],
+                current: [],
 
                 //main
                 selectedAdminPanel: '',
@@ -59,8 +60,17 @@ setTimeout(() => {
             this.getEpisodes()
             this.getArchives()
             this.getAdmins()
+            this.getCurrent()
+            
         },
         methods: {
+            getCurrent(){
+                axios.get(`/api/getCurrent`)
+                .then(res => {
+                    this.current = res.data
+                    console.log(this.current)
+                }).catch(err => console.log(err))
+            },
             getEpisodes() {
                 axios.get(`/api/episodes`)
                     .then(res => {

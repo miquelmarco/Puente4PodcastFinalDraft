@@ -42,10 +42,7 @@
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="./assets/pages/archives.html">ARCHIVOS</a>
                                 </li>
-                                <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">BACKSTAGE</a>
-                                </li>
-                                <li class="nav-item dropdown d-flex justify-content-center align-items-center">
+                                <!-- <li class="nav-item dropdown d-flex justify-content-center align-items-center">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">INTEGRANTES</a>
                                     <ul class="dropdown-menu">
@@ -59,19 +56,20 @@
                                         </li>
                                         <li><a class="dropdown-item text-center" href="#">Roberto Álvaro</a></li>
                                     </ul>
+                                </li> -->
+                                <li class="nav-item d-flex justify-content-center align-items-center">
+                                    <a class="nav-link" href="./assets/pages/myProfile.html">TU PERFIL</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">TU PERFIL</a>
-                                </li>
-                                <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">FAVORITOS</a>
+                                    <a class="nav-link" href="./assets/pages/favs.html">FAVORITOS</a>
                                 </li>
                             </ul>
-                            <div class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
-                                <a href="./assets/pages/regLog.html"><button class="button-30"
-                                        role="button">Login</button></a>
-                                <a href="./assets/pages/regLog.html"><button class="button-30"
-                                        role="button">Register</button></a>
+                            <div v-if="current.length === 0"
+                                class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
+                                <a href="./assets/pages/regLog.html"><button class="button-30" role="button">Login</button></a>
+                            </div>
+                            <div v-if="current.length != 0">
+                                <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
                             </div>
                         </div>
                     </div>
@@ -102,7 +100,7 @@
                     <a target="_blank" :href="featured.linkYt"><img class="cardImg w-100" :src="featured.img"
                             :alt="featured.name" :title="featured.name"></a>
                     <div>
-                        <a class="text-decoration-none" target="_blank" :href="featured.linkYt">
+                        <a v-cloak class="text-decoration-none" target="_blank" :href="featured.linkYt">
                             <p class="cardName text-white text-center m-1">{{featured.name}}</p>
                         </a>
                     </div>

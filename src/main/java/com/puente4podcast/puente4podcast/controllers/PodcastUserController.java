@@ -1,5 +1,6 @@
 package com.puente4podcast.puente4podcast.controllers;
 
+import com.puente4podcast.puente4podcast.dtos.EpisodeDTO;
 import com.puente4podcast.puente4podcast.dtos.PodcastUserDTO;
 import com.puente4podcast.puente4podcast.models.Podcast;
 import com.puente4podcast.puente4podcast.models.PodcastUser;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,11 @@ public class PodcastUserController {
     PodcastUserRepository podcastUserRepository;
     @Autowired
     PodcastRepository podcastRepository;
+
+    @GetMapping("/getCurrent")
+    public PodcastUserDTO getCurrent(Authentication authentication) {
+        return new PodcastUserDTO(podcastUserRepository.findByMail(authentication.getName()));
+    }
 
     @PostMapping("/register")
     public ResponseEntity<Object> registerPodcastUser(@RequestParam String firstName, @RequestParam String lastName,
@@ -59,6 +66,23 @@ public class PodcastUserController {
 
         podcastUserRepository.save(podcastUser);
         return new ResponseEntity<>("Usuario creado", HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/modPass")
+    public ResponseEntity<?> modPass(Authentication authentication, @RequestParam String actualPass, String newPass) {
+        PodcastUser podcastUser = podcastUserRepository.findByMail(authentication.getName());
+        if (!actualPass.isEmpty() && !newPass.isEmpty()) {
+            if (podcastUser != null){
+                if (Objects.equals(podcastUser.getPassword(), actualPass)){
+                    podcastUser.setPassword(passwordEncoder.encode(newPass));
+                    podcastUserRepository.save(podcastUser);
+                    return new ResponseEntity<>("Contraseña modificada!", HttpStatus.OK);
+                }
+                return new ResponseEntity<>("Contraseña no modificada", HttpStatus.FORBIDDEN);
+            }
+            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>("Contraseña no modificada", HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/registerAdmin")
@@ -111,6 +135,12 @@ public class PodcastUserController {
             e.printStackTrace();
             return Collections.emptySet();
         }
+    }
+
+    @GetMapping("/episodes/favs")
+    public Set<EpisodeDTO> getEpFavs(Authentication authentication){
+        PodcastUser currentUser = podcastUserRepository.findByMail(authentication.getName());
+        return currentUser.getFavoriteSet().stream().map(episode -> new EpisodeDTO()).collect(Collectors.toSet());
     }
 
     //    @PatchMapping("/podcastUsers/giveAdmin")
