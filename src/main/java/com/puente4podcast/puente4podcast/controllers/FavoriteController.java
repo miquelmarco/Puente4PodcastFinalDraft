@@ -46,4 +46,3 @@ public class FavoriteController {
         return new ResponseEntity<>("No se ha podido agregar", HttpStatus.FORBIDDEN);
     }
 }
-
