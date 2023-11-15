@@ -137,12 +137,6 @@ public class PodcastUserController {
         }
     }
 
-    @GetMapping("/episodes/favs")
-    public Set<EpisodeDTO> getEpFavs(Authentication authentication){
-        PodcastUser currentUser = podcastUserRepository.findByMail(authentication.getName());
-        return currentUser.getFavoriteSet().stream().map(episode -> new EpisodeDTO()).collect(Collectors.toSet());
-    }
-
     //    @PatchMapping("/podcastUsers/giveAdmin")
 //    public ResponseEntity<?> giveAdmin(@RequestParam String giveAdminMail, Authentication authentication) {
 //        if (podcastUserRepository.findByMail(authentication.getName()) != null) {

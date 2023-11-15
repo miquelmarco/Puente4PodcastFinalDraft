@@ -70,8 +70,9 @@
                                 class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
                                 <a href="./regLog.html"><button class="button-30" role="button">Login</button></a>
                             </div>
-                            <div v-cloak v-if="current.length != 0">
+                            <div v-cloak v-if="current.length != 0" class="d-flex">
                                 <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
+                                <button @click="logOut" class="button-30 bg-danger" role="button">LogOut</button>
                             </div>
                         </div>
                     </div>
@@ -79,7 +80,7 @@
             </section>
         </header>
 
-        <main v-cloak class="mainIndex">
+        <main v-cloak class="mainIndex d-flex flex-column align-items-center">
             <!-- title edit -->
             <section v-cloak class="text-white d-flex flex-column align-items-center p-3 m-2">
                 <div v-cloak class="d-flex m-1">
@@ -105,7 +106,7 @@
                 </div>
             </section>
 
-            <section v-cloak class=" d-flex justify-content-center gap-3 m-3 flex-wrap">
+            <section v-cloak class=" d-flex justify-content-center gap-3 m-3 flex-wrap w-75">
                 <div v-cloak class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
                     v-for="item of filteredEp">
                     <a target="_blank" :href="item.linkYt"><img class="cardImg w-100" :src="item.img" :alt="item.name"
@@ -128,9 +129,10 @@
                             <a target="_blank" :href="item.linkIvoox"><button
                                     class="button-30 btnCardIv">Ivoox</button></a>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center">
+                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
                             <a :href="`./details.html?id=${item.id}`"><button
-                                    class="button-30 btnDetails m-2">Detalles</button></a>
+                                    class="button-30 btnDetails">Detalles</button></a>
+                            <button @click="addEpFav(item.id)" class="button-30 btnDetails">Favorito</button>
                         </div>
                     </div>
                 </div>

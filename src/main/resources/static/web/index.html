@@ -66,10 +66,12 @@
                             </ul>
                             <div v-if="current.length === 0"
                                 class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
-                                <a href="./assets/pages/regLog.html"><button class="button-30" role="button">Login</button></a>
+                                <a href="./assets/pages/regLog.html"><button class="button-30"
+                                        role="button">Login</button></a>
                             </div>
-                            <div v-if="current.length != 0">
+                            <div v-cloak v-if="current.length != 0" class="d-flex">
                                 <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
+                                <button @click="logOut" class="button-30 bg-danger" role="button">LogOut</button>
                             </div>
                         </div>
                     </div>
@@ -117,10 +119,12 @@
                             <a target="_blank" :href="featured.linkIvoox"><button
                                     class="button-30 btnCardIv">Ivoox</button></a>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center">
+                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
                             <a :href="`./assets/pages/details.html?id=${featured.id}`"><button
-                                    class="button-30 btnDetails m-2">Detalles</button></a>
+                                    class="button-30 btnDetails">Detalles</button></a>
+                            <button @click="addEpFav(featured.id)" class="button-30 btnDetails">Favorito</button>
                         </div>
+                        <a href="./assets/pages/details.html"></a>
                     </div>
                 </div>
             </section>
@@ -151,6 +155,10 @@
                                     class="button-30 btnCardYt">Youtube</button></a>
                             <a target="_blank" :href="featured.linkIvoox"><button
                                     class="button-30 btnCardIv">Ivoox</button></a>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
+                            <a :href="`./details.html?id=${featured.id}`"><button
+                                    class="button-30 btnDetails">Favorito</button></a>
                         </div>
                     </div>
                 </div>

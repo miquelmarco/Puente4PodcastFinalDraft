@@ -190,4 +190,9 @@ public class Episode {
             this.addFavorite(favorite);
         }
     }
+
+    public void removeFavorite(Favorite favorite) {
+        favoriteSet.remove(favorite);
+        favorite.setEpisodeFav(null);
+    }
 }

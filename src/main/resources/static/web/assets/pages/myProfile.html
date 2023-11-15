@@ -70,8 +70,9 @@
                                 class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
                                 <a href="./regLog.html"><button class="button-30" role="button">Login</button></a>
                             </div>
-                            <div v-cloak v-if="current.length != 0">
+                            <div v-cloak v-if="current.length != 0" class="d-flex">
                                 <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
+                                <button @click="logOut" class="button-30 bg-danger" role="button">LogOut</button>
                             </div>
                         </div>
                     </div>
@@ -81,7 +82,7 @@
 
         <main v-cloak class="mainIndex d-flex flex-column align-items-center gap-3">
 
-            <section class="text-white d-flex flex-column p-3 m-2">
+            <!-- <section class="text-white d-flex flex-column p-3 m-2">
                 <div class="d-flex m-1 justify-content-center">
                     <h1>Bienvenido a tu Perfil!</h1>
                 </div>
@@ -93,7 +94,21 @@
                             class="text-danger fw-bolder"> regístrate</span> para ver tu perfil!</p>
                 </div>
 
-                <img v-if="current.length === 0" class="m-3" src="../images/banner1.png" alt="">
+                <img v-if="current.length === 0" class="m-3 w-100" src="../images/banner1.png" alt="">
+            </section> -->
+
+            <section class="text-white d-flex flex-column align-items-center p-3 m-2">
+                <div class="d-flex m-1">
+                    <h1>Bienvenido a tu Perfil!</h1>
+                </div>
+                <div class="m-1">Actualiza tus datos para matenernos en contacto!</p>
+                </div>
+                <div v-if="current.length === 0" class="d-flex justify-content-center align-items-center">
+                    <p class="text-center text-white"><span class="text-danger fw-bolder">Loguéate</span> o<span
+                            class="text-danger fw-bolder"> regístrate</span> para ver tu perfil!</p>
+                </div>
+
+                <img v-if="current.length === 0" class="m-3 w-100" src="../images/banner1.png" alt="">
             </section>
 
             <section v-if="current.length != 0" v-cloak class="w-50 d-flex justify-content-center align-items-center">

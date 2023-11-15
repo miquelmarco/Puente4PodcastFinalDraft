@@ -170,4 +170,8 @@ public class PodcastUser {
             this.addFavorite(favorite);
         }
     }
+    public void removeFavorite(Favorite favorite) {
+        favoriteSet.remove(favorite);
+        favorite.setUserFav(null);
+    }
 }

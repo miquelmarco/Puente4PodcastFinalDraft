@@ -13,7 +13,6 @@ public class PodcastUserDTO {
     private String userName;
     private String mail;
     private String nacionality;
-    private String password;
     private Podcast podcastUser;
     private boolean isAdmin;
     private List<ComentaryDTO> comentarySet;
@@ -29,7 +28,6 @@ public class PodcastUserDTO {
         this.userName = podcastUser.getUserName();
         this.mail = podcastUser.getMail();
         this.nacionality = podcastUser.getNacionality();
-        this.password = podcastUser.getPassword();
         this.podcastUser = podcastUser.getPodcastOw();
         this.isAdmin = podcastUser.isAdmin();
         this.comentarySet = podcastUser.getComentarySet().stream().map(comentary -> new ComentaryDTO(comentary)).collect(Collectors.toList());
@@ -60,9 +58,9 @@ public class PodcastUserDTO {
         return nacionality;
     }
 
-    public String getPassword() {
-        return password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
 
     public boolean isAdmin() {
         return isAdmin;

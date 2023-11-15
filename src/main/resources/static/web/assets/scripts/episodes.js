@@ -16,31 +16,90 @@ setTimeout(() => {
             this.getCurrent()
             this.getEpisodes()
         },
-    methods: {
-        getCurrent(){
-            axios.get(`/api/getCurrent`)
-            .then(res => {
-                this.current = res.data
-                console.log(this.current)
-            }).catch(err => console.log(err))
+        methods: {
+            logOut() {
+                axios.post("/api/logout")
+                    .then(res => {
+                        if (res.status == 200) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Bye bye!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            setTimeout(() => {
+                                window.location.href = "/web/index.html";
+                            }, 1800)
+                        }
+                        console.log(res)
+                    }).catch(err => {
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Cant log out, try again!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    })
+            },
+            getCurrent() {
+                axios.get(`/api/getCurrent`)
+                    .then(res => {
+                        this.current = res.data
+                        console.log(this.current)
+                    }).catch(err => console.log(err))
+            },
+            getEpisodes() {
+                axios.get(`/api/episodes`)
+                    .then(res => {
+                        this.episodes = res.data
+                        this.seasons = Array.from(new Set(this.episodes.map(episode => episode.seasonNumber)))
+                    }).catch(err => console.log(err))
+            },
+            filtroEpCheckSearc2() {
+                this.filteredEp = this.episodes.filter(episode => episode.name.toLowerCase().includes(this.searchInput.toLowerCase())
+                    && (this.checked.includes(episode.seasonNumber) || this.checked.length == 0)).sort((a, b) => b.id - a.id)
+            },
+            addEpFav(id) {
+                if (current) {
+                    axios.post(`/api/favorite/addEpFav`, `id=${id}`)
+                        .then(res => {
+                            this.favorites.push(id)
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            console.log(err.response.data)
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: `Debes estar logueado`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            }
         },
-        getEpisodes(){
-            axios.get(`/api/episodes`)
-            .then(res => {
-                this.episodes = res.data
-                this.seasons = Array.from(new Set(this.episodes.map(episode => episode.seasonNumber)))
-            }).catch(err => console.log(err))
-        },
-        filtroEpCheckSearc2() {
-            this.filteredEp = this.episodes.filter(episode => episode.name.toLowerCase().includes(this.searchInput.toLowerCase())
-            && (this.checked.includes(episode.seasonNumber) || this.checked.length == 0)).sort((a, b) => b.id - a.id)
+        computed: {
+            filtroEpCheckSearch() {
+                this.filteredEp = this.episodes.filter(episode => episode.name.toLowerCase().includes(this.searchInput.toLowerCase())
+                    && (this.checked.includes(episode.seasonNumber) || this.checked.length == 0)).sort((a, b) => b.id - a.id)
+            }
         }
-    },
-    computed: {
-        filtroEpCheckSearch() {
-            this.filteredEp = this.episodes.filter(episode => episode.name.toLowerCase().includes(this.searchInput.toLowerCase())
-            && (this.checked.includes(episode.seasonNumber) || this.checked.length == 0)).sort((a, b) => b.id - a.id)
-        }
-    }
-}).mount("#app")
-},1000)
+    }).mount("#app")
+}, 1000)
