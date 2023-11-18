@@ -1,6 +1,5 @@
 package com.puente4podcast.puente4podcast.controllers;
 
-import com.puente4podcast.puente4podcast.dtos.EpisodeDTO;
 import com.puente4podcast.puente4podcast.dtos.PodcastUserDTO;
 import com.puente4podcast.puente4podcast.models.Podcast;
 import com.puente4podcast.puente4podcast.models.PodcastUser;

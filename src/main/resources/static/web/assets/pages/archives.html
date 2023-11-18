@@ -80,19 +80,19 @@
             </section>
         </header>
 
-        <main v-cloak class="mainIndex">
+        <main v-cloak class="mainIndex d-flex flex-column align-items-center">
             <!-- title edit -->
             <section v-cloak class="text-white d-flex flex-column align-items-center p-3 m-2">
                 <div v-cloak class="d-flex m-1">
                     <img class="logoTitle px-2" src="../images/P4_W.png" alt="logo">
                     <h1>Puente4Podcast</h1>
                 </div>
-                <div v-cloak class="m-1">
-                    <p class="podcastSubTitleEp">Abrimos las puertas del Archivo, y sed bienvenidos!</p>
+                <div v-cloak class="m-1 d-flex flex-column justify-content-center align-items-center">
+                    <p class="podcastSubTitleEp m-3">Abrimos las puertas del Archivo, y sed bienvenidos!</p>
                 </div>
             </section>
 
-            <section v-cloak class="d-flex justify-content-center align-items-center gap-3 bg-secondary flex-wrap">
+            <!-- <section v-cloak class="d-flex justify-content-center align-items-center gap-3 bg-secondary flex-wrap">
                 <p class="text-white">Episodios monográficos de larga duración!</p>
                 <div v-cloak class="d-flex justify-content-center align-items-center m-2">
                     <form v-cloak class="d-flex align-items-center p-1" role="search">
@@ -123,6 +123,36 @@
                     </div>
                     <div v-cloak class="d-flex justify-content-center align-items-center w-50">
                         <p class="p-2 m-2 text-white fw-lighter">{{archive.description}}</p>
+                    </div>
+                </div>
+            </section> -->
+
+            <section v-cloak class=" d-flex justify-content-center gap-3 m-3 flex-wrap w-75">
+                <div v-cloak class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
+                    v-for="item of archives">
+                    <a target="_blank" :href="item.linkYt"><img class="cardImg w-100" :src="item.img" :alt="item.name"
+                            :title="item.name"></a>
+                    <div>
+                        <a class="text-decoration-none" target="_blank" :href="item.linkYt">
+                            <p class="cardName text-white text-center m-1">{{item.name}}</p>
+                        </a>
+                    </div>
+                    <div>
+                        <div>
+                            <p class="text-white text-end mx-2 seasonDetail">Archivo Nº: {{item.archiveNumber}}</p>
+                            <p class="text-white text-end mx-2 seasonDetail">Duración: {{item.duration}} hrs</p>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
+                            <a target="_blank" :href="item.linkYt"><button
+                                    class="button-30 btnCardYt">Youtube</button></a>
+                            <a target="_blank" :href="item.linkIvoox"><button
+                                    class="button-30 btnCardIv">Ivoox</button></a>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
+                            <a :href="`./arDetails.html?id=${item.id}`"><button
+                                    class="button-30 btnDetails">Detalles</button></a>
+                            <button @click="addEpFav(item.id)" class="button-30 btnDetails">Favorito</button>
+                        </div>
                     </div>
                 </div>
             </section>

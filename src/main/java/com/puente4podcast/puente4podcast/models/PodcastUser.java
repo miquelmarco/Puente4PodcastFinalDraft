@@ -28,6 +28,8 @@ public class PodcastUser {
     private Set<Comentary> comentarySet = new HashSet<>();
     @OneToMany(mappedBy = "podcastUserFav")
     private Set<Favorite> favoriteSet = new HashSet<>();
+    @OneToMany(mappedBy = "podcastUserArFav")
+    private Set<FavoriteAr> favoriteArSet = new HashSet<>();
 
     public PodcastUser() {
     }
@@ -43,7 +45,7 @@ public class PodcastUser {
         this.podcastUser = podcastUser;
     }
 
-    public PodcastUser(String firstName, String lastName, String userName, String mail, String nacionality, String password, Set<Comentary> comentarySet, Set<Favorite> favoriteSet) {
+    public PodcastUser(String firstName, String lastName, String userName, String mail, String nacionality, String password, Set<Comentary> comentarySet, Set<Favorite> favoriteSet, Set<FavoriteAr> favoriteArSet) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -52,6 +54,7 @@ public class PodcastUser {
         this.password = password;
         this.comentarySet = comentarySet;
         this.favoriteSet = favoriteSet;
+        this.favoriteArSet = favoriteArSet;
     }
 
     public Long getId() {
@@ -141,6 +144,15 @@ public class PodcastUser {
     }
 
     @JsonIgnore
+    public Set<FavoriteAr> getFavoriteArSet() {
+        return favoriteArSet;
+    }
+
+    public void setFavoriteArSet(Set<FavoriteAr> favoriteArSet) {
+        this.favoriteArSet = favoriteArSet;
+    }
+
+    @JsonIgnore
     public Podcast getPodcastOw() {
         return podcastUser;
     }
@@ -170,8 +182,25 @@ public class PodcastUser {
             this.addFavorite(favorite);
         }
     }
+
     public void removeFavorite(Favorite favorite) {
         favoriteSet.remove(favorite);
         favorite.setUserFav(null);
+    }
+
+    public void addFavoriteAr(FavoriteAr favoriteAr) {
+        favoriteAr.setPodcastUserArFav(this);
+        favoriteArSet.add(favoriteAr);
+    }
+
+    public void addAllArFavorite(List<FavoriteAr> favoriteArList) {
+        for (FavoriteAr favoriteAr : favoriteArList) {
+            this.addFavoriteAr(favoriteAr);
+        }
+    }
+
+    public void removeArFavorite(FavoriteAr favoriteAr) {
+        favoriteArSet.remove(favoriteAr);
+        favoriteAr.setPodcastUserArFav(null);
     }
 }

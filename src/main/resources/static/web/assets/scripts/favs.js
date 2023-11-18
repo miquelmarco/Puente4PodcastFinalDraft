@@ -15,6 +15,7 @@ setTimeout(() => {
         created() {
             this.getCurrent()
             this.getFavs()
+            this.getArFavs()
         },
         methods: {
             getCurrent() {
@@ -26,15 +27,22 @@ setTimeout(() => {
             getFavs() {
                 axios.get(`/api/episodes/favs`)
                     .then(res => {
-                        this.favsEp = res.data
-                        console.log(this.favsEp)
+                        this.favsEp = res.data.sort((a, b) => b.id - a.id)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            },
+            getArFavs() {
+                axios.get(`/api/archives/favs`)
+                    .then(res => {
+                        this.favsAr = res.data.sort((a, b) => b.id - a.id)
                     }).catch(err => {
                         console.log(err)
                     })
             },
             deleteFav(arId) {
                 axios.delete(`/api/favorite/removeEpFav`, {
-                    params:{
+                    params: {
                         id: arId
                     }
                 })

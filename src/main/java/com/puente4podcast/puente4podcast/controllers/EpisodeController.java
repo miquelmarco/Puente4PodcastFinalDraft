@@ -1,7 +1,6 @@
 package com.puente4podcast.puente4podcast.controllers;
 
 import com.puente4podcast.puente4podcast.dtos.EpisodeDTO;
-import com.puente4podcast.puente4podcast.dtos.NewEpisodeDTO;
 import com.puente4podcast.puente4podcast.models.*;
 import com.puente4podcast.puente4podcast.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;

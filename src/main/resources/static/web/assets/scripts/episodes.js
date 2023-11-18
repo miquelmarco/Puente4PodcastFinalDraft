@@ -61,10 +61,9 @@ setTimeout(() => {
                     && (this.checked.includes(episode.seasonNumber) || this.checked.length == 0)).sort((a, b) => b.id - a.id)
             },
             addEpFav(id) {
-                if (current) {
+                if (this.current.length != 0) {
                     axios.post(`/api/favorite/addEpFav`, `id=${id}`)
                         .then(res => {
-                            this.favorites.push(id)
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',

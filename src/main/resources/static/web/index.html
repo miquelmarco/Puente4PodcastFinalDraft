@@ -134,7 +134,7 @@
                 <p class="p-2 m-3 text-white">Programas especiales dedicados a un tema en particular con invitados
                     increíbles, no te los puedes perder!</p>
             </div>
-            <section class=" d-flex flex-wrap justify-content-center gap-3 m-3">
+            <section class="d-flex flex-wrap justify-content-center gap-3 m-3">
                 <div class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
                     v-for="featured of featuredAr">
                     <a target="_blank" :href="featured.linkYt"><img class="cardImg w-100" :src="featured.img"
@@ -157,8 +157,10 @@
                                     class="button-30 btnCardIv">Ivoox</button></a>
                         </div>
                         <div class="d-flex justify-content-center align-items-center m-1 gap-1">
-                            <a :href="`./details.html?id=${featured.id}`"><button
-                                    class="button-30 btnDetails">Favorito</button></a>
+                            <a :href="`./assets/pages/arDetails.html?id=${featured.id}`"><button
+                                class="button-30 btnDetails">Detalles</button></a>
+                            <!-- <a :href="`./details.html?id=${featured.id}`"><button
+                                    class="button-30 btnDetails">Favorito</button></a> -->
                         </div>
                     </div>
                 </div>

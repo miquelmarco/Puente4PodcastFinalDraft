@@ -82,7 +82,10 @@ setTimeout(() => {
                         title: 'Ingresando...',
                         showConfirmButton: false,
                         timer: 1500
-                    });
+                    })
+                    setTimeout(() => {
+                        location.href = `/web/index.html`
+                    },1600)
                 }).catch(err => {
                     console.log(err)
                 })

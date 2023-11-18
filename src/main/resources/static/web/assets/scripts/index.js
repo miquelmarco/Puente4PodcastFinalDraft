@@ -41,27 +41,37 @@ setTimeout(() => {
                     })
             },
             addEpFav(id) {
-                axios.post(`/api/favorite/addEpFav`, `id=${id}`)
-                    .then(res => {
-                        this.backMsg = res.data
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: `${this.backMsg}`,
-                            showConfirmButton: false,
-                            timer: 1500
+                if (this.current.length != 0) {
+                    axios.post(`/api/favorite/addEpFav`, `id=${id}`)
+                        .then(res => {
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            console.log(err.response.data)
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                         })
-                    }).catch(err => {
-                        this.backMsg = err.response.data
-                        console.log(err.response.data)
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: `${this.backMsg}`,
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: `Debes estar logueado`,
+                        showConfirmButton: false,
+                        timer: 1500
                     })
+                }
             },
             getCurrent() {
                 axios.get(`/api/getCurrent`)

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Archive {
@@ -24,6 +27,8 @@ public class Archive {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "podcast_id")
     private Podcast podcastArchives;
+    @OneToMany(mappedBy = "archiveFav", fetch = FetchType.EAGER)
+    private Set<FavoriteAr> favoriteArSet = new HashSet<>();
 
     public Archive() {
     }
@@ -132,5 +137,30 @@ public class Archive {
 
     public void setPodcast(Podcast podcast) {
         this.podcastArchives = podcast;
+    }
+
+    @JsonIgnore
+    public Set<FavoriteAr> getFavoriteArSet() {
+        return favoriteArSet;
+    }
+
+    public void setFavoriteArSet(Set<FavoriteAr> favoriteArSet) {
+        this.favoriteArSet = favoriteArSet;
+    }
+
+    public void addArFavorite(FavoriteAr favoriteAr) {
+        favoriteAr.setArchiveFav(this);
+        favoriteArSet.add(favoriteAr);
+    }
+
+    public void addAllArFavorites(List<FavoriteAr> favoriteArList) {
+        for (FavoriteAr favoriteAr : favoriteArList) {
+            this.addArFavorite(favoriteAr);
+        }
+    }
+
+    public void removeArFavorite(FavoriteAr favoriteAr) {
+        favoriteArSet.remove(favoriteAr);
+        favoriteAr.setArchiveFav(null);
     }
 }
