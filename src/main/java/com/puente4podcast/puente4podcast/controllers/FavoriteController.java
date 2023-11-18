@@ -101,3 +101,5 @@ public class FavoriteController {
         return currentUser.getFavoriteArSet().stream().map(favorite -> favorite.getArchiveFav()).map(archive -> new ArchiveDTO(archive)).collect(Collectors.toSet());
     }
 }
+
+
