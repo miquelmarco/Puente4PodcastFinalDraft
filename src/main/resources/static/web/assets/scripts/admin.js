@@ -61,7 +61,7 @@ setTimeout(() => {
             this.getArchives()
             this.getAdmins()
             this.getCurrent()
-            
+
         },
         methods: {
             logOut() {
@@ -70,7 +70,7 @@ setTimeout(() => {
                         if (res.status == 200) {
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: 'Bye bye!',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -89,34 +89,29 @@ setTimeout(() => {
                         })
                     })
             },
-            getCurrent(){
+            getCurrent() {
                 axios.get(`/api/getCurrent`)
-                .then(res => {
-                    this.current = res.data
-                    console.log(this.current)
-                }).catch(err => console.log(err))
+                    .then(res => {
+                        this.current = res.data
+                    }).catch(err => console.log(err))
             },
             getEpisodes() {
                 axios.get(`/api/episodes`)
                     .then(res => {
-                        this.episodes = res.data.sort((a, b) => b.id - a.id)
+                        this.episodes = res.data.sort((a, b) => b.featured - a.featured)
                     }).catch(err => console.log(err))
             },
             getArchives() {
                 axios.get(`/api/archives/getArchives`)
                     .then(res => {
-                        this.archives = res.data.sort((a, b) => b.id - a.id)
+                        this.archives = res.data.sort((a, b) => b.featured - a.featured)
                     }).catch(err => console.log(err))
             },
             getAdmins() {
                 axios.get(`/api/podcastUsers/getAdmins`)
                     .then(res => {
-                        console.log(res.data)
                         this.admins = res.data
                     }).catch(err => console.log(err))
-            },
-            select() {
-                console.log(this.selectedAdminPanel)
             },
             registerAdmin() {
                 if (this.firstName &&
@@ -133,7 +128,7 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -146,7 +141,7 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'error',
+                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -173,7 +168,7 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -185,7 +180,7 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'error',
+                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -209,7 +204,7 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -221,7 +216,7 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'error',
+                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -236,7 +231,7 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -249,7 +244,7 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'error',
+                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -262,7 +257,7 @@ setTimeout(() => {
                 } else {
                     Swal.fire({
                         position: 'center',
-                        icon: 'warning',
+                        // icon: 'warning',
                         title: `Ingrese número de episodio`,
                         showConfirmButton: false,
                         timer: 1500
@@ -276,7 +271,7 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -289,7 +284,7 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'error',
+                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -302,7 +297,7 @@ setTimeout(() => {
                 } else {
                     Swal.fire({
                         position: 'center',
-                        icon: 'warning',
+                        // icon: 'warning',
                         title: `Ingrese número de episodio`,
                         showConfirmButton: false,
                         timer: 1500
@@ -316,7 +311,7 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -328,7 +323,7 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'error',
+                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -343,7 +338,7 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -355,7 +350,7 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'error',
+                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500

@@ -63,7 +63,7 @@
                                     <a class="nav-link" href="./myProfile.html">TU PERFIL</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">FAVORITOS</a>
+                                    <a class="nav-link" href="#"><span class="navBgChanger">FAVORITOS</span></a>
                                 </li>
                             </ul>
                             <div v-if="current.length === 0"
@@ -97,83 +97,90 @@
 
             <img v-if="current.length === 0" class="m-3 w-100" src="../images/banner1.png" alt="">
 
-            <div class="d-flex flex-column justify-content-start align-items-start align-self-start mx-3 p-2">
-                <h3 class="p-2 m-3 text-black bg-white">Tus Episodios Favoritos</h3>
-            </div>
+            <div v-if="current.length != 0">
 
-            <div v-if="favsEp.length === 0" class="text-white fw-bolder fs-5 m-5">
-                <p>Agrega episodios para accederlos rápidamente y disfrutarlos cuando quieras!</p>
-            </div>
+                <div class="d-flex flex-column justify-content-start align-items-start align-self-start mx-3 p-2">
+                    <h3 class="p-2 m-3 text-black bg-white">Tus Episodios Favoritos</h3>
+                </div>
 
-            <div class="d-flex flex-wrap justify-content-center">
-                <div v-if="favsEp.length != 0" v-cloak
-                    class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
-                    v-for="item of favsEp">
-                    <a target="_blank" :href="item.linkYt"><img class="cardImg w-100" :src="item.img" :alt="item.name"
-                            :title="item.name"></a>
-                    <div>
-                        <a class="text-decoration-none" target="_blank" :href="item.linkYt">
-                            <p class="cardName text-white text-center m-1">{{item.name}}</p>
-                        </a>
-                    </div>
-                    <div>
+                <div v-if="favsEp.length === 0" class="text-white fw-bolder fs-5 m-5">
+                    <p>Agrega episodios para accederlos rápidamente y disfrutarlos cuando quieras!</p>
+                </div>
+
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div v-if="favsEp.length != 0" v-cloak
+                        class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
+                        v-for="item of favsEp">
+                        <a target="_blank" :href="item.linkYt"><img class="cardImg w-100" :src="item.img"
+                                :alt="item.name" :title="item.name"></a>
                         <div>
-                            <p class="text-white text-end mx-2 seasonDetail">Temporada {{item.seasonNumber}},
-                                episodio
-                                {{item.episode}}</p>
-                            <p class="text-white text-end mx-2 seasonDetail">{{item.duration}} hrs</p>
+                            <a class="text-decoration-none" target="_blank" :href="item.linkYt">
+                                <p class="cardName text-white text-center m-1">{{item.name}}</p>
+                            </a>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
-                            <a target="_blank" :href="item.linkYt"><button
-                                    class="button-30 btnCardYt">Youtube</button></a>
-                            <a target="_blank" :href="item.linkIvoox"><button
-                                    class="button-30 btnCardIv">Ivoox</button></a>
-                        </div>
-                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
-                            <a :href="`./details.html?id=${item.id}`"><button
-                                    class="button-30 btnDetails">Detalles</button></a>
-                            <button @click="deleteFav(item.id)" class="button-30 btnDetails bg-danger">Quitar</button>
+                        <div>
+                            <div>
+                                <p class="text-white text-end mx-2 seasonDetail">Temporada {{item.seasonNumber}},
+                                    episodio
+                                    {{item.episode}}</p>
+                                <p class="text-white text-end mx-2 seasonDetail">{{item.duration}} hrs</p>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center m-1 gap-1">
+                                <a target="_blank" :href="item.linkYt"><button
+                                        class="button-30 btnCardYt">Youtube</button></a>
+                                <a target="_blank" :href="item.linkIvoox"><button
+                                        class="button-30 btnCardIv">Ivoox</button></a>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center m-1 gap-1">
+                                <a :href="`./details.html?id=${item.id}`"><button
+                                        class="button-30 btnDetails">Detalles</button></a>
+                                <button @click="deleteFav(item.id)"
+                                    class="button-30 btnDetails bg-danger">Quitar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="d-flex flex-column justify-content-start align-items-start align-self-start mx-3 p-2">
-                <h3 class="p-2 m-3 text-black bg-white">Tus Archivos Favoritos</h3>
-            </div>
+                <div class="d-flex flex-column justify-content-start align-items-start align-self-start mx-3 p-2">
+                    <h3 class="p-2 m-3 text-black bg-white">Tus Archivos Favoritos</h3>
+                </div>
 
-            <div class="d-flex flex-wrap justify-content-center">
-                <div v-cloak  v-if="favsAr.length != 0" class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
-                    v-for="item of favsAr">
-                    <a target="_blank" :href="item.linkYt"><img class="cardImg w-100" :src="item.img" :alt="item.name"
-                            :title="item.name"></a>
-                    <div>
-                        <a class="text-decoration-none" target="_blank" :href="item.linkYt">
-                            <p class="cardName text-white text-center m-1">{{item.name}}</p>
-                        </a>
-                    </div>
-                    <div>
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div v-cloak v-if="favsAr.length != 0"
+                        class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
+                        v-for="item of favsAr">
+                        <a target="_blank" :href="item.linkYt"><img class="cardImg w-100" :src="item.img"
+                                :alt="item.name" :title="item.name"></a>
                         <div>
-                            <p class="text-white text-end mx-2 seasonDetail">Archivo Nº: {{item.archiveNumber}}</p>
-                            <p class="text-white text-end mx-2 seasonDetail">Duración: {{item.duration}} hrs</p>
+                            <a class="text-decoration-none" target="_blank" :href="item.linkYt">
+                                <p class="cardName text-white text-center m-1">{{item.name}}</p>
+                            </a>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
-                            <a target="_blank" :href="item.linkYt"><button
-                                    class="button-30 btnCardYt">Youtube</button></a>
-                            <a target="_blank" :href="item.linkIvoox"><button
-                                    class="button-30 btnCardIv">Ivoox</button></a>
-                        </div>
-                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
-                            <a :href="`./arDetails.html?id=${item.id}`"><button
-                                    class="button-30 btnDetails">Detalles</button></a>
-                            <button @click="addEpFav(item.id)" class="button-30 btnDetails">Favorito</button>
+                        <div>
+                            <div>
+                                <p class="text-white text-end mx-2 seasonDetail">Archivo Nº: {{item.archiveNumber}}</p>
+                                <p class="text-white text-end mx-2 seasonDetail">Duración: {{item.duration}} hrs</p>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center m-1 gap-1">
+                                <a target="_blank" :href="item.linkYt"><button
+                                        class="button-30 btnCardYt">Youtube</button></a>
+                                <a target="_blank" :href="item.linkIvoox"><button
+                                        class="button-30 btnCardIv">Ivoox</button></a>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center m-1 gap-1">
+                                <a :href="`./arDetails.html?id=${item.id}`"><button
+                                        class="button-30 btnDetails">Detalles</button></a>
+                                <button @click="deleteArFav(item.id)"
+                                    class="button-30 btnDetails bg-danger">Quitar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div v-if="favsAr.length === 0" class="text-white fw-bolder fs-5 m-5">
-                <p>Agrega Archivos para accederlos rápidamente y disfrutarlos cuando quieras!</p>
+                <div v-if="favsAr.length === 0" class="text-white fw-bolder fs-5 m-5">
+                    <p>Agrega Archivos para accederlos rápidamente y disfrutarlos cuando quieras!</p>
+                </div>
+
             </div>
 
         </main>

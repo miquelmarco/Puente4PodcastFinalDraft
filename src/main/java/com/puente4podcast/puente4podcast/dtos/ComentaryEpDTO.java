@@ -1,23 +1,24 @@
 package com.puente4podcast.puente4podcast.dtos;
-import com.puente4podcast.puente4podcast.models.Comentary;
+import com.puente4podcast.puente4podcast.models.ComentaryEp;
 import com.puente4podcast.puente4podcast.models.Episode;
-import com.puente4podcast.puente4podcast.models.PodcastUser;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-public class ComentaryDTO {
+
+public class ComentaryEpDTO {
     private Long id;
     private String text;
     private LocalDate date;
-    private PodcastUser podcastUserCom;
+    private String podcastUserCom;
     private Episode episode;
 
-    public ComentaryDTO() {
+    public ComentaryEpDTO() {
     }
-    public ComentaryDTO(Comentary comentary) {
+    public ComentaryEpDTO(ComentaryEp comentary) {
         this.id = comentary.getId();
         this.text = comentary.getText();
         this.date = comentary.getDate();
+        this.podcastUserCom = comentary.getPodcastUserCom().getUserName();
+        this.episode = comentary.getEpisode();
     }
     public Long getId() {
         return id;
@@ -28,7 +29,7 @@ public class ComentaryDTO {
     public LocalDate getDate() {
         return date;
     }
-    public PodcastUser getPodcastUserCom() {
+    public String getPodcastUserCom() {
         return podcastUserCom;
     }
     public Episode getEpisode() {

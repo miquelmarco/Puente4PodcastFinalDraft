@@ -5,9 +5,14 @@ setTimeout(() => {
             return {
                 //data
                 current: [],
+                modPassActual: '',
+                modPass: '',
+                modPassConfirm: '',
+                selecModPass: false,
 
                 //others
-                isLoading: false
+                isLoading: false,
+                backMsg: ''
             }
         },
         created() {
@@ -20,7 +25,7 @@ setTimeout(() => {
                         if (res.status == 200) {
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: 'Bye bye!',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -39,16 +44,45 @@ setTimeout(() => {
                         })
                     })
             },
-            getCurrent(){
+            getCurrent() {
                 axios.get(`/api/getCurrent`)
-                .then(res => {
-                    this.current = res.data
-                    console.log(this.current)
-                }).catch(err => console.log(err))
+                    .then(res => {
+                        this.current = res.data
+                    }).catch(err => console.log(err))
+            },
+            modiPass() {
+                if (this.modPass && this.modPassConfirm && this.modPassActual) {
+                    axios.patch(`/api/modPass`, `actualPass=${this.modPassActual}&newPass=${this.modPass}`)
+                        .then(res => {
+                            Swal.fire({
+                                position: 'center',
+                                title: 'Contraseña modificada',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }).catch(err => {
+                            console.log(err)
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Ingresa todos los datos',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             }
         },
         computed: {
-            
+
         }
     }).mount("#app")
 }, 1000)

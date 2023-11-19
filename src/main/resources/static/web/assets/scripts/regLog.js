@@ -13,87 +13,141 @@ setTimeout(() => {
                 passwordConfirm: '',
                 isLoading: false,
                 mailLog: '',
-                passwordLog: ''
+                passwordLog: '',
+                backMsg: '',
+                selectedOpt: ''
             }
         },
         created() {
             this.getCurrent()
         },
-    methods: {
-        logOut() {
-            axios.post("/api/logout")
-                .then(res => {
-                    if (res.status == 200) {
+        methods: {
+            logOut() {
+                axios.post("/api/logout")
+                    .then(res => {
+                        if (res.status == 200) {
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'success',
+                                title: 'Bye bye!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            setTimeout(() => {
+                                window.location.href = "/web/index.html";
+                            }, 1800)
+                        }
+                        console.log(res)
+                    }).catch(err => {
                         Swal.fire({
                             position: 'center',
-                            icon: 'success',
-                            title: 'Bye bye!',
+                            title: 'Cant log out, try again!',
                             showConfirmButton: false,
                             timer: 1500
                         })
-                        setTimeout(() => {
-                            window.location.href = "/web/index.html";
-                        }, 1800)
-                    }
-                    console.log(res)
-                }).catch(err => {
-                    Swal.fire({
-                        position: 'center',
-                        title: 'Cant log out, try again!',
-                        showConfirmButton: false,
-                        timer: 1500
                     })
-                })
-        },
-        getCurrent(){
-            axios.get(`/api/getCurrent`)
-            .then(res => {
-                this.current = res.data
-                console.log(this.current)
-            }).catch(err => console.log(err))
-        },
-        register(){
-            if(this.firstName &&
-                this.lastName &&
-                this.userName &&
-                this.mail &&
-                this.nacionality &&
-                this.password) {
-                    if(this.password === this.passwordConfirm) {
+            },
+            getCurrent() {
+                axios.get(`/api/getCurrent`)
+                    .then(res => {
+                        this.current = res.data
+                        console.log(this.current)
+                    }).catch(err => console.log(err))
+            },
+            register() {
+                if (this.firstName &&
+                    this.lastName &&
+                    this.userName &&
+                    this.mail &&
+                    this.nacionality &&
+                    this.password) {
+                    if (this.password === this.passwordConfirm) {
                         axios.post(`/api/register`, `firstName=${this.firstName}&lastName=${this.lastName}&userName=${this.userName}&mail=${this.mail}&nacionality=${this.nacionality}&password=${this.password}`,
-                        { headers: { 'content-type': 'application/x-www-form-urlencoded' } }
+                            { headers: { 'content-type': 'application/x-www-form-urlencoded' } }
                         ).then(res => {
-                            console.log(res)
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'success',
+                                title: 'Registro completo, iniciando login automático...',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            setTimeout(() => {
+                                axios.post("/api/login", `mail=${this.mail}&password=${this.password}`)
+                                    .then(res => {
+                                        Swal.fire({
+                                            position: 'center',
+                                            // icon: 'success',
+                                            title: 'Login ok, ingresando...',
+                                            showConfirmButton: false,
+                                            timer: 1700
+                                        })
+                                    }).catch(err => {
+                                        console.log(err)
+                                    })
+                                setTimeout(() => {
+                                    location.href = `/web/assets/pages/myProfile.html`
+                                }, 1800)
+                            }, 1600)
                         }).catch(err => {
-                            console.log(err)
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                         })
                     }
                 } else {
-                    return console.log("Completa todos los datos")
-                }
-        },
-        login() {
-            if(this.mailLog && this.passwordLog) {
-                axios.post("/api/login", `mail=${this.mailLog}&password=${this.passwordLog}`)
-                .then(res => {
-                    Swal.fire({
+                    return Swal.fire({
                         position: 'center',
-                        icon: 'success',
-                        title: 'Ingresando...',
+                        // icon: 'error',
+                        title: "Completa todos los datos",
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    setTimeout(() => {
-                        location.href = `/web/index.html`
-                    },1600)
-                }).catch(err => {
-                    console.log(err)
-                })
+                }
+            },
+            login() {
+                if (this.mailLog && this.passwordLog) {
+                    axios.post("/api/login", `mail=${this.mailLog}&password=${this.passwordLog}`)
+                        .then(res => {
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'success',
+                                title: 'Ingresando...',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            setTimeout(() => {
+                                location.href = `/web/index.html`
+                            }, 1600)
+                        }).catch(err => {
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'error',
+                                title: `Datos erróneos, intenta de nuevo`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            this.mailLog = '',
+                            this.passwordLog = ''
+                        })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        // icon: 'error',
+                        title: `Ingresa todos los datos`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             }
+        },
+        computed: {
+
         }
-    },
-    computed: {
-        
-    }
-}).mount("#app")
-},1000)
+    }).mount("#app")
+}, 1000)

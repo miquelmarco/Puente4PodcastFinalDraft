@@ -9,6 +9,7 @@ setTimeout(() => {
                 checked: [],
                 searchInput: '',
                 isLoading: false,
+                searchInput: ''
             }
         },
         created() {
@@ -22,7 +23,7 @@ setTimeout(() => {
                         if (res.status == 200) {
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: 'Bye bye!',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -45,7 +46,6 @@ setTimeout(() => {
                 axios.get(`/api/getCurrent`)
                 .then(res => {
                     this.current = res.data
-                    console.log(this.current)
                 }).catch(err => console.log(err))
             },
             getArchives(){
@@ -53,10 +53,42 @@ setTimeout(() => {
                 .then(res => {
                     this.archives = res.data.sort((a, b) => b.id - a.id)
                 }).catch(err => console.log(err))
+            },
+            addArFav(id) {
+                if (this.current.length != 0) {
+                    axios.post(`/api/favorite/addArFav`, `id=${id}`)
+                        .then(res => {
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 700
+                            })
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                        })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        // icon: 'error',
+                        title: `Debes estar logueado`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             }
         },
         computed: {
-            filtroEpCheckSearch() {
+            filtroArCheckSearch() {
                 this.filteredAr = this.archives.filter(archive => archive.name.toLowerCase().includes(this.searchInput.toLowerCase()))
             }
         }

@@ -21,10 +21,10 @@ setTimeout(() => {
                         if (res.status == 200) {
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: 'Bye bye!',
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 1500,
                             })
                             setTimeout(() => {
                                 window.location.href = "/web/index.html";
@@ -47,7 +47,7 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -57,7 +57,7 @@ setTimeout(() => {
                             console.log(err.response.data)
                             Swal.fire({
                                 position: 'center',
-                                icon: 'error',
+                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -66,7 +66,39 @@ setTimeout(() => {
                 } else {
                     Swal.fire({
                         position: 'center',
-                        icon: 'error',
+                        // icon: 'error',
+                        title: `Debes estar logueado`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            },
+            addArFav(id) {
+                if (this.current.length != 0) {
+                    axios.post(`/api/favorite/addArFav`, `id=${id}`)
+                        .then(res => {
+                            this.backMsg = res.data
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'success',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }).catch(err => {
+                            this.backMsg = err.response.data
+                            Swal.fire({
+                                position: 'center',
+                                // icon: 'error',
+                                title: `${this.backMsg}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        // icon: 'error',
                         title: `Debes estar logueado`,
                         showConfirmButton: false,
                         timer: 1500

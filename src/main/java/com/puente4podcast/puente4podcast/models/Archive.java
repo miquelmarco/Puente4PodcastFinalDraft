@@ -27,6 +27,8 @@ public class Archive {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "podcast_id")
     private Podcast podcastArchives;
+    @OneToMany(mappedBy = "archive", fetch = FetchType.EAGER)
+    private Set<ComentaryAr> comentaryArSet = new HashSet<>();
     @OneToMany(mappedBy = "archiveFav", fetch = FetchType.EAGER)
     private Set<FavoriteAr> favoriteArSet = new HashSet<>();
 
@@ -146,6 +148,26 @@ public class Archive {
 
     public void setFavoriteArSet(Set<FavoriteAr> favoriteArSet) {
         this.favoriteArSet = favoriteArSet;
+    }
+
+    @JsonIgnore
+    public Set<ComentaryAr> getComentaryArSet() {
+        return comentaryArSet;
+    }
+
+    public void setComentaryArSet(Set<ComentaryAr> comentaryArSet) {
+        this.comentaryArSet = comentaryArSet;
+    }
+
+    public void addArComentary(ComentaryAr comentary) {
+        comentary.setArchive(this);
+        comentaryArSet.add(comentary);
+    }
+
+    public void addAllArComentary(List<ComentaryAr> comentaryList) {
+        for (ComentaryAr comentary : comentaryList) {
+            this.addArComentary(comentary);
+        }
     }
 
     public void addArFavorite(FavoriteAr favoriteAr) {

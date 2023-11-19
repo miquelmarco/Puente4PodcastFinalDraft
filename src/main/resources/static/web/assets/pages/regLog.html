@@ -80,43 +80,54 @@
             </section>
         </header>
 
-        <main v-cloak class="mainIndex d-flex flex-column justify-content-center align-items-center">
+        <main v-cloak class="mainIndex d-flex flex-column align-items-center">
 
-            <section
+            <section class="m-4 d-flex">
+                <form class="d-flex flex-column gap-3 text-center text-white fw-bolder fs-4">
+                    <label for="logRegSelect">Selecciona una opción para ingresar</label>
+                    <select name="logRegSelect" id="logRegSelect" v-model="selectedOpt">
+                        <option disabled selected>Selecciona una opción</option>
+                        <option value="register">Usuario nuevo</option>
+                        <option value="login">Tengo cuenta</option>
+                    </select>
+                </form>
+            </section>
+
+            <section v-cloak v-if="selectedOpt == 'login'"
                 class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-3 mx-5 w-25">
-                <h2 class="text-white p-1 m-2">Ingresa</h2>
-                <form class="text-white d-flex flex-column gap-2 m-3 w-100">
+                <h2 v-cloak class="text-white p-1 m-2">Ingresa</h2>
+                <form v-cloak class="text-white d-flex flex-column gap-2 m-3 w-100">
                     <label for="mailLog">Ingresa tu e-mail</label>
                     <input type="email" id="mailLog" v-model="mailLog">
                     <label for="passwordLog">Contraseña</label>
                     <input type="password" id="passwordLog" v-model="passwordLog">
                 </form>
-                <button @click="login()" class="button-30 w-75 fw-bolder m-3">Ingresar</button>
+                <button v-cloak @click="login()" class="button-30 w-75 fw-bolder m-3">Ingresar</button>
             </section>
 
 
-            <section
+            <section v-cloak v-if="selectedOpt == 'register'"
                 class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-3 mx-5 w-75">
                 <h2 class="text-white p-1 m-2">No tienes cuenta? Regístrate!</h2>
-                <div class="w-100 d-flex text-white">
-                    <form class="d-flex flex-column justify-content-between w-50 p-3 gap-2">
+                <div v-cloak class="w-100 d-flex text-white">
+                    <form v-cloak class="d-flex flex-column justify-content-between w-50 p-3 gap-2">
                         <label for="firstName">Nombre</label>
-                        <input type="text" id="firstName" v-model="firstName">
+                        <input v-cloak type="text" id="firstName" v-model="firstName">
                         <label for="lastName">Apellido</label>
-                        <input type="text" id="lastName" v-model="lastName">
+                        <input v-cloak type="text" id="lastName" v-model="lastName">
                     </form>
-                    <form class="d-flex flex-column justify-content-between w-50 p-3 gap-2">
+                    <form v-cloak class="d-flex flex-column justify-content-between w-50 p-3 gap-2">
                         <label for="userName">Nombre de usuario</label>
-                        <input type="text" id="userName" v-model="userName">
+                        <input v-cloak type="text" id="userName" v-model="userName">
                         <label for="mail">E-Mail</label>
-                        <input type="email" id="mail" v-model="mail">
+                        <input v-cloak type="email" id="mail" v-model="mail">
                     </form>
                 </div>
-                <div class="w-100 text-white d-flex flex-column justify-content-center align-items-center">
-                    <form
+                <div v-cloak class="w-100 text-white d-flex flex-column justify-content-center align-items-center">
+                    <form v-cloak
                         class="text-white d-flex flex-column justify-content-center align-items-center gap-2 m-3 w-75">
                         <label for="nacionality">Nacionalidad</label>
-                        <select class="w-50" name="nacionality" id="nacionality" v-model="nacionality">
+                        <select v-cloak class="w-50" name="nacionality" id="nacionality" v-model="nacionality">
                             <option disabled selected>Selecciona una opción</option>
                             <option value="españa">España</option>
                             <option value="chile">Chile</option>
@@ -140,9 +151,10 @@
                             <option value="cuba">Cuba</option>
                             <option value="guinea ecuatorial">Guinea Ecuatorial</option>
                             <option value="otro">Otro</option>
+                            <option value="Oculto">Prefiero no contestar</option>
                         </select>
                     </form>
-                    <form class="d-flex flex-column justify-content-between w-50 p-3 gap-2">
+                    <form v-cloak class="d-flex flex-column justify-content-between w-50 p-3 gap-2">
                         <label for="password">Contraseña</label>
                         <input type="text" id="password" v-model="password">
                         <label for="passwordConfirm">Confirma tu contraseña</label>

@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -72,7 +72,7 @@ public class PodcastUserController {
         PodcastUser podcastUser = podcastUserRepository.findByMail(authentication.getName());
         if (!actualPass.isEmpty() && !newPass.isEmpty()) {
             if (podcastUser != null){
-                if (Objects.equals(podcastUser.getPassword(), actualPass)){
+                if (passwordEncoder.matches(actualPass, podcastUser.getPassword())){
                     podcastUser.setPassword(passwordEncoder.encode(newPass));
                     podcastUserRepository.save(podcastUser);
                     return new ResponseEntity<>("Contraseña modificada!", HttpStatus.OK);
@@ -81,7 +81,7 @@ public class PodcastUserController {
             }
             return new ResponseEntity<>("Usuario no encontrado", HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>("Contraseña no modificada", HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>("Main error", HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/registerAdmin")

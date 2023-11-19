@@ -2,6 +2,9 @@ package com.puente4podcast.puente4podcast.dtos;
 
 import com.puente4podcast.puente4podcast.models.Archive;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ArchiveDTO {
     private Long id;
     private Byte archiveNumber;
@@ -13,6 +16,8 @@ public class ArchiveDTO {
     private String category;
     private String description;
     private boolean featured;
+    private List<ComentaryArDTO> comentaryArDTOList;
+    private List<FavoriteArDTO> favoriteArDTOList;
 
     public ArchiveDTO() {
     }
@@ -28,6 +33,8 @@ public class ArchiveDTO {
         this.category = archive.getCategory();
         this.description = archive.getDescription();
         this.featured = archive.isFeatured();
+        this.comentaryArDTOList = archive.getComentaryArSet().stream().map(comentary -> new ComentaryArDTO(comentary)).collect(Collectors.toList());
+        this.favoriteArDTOList = archive.getFavoriteArSet().stream().map(FavoriteArDTO::new).collect(Collectors.toList());
     }
 
     public Long getId() {
@@ -68,5 +75,13 @@ public class ArchiveDTO {
 
     public boolean isFeatured() {
         return featured;
+    }
+
+    public List<ComentaryArDTO> getComentaryArDTOList() {
+        return comentaryArDTOList;
+    }
+
+    public List<FavoriteArDTO> getFavoriteArDTOList() {
+        return favoriteArDTOList;
     }
 }

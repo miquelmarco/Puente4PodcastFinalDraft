@@ -264,11 +264,11 @@
 
                 <div v-if="selectTypeMod == 'Epis'" v-for="episode of episodes">
                     <p class="bg-danger p-1">Episode: {{episode.seasonNumber}} X {{episode.episode}} Usar id:
-                        {{episode.id}}</p>
+                        {{episode.id}} - {{episode.featured}}</p>
                 </div>
 
                 <div v-for="archive of archives">
-                    <p class="bg-danger p-1">Archive: {{archive.archiveNumber}} Usar id: {{archive.id}}</p>
+                    <p class="bg-danger p-1">Archive: {{archive.archiveNumber}} Usar id: {{archive.id}} - {{archive.featured}}</p>
                 </div>
 
             </section>

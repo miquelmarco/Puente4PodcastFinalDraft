@@ -89,6 +89,29 @@ public class FavoriteController {
         return new ResponseEntity<>("No se ha podido eliminar", HttpStatus.FORBIDDEN);
     }
 
+    @DeleteMapping("/favorite/removeArFav")
+    public ResponseEntity<?> removeFavAr(Authentication authentication, @RequestParam Long id) {
+        PodcastUser podcastUser = podcastUserRepository.findByMail(authentication.getName());
+        Archive archive = archiveRepository.findById(id).orElse(null);
+        if (podcastUser != null && archive != null) {
+            FavoriteAr existingFavorite = podcastUser.getFavoriteArSet().stream()
+                    .filter(fav -> fav.getArchiveFav().equals(archive))
+                    .findFirst()
+                    .orElse(null);
+            if (existingFavorite != null) {
+                podcastUser.removeArFavorite(existingFavorite);
+                archive.removeArFavorite(existingFavorite);
+                favoriteArRepository.delete(existingFavorite);
+                podcastUserRepository.save(podcastUser);
+                archiveRepository.save(archive);
+                return new ResponseEntity<>("Eliminado de Favoritos", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("El Archivo no está en favoritos", HttpStatus.NOT_FOUND);
+            }
+        }
+        return new ResponseEntity<>("No se ha podido eliminar", HttpStatus.FORBIDDEN);
+    }
+
     @GetMapping("/episodes/favs")
     public Set<EpisodeDTO> getEpFavs(Authentication authentication){
         PodcastUser currentUser = podcastUserRepository.findByMail(authentication.getName());

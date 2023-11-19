@@ -60,7 +60,7 @@
                                     </ul>
                                 </li> -->
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">TU PERFIL</a>
+                                    <a class="nav-link" href="#"><span class="navBgChanger">TU PERFIL</span></a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="./favs.html">FAVORITOS</a>
@@ -136,18 +136,21 @@
                 </table>
             </section>
 
-            <div v-if="current.length != 0" class="text-white m-3">
+            <div class="d-flex gap-3">
+                <label class="text-white" for="selecModPass">Si deseas cambiar tu contraseña =></label>
+                <input type="checkbox" id="selecModPass" name="selecModPass" v-model="selecModPass">
+            </div>
+
+            <div v-if="selecModPass" class="text-white m-3">
                 <h3 class="text-center m-3">Modificar Contraseña</h3>
-                <div class="d-flex flex-column gap-2">
-
-                    <label for="modPass">Contraseña Actual</label>
-                    <input type="password" name="modPassword" id="modPassword">
-
+                <div class="d-flex flex-column align-items-center gap-2">
+                    <label for="modPassActual">Contraseña Actual</label>
+                    <input v-model="modPassActual" type="password" name="modPassActual" id="modPassActual">
                     <label for="newPass">Nueva contraseña</label>
-                    <input type="text" name="newPass" id="newPass">
-
+                    <input v-model="modPass" type="text" name="newPass" id="newPass">
                     <label for="newPassConfirm">Confirma la nueva contraseña</label>
-                    <input type="text" name="newPassConfirm" id="newPassConfirm">
+                    <input v-model="modPassConfirm" type="text" name="newPassConfirm" id="newPassConfirm">
+                    <button @click="modiPass()" class="button-30 m-2" role="button">Modificar</button>
                 </div>
             </div>
 

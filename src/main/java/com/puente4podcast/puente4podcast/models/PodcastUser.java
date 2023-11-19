@@ -25,11 +25,14 @@ public class PodcastUser {
     @JoinColumn(name = "podcastOw_id")
     private Podcast podcastUser;
     @OneToMany(mappedBy = "podcastUserCom", fetch = FetchType.EAGER)
-    private Set<Comentary> comentarySet = new HashSet<>();
+    private Set<ComentaryEp> comentarySet = new HashSet<>();
     @OneToMany(mappedBy = "podcastUserFav")
     private Set<Favorite> favoriteSet = new HashSet<>();
     @OneToMany(mappedBy = "podcastUserArFav")
     private Set<FavoriteAr> favoriteArSet = new HashSet<>();
+    @OneToMany(mappedBy = "podcastUserArCom")
+    private Set<ComentaryAr> comentaryArSet = new HashSet<>();
+
 
     public PodcastUser() {
     }
@@ -45,7 +48,7 @@ public class PodcastUser {
         this.podcastUser = podcastUser;
     }
 
-    public PodcastUser(String firstName, String lastName, String userName, String mail, String nacionality, String password, Set<Comentary> comentarySet, Set<Favorite> favoriteSet, Set<FavoriteAr> favoriteArSet) {
+    public PodcastUser(String firstName, String lastName, String userName, String mail, String nacionality, String password, Set<ComentaryEp> comentarySet, Set<Favorite> favoriteSet, Set<FavoriteAr> favoriteArSet, Set<ComentaryAr> comentaryArSet) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -55,6 +58,7 @@ public class PodcastUser {
         this.comentarySet = comentarySet;
         this.favoriteSet = favoriteSet;
         this.favoriteArSet = favoriteArSet;
+        this.comentaryArSet = comentaryArSet;
     }
 
     public Long getId() {
@@ -126,12 +130,21 @@ public class PodcastUser {
     }
 
     @JsonIgnore
-    public Set<Comentary> getComentarySet() {
+    public Set<ComentaryEp> getComentarySet() {
         return comentarySet;
     }
 
-    public void setComentarySet(Set<Comentary> comentarySet) {
+    public void setComentarySet(Set<ComentaryEp> comentarySet) {
         this.comentarySet = comentarySet;
+    }
+
+    @JsonIgnore
+    public Set<ComentaryAr> getComentaryArSet() {
+        return comentaryArSet;
+    }
+
+    public void setComentaryArSet(Set<ComentaryAr> comentaryArSet) {
+        this.comentaryArSet = comentaryArSet;
     }
 
     @JsonIgnore
@@ -161,14 +174,25 @@ public class PodcastUser {
         this.podcastUser = podcastOw;
     }
 
-    public void addComentary(Comentary comentary) {
+    public void addComentary(ComentaryEp comentary) {
         comentary.setPodcastUser(this);
         comentarySet.add(comentary);
     }
 
-    public void addAllComentary(List<Comentary> comentaryList) {
-        for (Comentary comentary : comentaryList) {
+    public void addAllComentary(List<ComentaryEp> comentaryList) {
+        for (ComentaryEp comentary : comentaryList) {
             this.addComentary(comentary);
+        }
+    }
+
+    public void addArComentary(ComentaryAr comentary) {
+        comentary.setPodcastUserArCom(this);
+        comentaryArSet.add(comentary);
+    }
+
+    public void addAllArComentary(List<ComentaryAr> comentaryList) {
+        for (ComentaryAr comentary : comentaryList) {
+            this.addArComentary(comentary);
         }
     }
 

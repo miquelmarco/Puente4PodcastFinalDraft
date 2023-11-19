@@ -42,7 +42,7 @@
                                     <a class="nav-link" href="./episodes.html">EPISODIOS</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="#">ARCHIVOS</a>
+                                    <a class="nav-link" href="#"><span class="navBgChanger">ARCHIVOS</span></a>
                                 </li>
                                 <!-- <li class="nav-item dropdown d-flex justify-content-center align-items-center">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -83,53 +83,25 @@
         <main v-cloak class="mainIndex d-flex flex-column align-items-center">
             <!-- title edit -->
             <section v-cloak class="text-white d-flex flex-column align-items-center p-3 m-2">
-                <div v-cloak class="d-flex m-1">
+                <div class="d-flex m-1">
                     <img class="logoTitle px-2" src="../images/P4_W.png" alt="logo">
                     <h1>Puente4Podcast</h1>
                 </div>
-                <div v-cloak class="m-1 d-flex flex-column justify-content-center align-items-center">
-                    <p class="podcastSubTitleEp m-3">Abrimos las puertas del Archivo, y sed bienvenidos!</p>
+                <div class="m-1 d-flex flex-column justify-content-center align-items-center">
+                    <p class="podcastSubTitleEp m-1">Abrimos las puertas del Archivo, y sed bienvenidos!</p>
                 </div>
             </section>
 
-            <!-- <section v-cloak class="d-flex justify-content-center align-items-center gap-3 bg-secondary flex-wrap">
-                <p class="text-white">Episodios monográficos de larga duración!</p>
-                <div v-cloak class="d-flex justify-content-center align-items-center m-2">
-                    <form v-cloak class="d-flex align-items-center p-1" role="search">
-                        <input class="form-control me-2 px-2" type="search" placeholder="Buscar archivo...  "
-                            aria-label="Search" v-model="searchInput">
-                    </form>
-                </div>
-            </section>
-            <section v-cloak class=" d-flex justify-content-center gap-3 m-4 flex-wrap">
-                <div v-cloak class="archiveContainer d-flex" v-for="archive of filteredAr">
-                    <div v-cloak class="containerOne d-flex flex-column justify-content-between bg-white text-black">
-                        <div v-cloak class="d-flex flex-column">
-                            <a target="_blank" :href="archive.linkYt"><img class="cardImg w-100" :src="archive.img"
-                                    :alt="archive.img"></a>
-                            <a class="text-decoration-none" target="_blank" :href="archive.linkYt">
-                                <p class="cardName text-center p-1 m-2 text-black">{{archive.name}}</p>
-                            </a>
-                            <p class="fw-medium m-1 p-1 text-center">Duración {{archive.duration}} hrs</p>
-                            <p class="fw-medium m-1 p-1 text-center">Archivo Número {{archive.archiveNumber}}
-                            </p>
-                        </div>
-                        <div v-cloak class="d-flex justify-content-center align-items-center mb-2 gap-1">
-                            <a target="_blank" :href="archive.linkYt"><button
-                                    class="button-30 btnCardYt">Youtube</button></a>
-                            <a target="_blank" :href="archive.linkIvoox"><button
-                                    class="button-30 btnCardIv">Ivoox</button></a>
-                        </div>
-                    </div>
-                    <div v-cloak class="d-flex justify-content-center align-items-center w-50">
-                        <p class="p-2 m-2 text-white fw-lighter">{{archive.description}}</p>
-                    </div>
-                </div>
-            </section> -->
+            <div v-cloak class="d-flex justify-content-center align-items-center m-2 bg-secondary w-75 p-2">
+                <form v-cloak class="d-flex align-items-center p-1" role="search">
+                    <input class="form-control me-2 px-2" type="search" placeholder="Buscar archivo...  "
+                        aria-label="Search" v-model="searchInput">
+                </form>
+            </div>
 
             <section v-cloak class=" d-flex justify-content-center gap-3 m-3 flex-wrap w-75">
                 <div v-cloak class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
-                    v-for="item of archives">
+                    v-for="item of filteredAr">
                     <a target="_blank" :href="item.linkYt"><img class="cardImg w-100" :src="item.img" :alt="item.name"
                             :title="item.name"></a>
                     <div>
@@ -151,7 +123,7 @@
                         <div class="d-flex justify-content-center align-items-center m-1 gap-1">
                             <a :href="`./arDetails.html?id=${item.id}`"><button
                                     class="button-30 btnDetails">Detalles</button></a>
-                            <button @click="addEpFav(item.id)" class="button-30 btnDetails">Favorito</button>
+                            <button @click="addArFav(item.id)" class="button-30 btnDetails">Favorito</button>
                         </div>
                     </div>
                 </div>
@@ -198,7 +170,7 @@
                 </div>
             </div>
         </footer>
-        {{filtroEpCheckSearch}}
+        {{filtroArCheckSearch}}
 
     </div>
 

@@ -42,7 +42,7 @@
                                     <a class="nav-link" href="./episodes.html">EPISODIOS</a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link" href="./archives.html">ARCHIVOS</a>
+                                    <a class="nav-link" href="./archives.html"><span class="navBgChanger">ARCHIVOS</span></a>
                                 </li>
                                 <!-- <li class="nav-item dropdown d-flex justify-content-center align-items-center">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -99,13 +99,17 @@
             <div>
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <h1 class="text-white m-2 p-2">Deja tu comentario!</h1>
-                    <textarea class="textareaDetails m-3 p-3" name="textarea" id="textarea" cols="30"
-                        rows="10"></textarea>
-                    <button class="button-30 m-3">Comentar!</button>
+                    <textarea @keydown.enter.prevent="enterCom" v-model="commentText" class="textareaDetails m-3 p-3"
+                        name="textarea" id="textarea" cols="30" rows="10"></textarea>
+                    <button @click="addComment" class="button-30 m-3">Comentar!</button>
                 </div>
-                <div class="bg-white m-2 p-2 mb-4" v-for="item of comentaries">
+                <div class="bg-white m-2 p-2 mb-4" v-for="item of comentariesAr">
                     <p class="text-black">{{item.text}}</p>
-                    <p class="text-black m-2 text-end fw-bolder">{{item.date.slice(8,10)}}-{{item.date.slice(5,7)}}-{{item.date.slice(0,4)}}
+                    <div class="d-flex justify-content-between">
+                        <p class="text-black m-2 text-end fw-bolder">{{item.podcastUserArCom}}</p>
+                        <p class="text-black m-2 text-end fw-bolder">
+                            {{item.date.slice(8,10)}}-{{item.date.slice(5,7)}}-{{item.date.slice(0,4)}}
+                    </div>
                     </p>
                 </div>
             </div>

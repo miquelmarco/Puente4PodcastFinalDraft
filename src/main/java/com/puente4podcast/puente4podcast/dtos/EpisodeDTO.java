@@ -3,7 +3,6 @@ package com.puente4podcast.puente4podcast.dtos;
 import com.puente4podcast.puente4podcast.models.Episode;
 import com.puente4podcast.puente4podcast.models.Season;
 
-import javax.persistence.Column;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +19,7 @@ public class EpisodeDTO {
     private Season epSeason;
     private String description;
     private boolean featured;
-    private List<ComentaryDTO> comentarySet;
+    private List<ComentaryEpDTO> comentarySet;
     private List<FavoriteDTO> favoriteSet;
 
     public EpisodeDTO() {
@@ -39,7 +38,7 @@ public class EpisodeDTO {
         this.epSeason = episode.getSeason();
         this.featured = episode.isFeatured();
         this.description = episode.getDescription();
-        this.comentarySet = episode.getComentarySet().stream().map(comentary -> new ComentaryDTO(comentary)).collect(Collectors.toList());
+        this.comentarySet = episode.getComentarySet().stream().map(comentary -> new ComentaryEpDTO(comentary)).collect(Collectors.toList());
         this.favoriteSet = episode.getFavoriteSet().stream().map(FavoriteDTO::new).collect(Collectors.toList());
     }
 
@@ -91,7 +90,7 @@ public class EpisodeDTO {
         return featured;
     }
 
-    public List<ComentaryDTO> getComentarySet() {
+    public List<ComentaryEpDTO> getComentarySet() {
         return comentarySet;
     }
 
@@ -99,3 +98,4 @@ public class EpisodeDTO {
         return favoriteSet;
     }
 }
+

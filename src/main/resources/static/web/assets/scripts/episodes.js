@@ -23,7 +23,7 @@ setTimeout(() => {
                         if (res.status == 200) {
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: 'Bye bye!',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -46,7 +46,6 @@ setTimeout(() => {
                 axios.get(`/api/getCurrent`)
                     .then(res => {
                         this.current = res.data
-                        console.log(this.current)
                     }).catch(err => console.log(err))
             },
             getEpisodes() {
@@ -56,10 +55,10 @@ setTimeout(() => {
                         this.seasons = Array.from(new Set(this.episodes.map(episode => episode.seasonNumber)))
                     }).catch(err => console.log(err))
             },
-            filtroEpCheckSearc2() {
-                this.filteredEp = this.episodes.filter(episode => episode.name.toLowerCase().includes(this.searchInput.toLowerCase())
-                    && (this.checked.includes(episode.seasonNumber) || this.checked.length == 0)).sort((a, b) => b.id - a.id)
-            },
+            // filtroEpCheckSearc2() {
+            //     this.filteredEp = this.episodes.filter(episode => episode.name.toLowerCase().includes(this.searchInput.toLowerCase())
+            //         && (this.checked.includes(episode.seasonNumber) || this.checked.length == 0)).sort((a, b) => b.id - a.id)
+            // },
             addEpFav(id) {
                 if (this.current.length != 0) {
                     axios.post(`/api/favorite/addEpFav`, `id=${id}`)
@@ -67,26 +66,25 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                icon: 'success',
+                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 700
                             })
                         }).catch(err => {
                             this.backMsg = err.response.data
-                            console.log(err.response.data)
                             Swal.fire({
                                 position: 'center',
-                                icon: 'error',
+                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 1000
                             })
                         })
                 } else {
                     Swal.fire({
                         position: 'center',
-                        icon: 'error',
+                        // icon: 'error',
                         title: `Debes estar logueado`,
                         showConfirmButton: false,
                         timer: 1500

@@ -17,7 +17,11 @@
 </head>
 
 <body>
-    <div id="app" v-cloak>
+    <div id="app">
+    
+    <div class="loading-overlay" v-if="isLoading">
+        LOADING...
+    </div>
 
         <header class="headerIndex">
             <section>
@@ -34,7 +38,7 @@
                                     <img class="logoHeader" src="./assets/images/P4_B.png" alt="logo">
                                 </div>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
-                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                    <a class="nav-link active" aria-current="page" href="#"><span class="navBgChanger">Home</span></a>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="./assets/pages/episodes.html">EPISODIOS</a>
@@ -92,34 +96,34 @@
                             de otra manera...</span></p>
                 </div>
             </section>
-            <div class="d-flex flex-column justify-content-start align-items-start m-3 p-2">
+            <div v-cloak class="d-flex flex-column justify-content-start align-items-start m-3 p-2">
                 <h3 class="p-2 m-3 text-black bg-white">Episodios Destacados</h3>
                 <p class="p-2 m-3 text-white">Nuestra selección para ti!</p>
             </div>
-            <section class=" d-flex justify-content-center flex-wrap gap-3 m-3">
-                <div class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
+            <section v-cloak class=" d-flex justify-content-center flex-wrap gap-3 m-3">
+                <div v-cloak class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
                     v-for="featured of featuredEp">
                     <a target="_blank" :href="featured.linkYt"><img class="cardImg w-100" :src="featured.img"
                             :alt="featured.name" :title="featured.name"></a>
-                    <div>
+                    <div v-cloak>
                         <a v-cloak class="text-decoration-none" target="_blank" :href="featured.linkYt">
                             <p class="cardName text-white text-center m-1">{{featured.name}}</p>
                         </a>
                     </div>
-                    <div>
-                        <div>
+                    <div v-cloak>
+                        <div v-cloak>
                             <p class="text-white text-end mx-2 seasonDetail">Temporada {{featured.seasonNumber}},
                                 episodio
                                 {{featured.episode}}</p>
                             <p class="text-white text-end mx-2 seasonDetail">{{featured.duration}} hrs</p>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
+                        <div v-cloak class="d-flex justify-content-center align-items-center m-1 gap-1">
                             <a target="_blank" :href="featured.linkYt"><button
                                     class="button-30 btnCardYt">Youtube</button></a>
                             <a target="_blank" :href="featured.linkIvoox"><button
                                     class="button-30 btnCardIv">Ivoox</button></a>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center m-1 gap-1">
+                        <div v-cloak class="d-flex justify-content-center align-items-center m-1 gap-1">
                             <a :href="`./assets/pages/details.html?id=${featured.id}`"><button
                                     class="button-30 btnDetails">Detalles</button></a>
                             <button @click="addEpFav(featured.id)" class="button-30 btnDetails">Favorito</button>
@@ -129,13 +133,13 @@
                 </div>
             </section>
 
-            <div class="d-flex flex-column justify-content-start align-items-start m-3 p-2">
+            <div v-cloak class="d-flex flex-column justify-content-start align-items-start m-3 p-2">
                 <h3 class="p-2 m-3 text-black bg-white">Archivos Destacados</h3>
                 <p class="p-2 m-3 text-white">Programas especiales dedicados a un tema en particular con invitados
                     increíbles, no te los puedes perder!</p>
             </div>
-            <section class="d-flex flex-wrap justify-content-center gap-3 m-3">
-                <div class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
+            <section v-cloak class="d-flex flex-wrap justify-content-center gap-3 m-3">
+                <div v-cloak class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
                     v-for="featured of featuredAr">
                     <a target="_blank" :href="featured.linkYt"><img class="cardImg w-100" :src="featured.img"
                             :alt="featured.name" :title="featured.name"></a>
@@ -158,9 +162,8 @@
                         </div>
                         <div class="d-flex justify-content-center align-items-center m-1 gap-1">
                             <a :href="`./assets/pages/arDetails.html?id=${featured.id}`"><button
-                                class="button-30 btnDetails">Detalles</button></a>
-                            <!-- <a :href="`./details.html?id=${featured.id}`"><button
-                                    class="button-30 btnDetails">Favorito</button></a> -->
+                                    class="button-30 btnDetails">Detalles</button></a>
+                            <button @click="addArFav(featured.id)" class="button-30 btnDetails">Favorito</button>
                         </div>
                     </div>
                 </div>

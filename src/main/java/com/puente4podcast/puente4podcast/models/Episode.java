@@ -29,7 +29,7 @@ public class Episode {
     @JoinColumn(name = "season_id")
     private Season epSeason;
     @OneToMany(mappedBy = "episode", fetch = FetchType.EAGER)
-    private Set<Comentary> comentarySet = new HashSet<>();
+    private Set<ComentaryEp> comentarySet = new HashSet<>();
     @OneToMany(mappedBy = "episodeFav", fetch = FetchType.EAGER)
     private Set<Favorite> favoriteSet = new HashSet<>();
 
@@ -152,11 +152,11 @@ public class Episode {
     }
 
     @JsonIgnore
-    public Set<Comentary> getComentarySet() {
+    public Set<ComentaryEp> getComentarySet() {
         return comentarySet;
     }
 
-    public void setComentarySet(Set<Comentary> comentarySet) {
+    public void setComentarySet(Set<ComentaryEp> comentarySet) {
         this.comentarySet = comentarySet;
     }
 
@@ -169,13 +169,13 @@ public class Episode {
         this.favoriteSet = favoriteSet;
     }
 
-    public void addComentary(Comentary comentary) {
+    public void addComentary(ComentaryEp comentary) {
         comentary.setEpisode(this);
         comentarySet.add(comentary);
     }
 
-    public void addAllComentary(List<Comentary> comentaryList) {
-        for (Comentary comentary : comentaryList) {
+    public void addAllComentary(List<ComentaryEp> comentaryList) {
+        for (ComentaryEp comentary : comentaryList) {
             this.addComentary(comentary);
         }
     }

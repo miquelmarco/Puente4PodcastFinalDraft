@@ -19,7 +19,7 @@ public class Puente4podcastApplication {
 		SpringApplication.run(Puente4podcastApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner initData(PodcastUserRepository podcastUserRepository, PodcastRepository podcastRepository, SeasonRepository seasonRepository, EpisodeRepository episodeRepository, ArchiveRepository archiveRepository, FavoriteRepository favoriteRepository, ComentaryRepository comentaryRepository) {
+	public CommandLineRunner initData(PodcastUserRepository podcastUserRepository, PodcastRepository podcastRepository, SeasonRepository seasonRepository, EpisodeRepository episodeRepository, ArchiveRepository archiveRepository, FavoriteRepository favoriteRepository, ComentaryEpRepository comentaryRepository) {
 		return args -> {
 
 			Podcast puente4podcast = new Podcast("puente4podcast", "El podcast de la gente que ve el mundo, de otra manera!", "https://imgur.com/rJh1nKq");
@@ -157,11 +157,11 @@ public class Puente4podcastApplication {
 			Archive archivex047 = new Archive((byte) 47, "Reseña One Piece Live Action con El Club de las Tormentas", "https://i.ytimg.com/vi/Cq0pRJHm8gM/maxresdefault.jpg", "https://www.youtube.com/watch?v=Cq0pRJHm8gM&t=5889s", "https://www.ivoox.com/arch-47-resena-one-piece-live-action-con-audios-mp3_rf_116532382_1.html", "2:24:46", "Archivo", "A veces la vida nos da sorpresas… sorpresas ante situaciones en las que no tenemos ninguna clase de expectativa. En muchas ocasiones la mejor manera de disfrutar de un buen producto es, simplemente, dejarse llevar dando un salto de fe… y es que, hemos disfrutado y mucho con One Piece Live Action… la nueva serie de Netflix sobre el manga que, para muchas personas, nos ha acompañado durante gran parte de nuestras vidas.", false);
 			Archive archivex048 = new Archive((byte) 48, "Reseña Antes de que los cuelguen de Joe Abercrombie", "https://i.ytimg.com/vi/-jzEuzLzn2k/maxresdefault.jpg", "https://www.youtube.com/watch?v=-jzEuzLzn2k&t=686s", "https://www.ivoox.com/arch-48-resena-antes-cuelguen-audios-mp3_rf_116911661_1.html", "2:02:38", "Archivo", "Y es que en este nuevo Archivo del Puente Cuatro venimos a hablaros de Antes de que los cuelguen. La segunda novela de la trilogía La Primera Ley, escrita por el autor británico Joe Abercrombie. Un libro trepidante, lleno de acción, aventura e intriga que sin duda no dejará a nadie indiferente.", false);
 
-			Comentary testCommentary1 = new Comentary("This is a test commentary, and is too short so i will put something more 1", LocalDate.now());
-			Comentary testCommentary2 = new Comentary("This is a test commentary, and is too short so i will put something more 2", LocalDate.now());
-			Comentary testCommentary3 = new Comentary("This is a test commentary, and is too short so i will put something more 3", LocalDate.now());
-			Comentary testCommentary4 = new Comentary("This is a test commentary, and is too short so i will put something more 4", LocalDate.now());
-			Comentary testCommentary5 = new Comentary("This is a test commentary, and is too short so i will put something more 5", LocalDate.now());
+			ComentaryEp testCommentary1 = new ComentaryEp("This is a test commentary, and is too short so i will put something more 1", LocalDate.now());
+			ComentaryEp testCommentary2 = new ComentaryEp("This is a test commentary, and is too short so i will put something more 2", LocalDate.now());
+			ComentaryEp testCommentary3 = new ComentaryEp("This is a test commentary, and is too short so i will put something more 3", LocalDate.now());
+			ComentaryEp testCommentary4 = new ComentaryEp("This is a test commentary, and is too short so i will put something more 4", LocalDate.now());
+			ComentaryEp testCommentary5 = new ComentaryEp("This is a test commentary, and is too short so i will put something more 5", LocalDate.now());
 
 			List<Season> seasonList = Arrays.asList(season1, season2, season3, season4);
 			List<Episode> episodeListS1 = Arrays.asList(episode1x01, episode1x02, episode1x03, episode1x04, episode1x05, episode1x06, episode1x07, episode1x08, episode1x09, episode1x10,

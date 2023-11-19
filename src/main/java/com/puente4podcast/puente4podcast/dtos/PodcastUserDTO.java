@@ -1,6 +1,5 @@
 package com.puente4podcast.puente4podcast.dtos;
 
-import com.puente4podcast.puente4podcast.models.FavoriteAr;
 import com.puente4podcast.puente4podcast.models.Podcast;
 import com.puente4podcast.puente4podcast.models.PodcastUser;
 
@@ -16,7 +15,7 @@ public class PodcastUserDTO {
     private String nacionality;
     private Podcast podcastUser;
     private boolean isAdmin;
-    private List<ComentaryDTO> comentarySet;
+    private List<ComentaryEpDTO> comentarySet;
     private List<FavoriteDTO> favoriteSet;
     private List<FavoriteArDTO> favoriteArSet;
 
@@ -32,7 +31,7 @@ public class PodcastUserDTO {
         this.nacionality = podcastUser.getNacionality();
         this.podcastUser = podcastUser.getPodcastOw();
         this.isAdmin = podcastUser.isAdmin();
-        this.comentarySet = podcastUser.getComentarySet().stream().map(comentary -> new ComentaryDTO(comentary)).collect(Collectors.toList());
+        this.comentarySet = podcastUser.getComentarySet().stream().map(comentary -> new ComentaryEpDTO(comentary)).collect(Collectors.toList());
         this.favoriteSet = podcastUser.getFavoriteSet().stream().map(favorite -> new FavoriteDTO(favorite)).collect(Collectors.toList());
         this.favoriteArSet = podcastUser.getFavoriteArSet().stream().map(ar -> new FavoriteArDTO(ar)).collect(Collectors.toList());
 
@@ -74,7 +73,7 @@ public class PodcastUserDTO {
         return podcastUser;
     }
 
-    public List<ComentaryDTO> getComentarySet() {
+    public List<ComentaryEpDTO> getComentarySet() {
         return comentarySet;
     }
 

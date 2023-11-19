@@ -3,7 +3,7 @@
     font-family: 'M PLUS 1 Code', monospace !important;
     margin: 0 !important;
     padding: 0 !important;
-    border: solid red 1px;
+    /* border: solid red 1px; */
 }
 
 body {
@@ -93,6 +93,13 @@ footer {
 }
 
 /* archive header edit */
+
+.navBgChanger {
+    color: white !important;
+    background-color: black !important;
+    padding: 0.5rem !important;
+    border-radius: 0.5rem !important;
+}
 
 .logoHeader {
     height: 3rem;
