@@ -21,7 +21,6 @@
         <div class="loading-overlay" v-if="isLoading">
             LOADING...
         </div>
-
         <header class="headerIndex">
             <section>
                 <nav class="navbar navbar-expand-lg bg-body-tertiary position-fixed w-100">
@@ -45,21 +44,6 @@
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="./assets/pages/archives.html">ARCHIVOS</a>
                                 </li>
-                                <!-- <li class="nav-item dropdown d-flex justify-content-center align-items-center">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">INTEGRANTES</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item text-center" href="#">Sergio Monroy</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item text-center" href="#">David Álvaro</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item text-center" href="#">Roberto Álvaro</a></li>
-                                    </ul>
-                                </li> -->
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="./assets/pages/myProfile.html">TU PERFIL</a>
                                 </li>
@@ -67,55 +51,54 @@
                                     <a class="nav-link" href="./assets/pages/favs.html">FAVORITOS</a>
                                 </li>
                             </ul>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <a target="_blank" href="https://discord.gg/krAWT4yz">
+                                    <video class="disVid" src="./assets/videos/discVidWhiteBg33.mp4" loop
+                                        autoplay></video>
+                                </a>
+                            </div>
                             <div v-if="current.length === 0"
                                 class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
-                                <a href="./assets/pages/regLog.html"><button class="button-30" role="button">Login</button></a>
+                                <a href="./assets/pages/regLog.html"><button class="button-30"
+                                        role="button">Login</button></a>
                             </div>
                             <div v-cloak v-if="current.length != 0" class="d-flex">
                                 <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
                                 <button @click="logOut" class="button-30 bg-danger" role="button">LogOut</button>
+                                <button v-if="current.admin" class="button-30" role="button">pa</button>
                             </div>
                         </div>
                     </div>
                 </nav>
             </section>
         </header>
-
         <main v-cloak class="mainIndex d-flex flex-column align-items-center text-white">
-
             <section class="text-white d-flex flex-column align-items-center p-3 m-2">
-
                 <div class="d-flex m-1">
                     <img class="logoTitle px-2" src="./assets/images/P4_W.jpg" alt="logo">
                     <h1>Panel de Admin</h1>
                 </div>
-
                 <div class="d-flex gap-3 flex-wrap">
                     <input name="selectedOption" type="radio" id="addAdmin" value="addAdmin"
                         v-model="selectedAdminPanel">
                     <label for="addAdmin">Agregar Administrador</label>
-
                     <input name="selectedOption" type="radio" id="addEp" value="addEp" v-model="selectedAdminPanel">
                     <label for="addEp">Agregar Episodio</label>
-
+                    <input name="selectedOption" type="radio" id="delEpAr" value="delEpAr" v-model="selectedAdminPanel">
+                    <label for="delEpAr">Borrar Ep/Ar</label>
                     <input name="selectedOption" type="radio" id="addAr" value="addAr" v-model="selectedAdminPanel">
                     <label for="addAr">Agregar Archivo</label>
-
                     <input name="selectedOption" type="radio" id="modFeatured" value="modFeatured"
                         v-model="selectedAdminPanel">
                     <label for="modFeatured">Modificar Ep/Ar Destacado</label>
-
                     <input name="selectedOption" type="radio" id="modAdmin" value="modAdmin"
                         v-model="selectedAdminPanel">
                     <label for="modAdmin">Modificar Admin</label>
                 </div>
-
             </section>
-
             <section v-if="selectedAdminPanel == ''">
                 <h2>ELIGE UNA OPCION</h2>
             </section>
-
             <section v-if="selectedAdminPanel == 'addAdmin'"
                 class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
                 <h3 class="p-2 m-3 text-black bg-white">Crear Perfil Admin</h3>
@@ -172,7 +155,6 @@
                 </div>
                 <button @click="registerAdmin" class="button-30 w-25 fw-bolder m-3">Crear Admin</button>
             </section>
-
             <section v-if="selectedAdminPanel == 'addEp'"
                 class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
                 <h3 class="p-2 m-3 text-black bg-white">Ingresar Episodio</h3>
@@ -180,25 +162,18 @@
                     <div class="d-flex flex-column">
                         <label for="season">Temporada (Ingresa sólo el número)</label>
                         <input v-model="epSeason" type="number" id="season">
-
                         <label for="episode">Episodio (Ingresa sólo el número)</label>
                         <input v-model="epEpisode" type="number" id="episode">
-
                         <label for="name">Título del episodio</label>
                         <input v-model="epName" type="text" id="name">
-
                         <label for="linkYt">Ingresa el link de Youtube</label>
                         <input v-model="epLinkYt" type="text" id="linkYt">
-
                         <label for="linkIVoox">Ingresa el link de IVoox</label>
                         <input v-model="epLinkIVoox" type="text" id="linkIVoox">
-
                         <label for="img">Ingresa el link de la miniatura</label>
                         <input v-model="epImg" type="text" id="img">
-
                         <label for="duration">Ingresa la duración en formato ej.: '1:50:32' (sin comillas)</label>
                         <input v-model="epDuration" type="text" id="duration">
-
                         <label for="description">Descripción del episodio</label>
                         <textarea v-model="epDescription" id="description" cols="40" rows="3"></textarea>
                     </div>
@@ -209,39 +184,30 @@
                 </form>
                 <button @click="newEpisode" class="button-30 w-25 fw-bolder m-3">Ingresar Episodio</button>
             </section>
-
             <section v-if="selectedAdminPanel == 'addAr'"
                 class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75">
                 <h3 class="p-2 m-3 text-black bg-white">Ingresar Archivo</h3>
                 <form class="text-white d-flex flex-column gap-2">
                     <label for="archNumber">Número de archivo</label>
                     <input type="number" id="archNumber">
-
                     <label for="archName">Nombre del archivo</label>
                     <input type="text" id="archName">
-
                     <label for="archImg">Url Miniatura</label>
                     <input type="text" id="archImg">
-
                     <label for="archLinkYt">Url Youtube</label>
                     <input type="text" id="archLinkYt">
-
                     <label for="archLinkIVoox">Url Ivoox</label>
                     <input type="text" id="archLinkIVoox">
-
                     <label for="archDuration">Duración (Formato 1:11:11)</label>
                     <input type="text" id="archDuration">
-
                     <label for="archDescription">Descripción del archivo</label>
                     <textarea v-model="epDescription" id="archDescription" cols="40" rows="3"></textarea>
                 </form>
                 <button @click="newArchive" class="button-30 w-25 fw-bolder m-3">Ingresar Episodio</button>
             </section>
-
             <section v-if="selectedAdminPanel == 'modFeatured'"
                 class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75 gap-3">
                 <h3 class="p-2 m-3 text-black bg-white">Modificar Destacado</h3>
-
                 <div class="d-flex flex-column gap-2">
                     <label for="selArOrEp">Selecciona el tipo a modificar</label>
                     <select name="selArOrEp" id="selArOrEp" v-model="selectTypeMod">
@@ -249,52 +215,43 @@
                         <option value="Epis">Episodio</option>
                     </select>
                 </div>
-
                 <div v-if="selectTypeMod == 'Epis'">
                     <label class="px-3" for="epFeatured">Ingresa Id Episodio</label>
                     <input type="number" id="epFeatured" v-model="modEpFeatured">
                     <button @click="modEFeatured" class="button-30 w-25 fw-bolder m-3">Modificar Destacado</button>
                 </div>
-
                 <div v-if="selectTypeMod == 'Arch'">
                     <label class="px-3" for="epFeatured">Ingresa Id Archivo</label>
                     <input type="number" id="epFeatured" v-model="modArFeatured">
                     <button @click="modAFeatured" class="button-30 w-25 fw-bolder m-3">Modificar Destacado</button>
                 </div>
-
                 <div v-if="selectTypeMod == 'Epis'" v-for="episode of episodes">
                     <p class="bg-danger p-1">Episode: {{episode.seasonNumber}} X {{episode.episode}} Usar id:
                         {{episode.id}} - {{episode.featured}}</p>
                 </div>
-
-                <div v-for="archive of archives">
-                    <p class="bg-danger p-1">Archive: {{archive.archiveNumber}} Usar id: {{archive.id}} - {{archive.featured}}</p>
+                <div v-if="selectTypeMod == 'Arch'" v-for="archive of archives">
+                    <p class="bg-danger p-1">Archive: {{archive.archiveNumber}} Usar id: {{archive.id}} -
+                        {{archive.featured}}</p>
                 </div>
-
             </section>
-
             <section v-if="selectedAdminPanel == 'modAdmin'"
                 class="sectionsRegLog d-flex flex-column justify-content-center align-items-center p-2 m-2 mx-5 w-75 gap-3">
                 <h3 class="p-2 m-3 text-black bg-white">Modificar Admin</h3>
-
                 <label for="modAdminStatus">Modificar Admins</label>
                 <select name="modAdminStatus" id="modAdminStatus" v-model="modAdminStatus">
                     <option value="giveAdmin">Dar Admin</option>
                     <option value="deleteAdmin">Quitar Admin</option>
                 </select>
-
                 <div v-if="modAdminStatus == 'giveAdmin'">
                     <label for="adminStatusMail">Ingresa Mail</label>
                     <input type="mail" name="adminStatusMail" id="adminStatusMail" v-model="adminStatusMail">
                     <button @click="giveAdmin">Dar Admin</button>
                 </div>
-
                 <div v-if="modAdminStatus == 'deleteAdmin'">
                     <label for="adminStatusMail">Ingresa Mail</label>
                     <input type="mail" name="adminStatusMail" id="adminStatusMail" v-model="adminStatusMail">
                     <button @click="deleteAdmin">Quitar Admin</button>
                 </div>
-
                 <table>
                     <legend class="text-center">Lista de Admins</legend>
                     <thead class="border-3 border-white">
@@ -309,15 +266,37 @@
                     </tbody>
                 </table>
             </section>
-
+            <section v-if="selectedAdminPanel == 'delEpAr'">
+                <form class="d-flex flex-column">
+                    <label for="selectDelEpAr">Elige el tipo a borrar</label>
+                    <select v-model="selectDelEpAr" name="selectDelEpAr" id="selectDelEpAr">
+                        <option value="delEpis">Borrar Episodio</option>
+                        <option value="delArch">Borrar Archivo</option>
+                    </select>
+                </form>
+                <div class="m-2 d-flex gap-2" v-if="selectDelEpAr == 'delEpis'">
+                    <label for="delEpiso">Ingresa Id</label>
+                    <input v-model="delEpId" type="number" name="delEpiso" id="delEpiso">
+                    <button @click="delEpisode">Borrar</button>
+                </div>
+                <div class="m-2 d-flex gap-2" v-if="selectDelEpAr == 'delArch'">
+                    <label for="delArchi">Ingresa Id</label>
+                    <input v-model="delArId" type="number" name="delArchi" id="delArchi">
+                    <button @click="delArchive">Borrar</button>
+                </div>
+                <div v-if="selectDelEpAr == 'delEpis'" v-for="episode of episodes" class="m-2">
+                    <p class="bg-danger p-1">Episode: {{episode.seasonNumber}} X {{episode.episode}} Usar id:
+                        {{episode.id}} - {{episode.featured}}</p>
+                </div>
+                <div v-if="selectDelEpAr == 'delArch'" v-for="archive of archives" class="m-2">
+                    <p class="bg-danger p-1">Archive: {{archive.archiveNumber}} Usar id: {{archive.id}} -
+                        {{archive.featured}}</p>
+                </div>
+            </section>
         </main>
-
         <footer>
-
         </footer>
-
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>

@@ -44,21 +44,6 @@
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="./archives.html">ARCHIVOS</a>
                                 </li>
-                                <!-- <li class="nav-item dropdown d-flex justify-content-center align-items-center">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">INTEGRANTES</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item text-center" href="#">Sergio Monroy</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item text-center" href="#">David Álvaro</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item text-center" href="#">Roberto Álvaro</a></li>
-                                    </ul>
-                                </li> -->
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="./myProfile.html">TU PERFIL</a>
                                 </li>
@@ -66,6 +51,11 @@
                                     <a class="nav-link" href="./favs.html">FAVORITOS</a>
                                 </li>
                             </ul>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <a target="_blank" href="https://discord.gg/krAWT4yz">
+                                    <video class="disVid" src="../videos/discVidWhiteBg33.mp4" loop autoplay></video>
+                                </a>
+                            </div>
                             <div v-cloak v-if="current.length === 0"
                                 class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
                                 <a href="./regLog.html"><button class="button-30" role="button">Login</button></a>
@@ -73,13 +63,13 @@
                             <div v-cloak v-if="current.length != 0" class="d-flex">
                                 <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
                                 <button @click="logOut" class="button-30 bg-danger" role="button">LogOut</button>
+                                <button v-if="current.admin" class="button-30" role="button">pa</button>
                             </div>
                         </div>
                     </div>
                 </nav>
             </section>
         </header>
-
         <main v-cloak class="mainIndex d-flex flex-column align-items-center">
             <!-- title edit -->
             <section v-cloak class="text-white d-flex flex-column align-items-center p-3 m-2">
@@ -91,7 +81,6 @@
                     <p class="podcastSubTitleEp">Encuentra tu canónigo favorito!</p>
                 </div>
             </section>
-
             <section v-cloak class="d-flex justify-content-center gap-3 bg-secondary flex-wrap">
                 <div v-cloak class="checkContainer m-2 bg-black d-flex justify-content-center align-items-center"
                     v-for="season of seasons">
@@ -105,7 +94,6 @@
                     </form>
                 </div>
             </section>
-
             <section v-cloak class=" d-flex justify-content-center gap-3 m-3 flex-wrap w-75">
                 <div v-cloak class="cardContainer d-flex flex-column justify-content-between align-items-center m-3"
                     v-for="item of filteredEp">
@@ -137,9 +125,10 @@
                     </div>
                 </div>
             </section>
-
+            <a target="_blank" href="https://www.patreon.com/puente4podcast/membership">
+                <video src="../videos/bannerPat.mp4" class="w-100" loop autoplay></video>
+            </a>
         </main>
-
         <footer class="footerIndex d-flex justify-content-around align-items-center">
             <div v-cloak class="footerTxtContainer d-flex flex-column justify-content-center">
                 <a class="text-decoration-none" href="mailto:puente4podcast@gmail.com">
@@ -181,9 +170,7 @@
             </div>
         </footer>
         {{filtroEpCheckSearch}}
-
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>

@@ -1,7 +1,5 @@
 setTimeout(() => {
     let { createApp } = Vue;
-
-
     createApp({
         data() {
             return {
@@ -11,11 +9,9 @@ setTimeout(() => {
                 comentaries: [],
                 queryId: '',
                 isLoading: false,
-
                 //add Comment
                 commentText: '',
                 commentId: null,
-
                 //others
                 backMsg: ''
             }
@@ -77,7 +73,6 @@ setTimeout(() => {
                             setTimeout(() => {
                                 location.reload();
                             }, 1600)
-
                         }).catch(err => {
                             this.backMsg = err.response.data
                             Swal.fire({
@@ -143,7 +138,6 @@ setTimeout(() => {
                         timer: 1500
                     })
                 }
-
             }
         },
         computed: {

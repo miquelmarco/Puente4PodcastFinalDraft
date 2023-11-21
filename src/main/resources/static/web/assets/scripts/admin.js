@@ -8,10 +8,8 @@ setTimeout(() => {
                 archives: [],
                 admins: [],
                 current: [],
-
                 //main
                 selectedAdminPanel: '',
-
                 //new admin
                 firstName: '',
                 lastName: '',
@@ -20,7 +18,6 @@ setTimeout(() => {
                 nacionality: '',
                 password: '',
                 passwordConfirm: '',
-
                 //new episode
                 epSeason: null,
                 epEpisode: null,
@@ -31,9 +28,7 @@ setTimeout(() => {
                 epDuration: '',
                 epDescription: '',
                 epFeatured: false,
-
                 //new archive
-
                 archNumber: null,
                 archName: '',
                 archImg: '',
@@ -41,16 +36,17 @@ setTimeout(() => {
                 archLinkIVoox: '',
                 archDuration: '',
                 archDescription: '',
-
                 //mod featured Ep Ar
                 selectTypeMod: '',
                 modEpFeatured: null,
                 modArFeatured: null,
-
+                //del Ep Ar
+                selectDelEpAr: '',
+                delEpId: null,
+                delArId: null,
                 //mod admin
                 modAdminStatus: '',
                 adminStatusMail: '',
-
                 //others
                 isLoading: false,
                 backMsg: ''
@@ -61,7 +57,6 @@ setTimeout(() => {
             this.getArchives()
             this.getAdmins()
             this.getCurrent()
-
         },
         methods: {
             logOut() {
@@ -70,7 +65,6 @@ setTimeout(() => {
                         if (res.status == 200) {
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: 'Bye bye!',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -128,7 +122,6 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -141,7 +134,6 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -168,7 +160,6 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -180,7 +171,6 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -204,7 +194,6 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -216,7 +205,6 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -231,7 +219,6 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -244,7 +231,6 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -257,7 +243,6 @@ setTimeout(() => {
                 } else {
                     Swal.fire({
                         position: 'center',
-                        // icon: 'warning',
                         title: `Ingrese número de episodio`,
                         showConfirmButton: false,
                         timer: 1500
@@ -271,7 +256,6 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -284,7 +268,6 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -297,7 +280,6 @@ setTimeout(() => {
                 } else {
                     Swal.fire({
                         position: 'center',
-                        // icon: 'warning',
                         title: `Ingrese número de episodio`,
                         showConfirmButton: false,
                         timer: 1500
@@ -311,7 +293,6 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -323,7 +304,6 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -338,7 +318,6 @@ setTimeout(() => {
                             this.backMsg = res.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -350,12 +329,64 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
                             })
                         })
+                }
+            },
+            delArchive() {
+                if (this.delArId) {
+                    axios.delete(`/api/deleteAr/${this.delArId}`)
+                    .then(res => {
+                        this.backMsg = res.data
+                        Swal.fire({
+                            position: 'center',
+                            title: `${this.backMsg}`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }).catch(err => {
+                        this.backMsg = err.response.data
+                        Swal.fire({
+                            position: 'center',
+                            title: `${this.backMsg}`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    })
+                }
+            },
+            delEpisode() {
+                console.log(this.delEpId)
+                if (this.delEpId) {
+                    axios.delete(`/api/deleteEp/${this.delEpId}`)
+                    .then(res => {
+                        this.backMsg = res.data
+                        Swal.fire({
+                            position: 'center',
+                            title: `${this.backMsg}`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }).catch(err => {
+                        console.log(err)
+                        this.backMsg = err.response.data
+                        Swal.fire({
+                            position: 'center',
+                            title: `${this.backMsg}`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        title: `Ingresa el id`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                 }
             },
             eraseFields() {

@@ -126,7 +126,6 @@ setTimeout(() => {
             }
         },
         computed: {
-
         }
     }).mount("#app")
 }, 1000)

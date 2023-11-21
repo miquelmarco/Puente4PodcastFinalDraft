@@ -55,10 +55,6 @@ setTimeout(() => {
                         this.seasons = Array.from(new Set(this.episodes.map(episode => episode.seasonNumber)))
                     }).catch(err => console.log(err))
             },
-            // filtroEpCheckSearc2() {
-            //     this.filteredEp = this.episodes.filter(episode => episode.name.toLowerCase().includes(this.searchInput.toLowerCase())
-            //         && (this.checked.includes(episode.seasonNumber) || this.checked.length == 0)).sort((a, b) => b.id - a.id)
-            // },
             addEpFav(id) {
                 if (this.current.length != 0) {
                     axios.post(`/api/favorite/addEpFav`, `id=${id}`)

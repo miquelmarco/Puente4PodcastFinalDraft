@@ -9,7 +9,6 @@ setTimeout(() => {
                 modPass: '',
                 modPassConfirm: '',
                 selecModPass: false,
-
                 //others
                 isLoading: false,
                 backMsg: ''
@@ -82,7 +81,6 @@ setTimeout(() => {
             }
         },
         computed: {
-
         }
     }).mount("#app")
 }, 1000)

@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -25,6 +26,10 @@ public class EpisodeController {
     private SeasonRepository seasonRepository;
     @Autowired
     private ArchiveRepository archiveRepository;
+    @Autowired
+    private ComentaryArRepository comentaryArRepository;
+    @Autowired
+    private ComentaryEpRepository comentaryEpRepository;
 
     @GetMapping("/episodes")
     public List<EpisodeDTO> getAllEps() {
@@ -93,22 +98,26 @@ public class EpisodeController {
 
 
 
-    @DeleteMapping("/deleteEp")
-    public ResponseEntity<?> deleteEp(Authentication authentication, @RequestParam Long id) {
+    @DeleteMapping("/deleteEp/{id}")
+    public ResponseEntity<?> deleteEp(Authentication authentication, @PathVariable Long id) {
         if (podcastUserRepository.findByMail(authentication.getName()).isAdmin()) {
             Episode ep = episodeRepository.findById(id).orElse(null);
-            assert ep != null;
+            if (ep == null) {
+                return new ResponseEntity<>("Episodio no Existe", HttpStatus.FORBIDDEN);
+            }
             episodeRepository.delete(ep);
             return new ResponseEntity<>("Episodio Borrado", HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>("No autorizado para realizar esta acción", HttpStatus.FORBIDDEN);
     }
 
-    @DeleteMapping("/deleteAr")
-    public ResponseEntity<?> deleteAr(Authentication authentication, @RequestParam Long id) {
+    @DeleteMapping("/deleteAr/{id}")
+    public ResponseEntity<?> deleteAr(Authentication authentication, @PathVariable Long id) {
         if (podcastUserRepository.findByMail(authentication.getName()).isAdmin()) {
             Archive ar = archiveRepository.findById(id).orElse(null);
-            assert ar != null;
+            if (ar == null) {
+                return new ResponseEntity<>("Archivo no Existe", HttpStatus.FORBIDDEN);
+            }
             archiveRepository.delete(ar);
             return new ResponseEntity<>("Archivo Borrado", HttpStatus.ACCEPTED);
         }

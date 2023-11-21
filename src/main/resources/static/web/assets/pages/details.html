@@ -18,7 +18,6 @@
 
 <body>
     <div id="app">
-
         <div class="loading-overlay" v-if="isLoading">
             LOADING...
         </div>
@@ -46,21 +45,6 @@
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="./archives.html">ARCHIVOS</a>
                                 </li>
-                                <!-- <li class="nav-item dropdown d-flex justify-content-center align-items-center">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">INTEGRANTES</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item text-center" href="#">Sergio Monroy</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item text-center" href="#">David Álvaro</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item text-center" href="#">Roberto Álvaro</a></li>
-                                    </ul>
-                                </li> -->
                                 <li class="nav-item d-flex justify-content-center align-items-center">
                                     <a class="nav-link" href="./myProfile.html">TU PERFIL</a>
                                 </li>
@@ -68,6 +52,12 @@
                                     <a class="nav-link" href="./favs.html">FAVORITOS</a>
                                 </li>
                             </ul>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <a target="_blank" href="https://discord.gg/krAWT4yz">
+                                    <video class="disVid" src="../videos/discVidWhiteBg33.mp4" loop
+                                        autoplay></video>
+                                </a>
+                            </div>
                             <div v-if="current.length === 0"
                                 class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
                                 <a href="./regLog.html"><button class="button-30" role="button">Login</button></a>
@@ -75,13 +65,13 @@
                             <div v-cloak v-if="current.length != 0" class="d-flex">
                                 <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
                                 <button @click="logOut" class="button-30 bg-danger" role="button">LogOut</button>
+                                <button v-if="current.admin" class="button-30" role="button">pa</button>
                             </div>
                         </div>
                     </div>
                 </nav>
             </section>
         </header>
-
         <main v-cloak class="mainIndex d-flex flex-column justify-content-center align-items-center">
             <div class="w-75 bg-white m-2">
                 <h3 class="text-black text-center m-2 p-2">{{episode.name}}</h3>
@@ -98,7 +88,6 @@
                     <p class="m-2 p-2 fw-bolder w-75">{{episode.description}}</p>
                 </div>
             </div>
-
             <div>
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <h1 class="text-white m-2 p-2">Deja tu comentario!</h1>
@@ -116,9 +105,10 @@
                     </p>
                 </div>
             </div>
-
+            <a target="_blank" href="https://www.patreon.com/puente4podcast/membership">
+                <video src="../videos/bannerPat.mp4" class="w-100" loop autoplay></video>
+            </a>
         </main>
-
         <footer class="footerIndex d-flex justify-content-around align-items-center">
             <div class="footerTxtContainer d-flex flex-column justify-content-center">
                 <a class="text-decoration-none" href="mailto:puente4podcast@gmail.com">
@@ -159,9 +149,7 @@
                 </div>
             </div>
         </footer>
-
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>

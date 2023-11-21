@@ -17,12 +17,7 @@ setTimeout(() => {
         },
         created() {
             this.getCurrent()
-            this.queryId = new URLSearchParams(location.search).get('id')
-            axios.get(`/api/archives/${this.queryId}`)
-                .then(res => {
-                    this.archive = res.data
-                    this.comentariesAr = this.archive.comentaryArDTOList.sort((a, b) => b.id - a.id)
-                }).catch(err => console.log(err))
+            this.getComments()
         },
         methods: {
             addComment() {
@@ -30,22 +25,11 @@ setTimeout(() => {
                 if (this.commentText && this.commentId) {
                     axios.post(`/api/archives/addArComment`, `comment=${this.commentText}&id=${this.commentId}`)
                         .then(res => {
-                            this.backMsg = res.data
-                            Swal.fire({
-                                position: 'center',
-                                // icon: 'success',
-                                title: `${this.backMsg}`,
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            setTimeout(() => {
-                                location.reload();
-                            }, 1600)
-
+                            this.getComments()
+                            this.clearCommentTxt()
                         }).catch(err => {
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `Debes estar logueado para comentar`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -54,12 +38,19 @@ setTimeout(() => {
                 } else {
                     Swal.fire({
                         position: 'center',
-                        // icon: 'error',
                         title: `No has agregado un comentario`,
                         showConfirmButton: false,
                         timer: 1500
                     })
                 }
+            },
+            getComments() {
+                this.queryId = new URLSearchParams(location.search).get('id')
+                axios.get(`/api/archives/${this.queryId}`)
+                    .then(res => {
+                        this.archive = res.data
+                        this.comentariesAr = this.archive.comentaryArDTOList.sort((a, b) => b.id - a.id)
+                    }).catch(err => console.log(err))
             },
             enterCom: function () {
                 this.commentId = this.archive.id
@@ -67,22 +58,12 @@ setTimeout(() => {
                     if (this.commentText && this.commentId) {
                         axios.post(`/api/archives/addArComment`, `comment=${this.commentText}&id=${this.commentId}`)
                             .then(res => {
-                                this.backMsg = res.data
-                                Swal.fire({
-                                    position: 'center',
-                                    // icon: 'success',
-                                    title: `${this.backMsg}`,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-                                setTimeout(() => {
-                                    location.reload();
-                                }, 1600)
+                                this.getComments()
+                                this.clearCommentTxt()
                             }).catch(err => {
                                 this.backMsg = err.response.data
                                 Swal.fire({
                                     position: 'center',
-                                    // icon: 'error',
                                     title: `${this.backMsg}`,
                                     showConfirmButton: false,
                                     timer: 1500
@@ -91,7 +72,6 @@ setTimeout(() => {
                     } else {
                         Swal.fire({
                             position: 'center',
-                            // icon: 'error',
                             title: `No has agregado un comentario`,
                             showConfirmButton: false,
                             timer: 1500
@@ -100,13 +80,11 @@ setTimeout(() => {
                 } else {
                     Swal.fire({
                         position: 'center',
-                        // icon: 'error',
                         title: `Debes estar logueado para comentar`,
                         showConfirmButton: false,
                         timer: 1500
                     })
                 }
-
             },
             logOut() {
                 axios.post("/api/logout")
@@ -114,7 +92,6 @@ setTimeout(() => {
                         if (res.status == 200) {
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: 'Bye bye!',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -138,6 +115,9 @@ setTimeout(() => {
                     .then(res => {
                         this.current = res.data
                     }).catch(err => console.log(err))
+            },
+            clearCommentTxt() {
+                this.commentText = ''
             }
         },
         computed: {

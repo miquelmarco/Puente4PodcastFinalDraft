@@ -3,7 +3,7 @@
     font-family: 'M PLUS 1 Code', monospace !important;
     margin: 0 !important;
     padding: 0 !important;
-    /* border: solid red 1px; */
+    border: solid red 1px;
 }
 
 body {
@@ -131,15 +131,27 @@ footer {
     transition: 0.3s;
 }
 
-li > a {
+li>a {
     padding: 0.5rem !important;
     border-radius: 0.5rem !important;
 }
 
-li > a:hover {
+li>a:hover {
     color: white !important;
     background-color: black !important;
     transition: 0.3s !important;
+}
+
+.disVid {
+    border-radius: 1rem;
+    border-style: outset;
+    border-color: violet;
+}
+
+.disVid:hover {
+    border-color: black;
+    transition: 0.3s;
+    border-style: dashed;
 }
 
 /* index main edit */
@@ -220,7 +232,9 @@ li > a:hover {
     font-size: 0.7rem;
 }
 
-.btnCardYt, .btnCardIv, .btnDetails {
+.btnCardYt,
+.btnCardIv,
+.btnDetails {
     height: 1.5rem;
 }
 
@@ -281,4 +295,27 @@ li > a:hover {
     color: black !important;
     transition: 0.3s;
     font-weight: 900 !important;
+}
+
+/* querys */
+
+@media only screen and (max-width: 975px) {
+    .footerIndex {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+
+    .podcastSubTitle,
+    .podcastSubTitleSpan {
+        display: none;
+    }
+
+    .containerAnchorsLogosF,
+    .footerLogosContainer,
+    .footerIndex {
+        width: 100% !important;
+    }
 }

@@ -92,7 +92,7 @@ footer {
     transform: translateY(2px);
 }
 
-/* myProfile header edit */
+/* favs header edit */
 
 .navBgChanger {
     color: white !important;
@@ -136,6 +136,18 @@ li>a:hover {
     color: white !important;
     background-color: black !important;
     transition: 0.3s !important;
+}
+
+.disVid {
+    border-radius: 1rem;
+    border-style: outset;
+    border-color: violet;
+}
+
+.disVid:hover {
+    border-color: black;
+    transition: 0.3s;
+    border-style: dashed;
 }
 
 /* sub episode card edit */
