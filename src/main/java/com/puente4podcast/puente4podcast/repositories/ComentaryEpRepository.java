@@ -10,4 +10,3 @@ import java.util.Set;
 public interface ComentaryEpRepository extends JpaRepository<ComentaryEp, Long> {
     Set<ComentaryEp> findByEpisode(Long id);
 }
-
