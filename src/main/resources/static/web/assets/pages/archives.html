@@ -60,7 +60,7 @@
                                 class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
                                 <a href="./regLog.html"><button class="button-30" role="button">Login</button></a>
                             </div>
-                            <div v-cloak v-if="current.length != 0" class="d-flex">
+                            <div v-cloak v-if="current.length != 0" class="d-flex justify-content-center">
                                 <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
                                 <button @click="logOut" class="button-30 bg-danger" role="button">LogOut</button>
                                 <button v-if="current.admin" class="button-30" role="button">pa</button>

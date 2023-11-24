@@ -67,7 +67,6 @@ setTimeout(() => {
                         ).then(res => {
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: 'Registro completo, iniciando login automático...',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -77,7 +76,6 @@ setTimeout(() => {
                                     .then(res => {
                                         Swal.fire({
                                             position: 'center',
-                                            // icon: 'success',
                                             title: 'Login ok, ingresando...',
                                             showConfirmButton: false,
                                             timer: 1700
@@ -93,17 +91,22 @@ setTimeout(() => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
                             })
                         })
+                    } else {
+                        return Swal.fire({
+                            position: 'center',
+                            title: "Las contraseñas no son iguales",
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
                 } else {
                     return Swal.fire({
                         position: 'center',
-                        // icon: 'error',
                         title: "Completa todos los datos",
                         showConfirmButton: false,
                         timer: 1500
@@ -116,7 +119,6 @@ setTimeout(() => {
                         .then(res => {
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: 'Ingresando...',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -133,7 +135,7 @@ setTimeout(() => {
                                 timer: 1500
                             })
                             this.mailLog = '',
-                            this.passwordLog = ''
+                                this.passwordLog = ''
                         })
                 } else {
                     Swal.fire({

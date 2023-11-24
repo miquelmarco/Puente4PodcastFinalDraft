@@ -202,3 +202,85 @@ li>a:hover {
     height: 7rem;
     resize: none;
 }
+
+@media only screen and (max-width: 1300px) {
+    .imgArDt {
+        height: 15rem !important;
+        width: 25rem !important;
+    }
+}
+
+@media only screen and (max-width: 840px) {
+    .firstArDetContainer {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 975px) {
+    .footerIndex {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+
+    .containerAnchorsLogosF,
+    .footerLogosContainer,
+    .footerIndex {
+        width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 660px) {
+    .imgArDt {
+        height: 15rem !important;
+        width: 25rem !important;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .textareaDetails {
+        width: 95% !important;
+        height: 7rem;
+        resize: none;
+    }
+
+    .imgArDt {
+        height: 12rem !important;
+        width: 22rem !important;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    .imgArDt {
+        height: 10rem !important;
+        width: 20rem !important;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+
+    .completeContainer {
+        width: 100% !important;
+    }
+
+    .imgArDt {
+        height: 12rem !important;
+        width: 22rem !important;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+
+    .completeContainer {
+        width: 100% !important;
+    }
+
+    .imgArDt {
+        height: 10rem !important;
+        width: 20rem !important;
+    }
+}

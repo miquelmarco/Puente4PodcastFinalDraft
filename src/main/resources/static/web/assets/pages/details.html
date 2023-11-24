@@ -62,7 +62,7 @@
                                 class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
                                 <a href="./regLog.html"><button class="button-30" role="button">Login</button></a>
                             </div>
-                            <div v-cloak v-if="current.length != 0" class="d-flex">
+                            <div v-cloak v-if="current.length != 0" class="d-flex justify-content-center">
                                 <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
                                 <button @click="logOut" class="button-30 bg-danger" role="button">LogOut</button>
                                 <button v-if="current.admin" class="button-30" role="button">pa</button>
@@ -73,10 +73,10 @@
             </section>
         </header>
         <main v-cloak class="mainIndex d-flex flex-column justify-content-center align-items-center">
-            <div class="w-75 bg-white m-2">
+            <div class="completeContainer w-75 bg-white m-2">
                 <h3 class="text-black text-center m-2 p-2">{{episode.name}}</h3>
-                <div class="d-flex justify-content-around align-items-center">
-                    <img class="object-fit-cover w-25 m-2 p-2" :src="episode.img" :alt="episode.name"
+                <div class="firstArDetContainer d-flex justify-content-around align-items-center">
+                    <img class="imgArDt object-fit-cover w-25 m-2 p-2" :src="episode.img" :alt="episode.name"
                         :title="episode.name">
                     <div class="d-flex flex-column align-items-center gap-2">
                         <p>Duración: {{episode.duration}}</p>
@@ -126,7 +126,7 @@
                 </a>
             </div>
             <div class="footerLogosContainer d-flex flex-column align-items-center justify-content-between">
-                <div class="m-3 w-75 d-flex justify-content-around">
+                <div class="m-3 w-75 d-flex justify-content-around flex-wrap">
                     <a target="_blank" href="https://www.youtube.com/@Puente4Podcast"><img class="redLogos p-1"
                             src="../../assets/images/icons8-youtube-50.png" alt="rrsslogo"></a>
                     <a target="_blank" href="https://www.instagram.com/puente4podcast/"><img class="redLogos p-1"
@@ -154,7 +154,6 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../scripts/details.js"></script>

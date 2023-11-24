@@ -60,7 +60,7 @@
                                 class="mx-3 d-flex justify-content-center align-items-center gap-2 m-2">
                                 <a href="./regLog.html"><button class="button-30" role="button">Login</button></a>
                             </div>
-                            <div v-cloak v-if="current.length != 0" class="d-flex">
+                            <div v-cloak v-if="current.length != 0" class="d-flex justify-content-center">
                                 <h2 class="mx-3 text-danger fw-bolder">{{current.userName}}</h2>
                                 <button @click="logOut" class="button-30 bg-danger" role="button">LogOut</button>
                                 <button v-if="current.admin" class="button-30" role="button">pa</button>
@@ -107,19 +107,19 @@
                     </tr>
                 </table>
             </section>
-            <div v-cloak v-if="current.length != 0" class="d-flex gap-3">
+            <div v-cloak v-if="current.length != 0" class="d-flex gap-3 m-2 p-3">
                 <label class="text-white" for="selecModPass">Si deseas cambiar tu contraseña =></label>
                 <input type="checkbox" id="selecModPass" name="selecModPass" v-model="selecModPass">
             </div>
             <div v-if="selecModPass" class="text-white m-3">
                 <h3 class="text-center m-3">Modificar Contraseña</h3>
-                <div class="d-flex flex-column align-items-center gap-2">
-                    <label for="modPassActual">Contraseña Actual</label>
-                    <input v-model="modPassActual" type="password" name="modPassActual" id="modPassActual">
-                    <label for="newPass">Nueva contraseña</label>
-                    <input v-model="modPass" type="text" name="newPass" id="newPass">
-                    <label for="newPassConfirm">Confirma la nueva contraseña</label>
-                    <input v-model="modPassConfirm" type="text" name="newPassConfirm" id="newPassConfirm">
+                <div class="changePssCont d-flex flex-column align-items-center gap-2">
+                    <label class="modPC" for="modPassActual">Contraseña Actual</label>
+                    <input class="modPC" v-model="modPassActual" type="password" name="modPassActual" id="modPassActual">
+                    <label class="modPC" for="newPass">Nueva contraseña</label>
+                    <input class="modPC" v-model="modPass" type="text" name="newPass" id="newPass">
+                    <label class="modPC" for="newPassConfirm">Confirma la nueva contraseña</label>
+                    <input class="modPC" v-model="modPassConfirm" type="text" name="newPassConfirm" id="newPassConfirm">
                     <button @click="modiPass()" class="button-30 m-2" role="button">Modificar</button>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                 </a>
             </div>
             <div v-cloak class="footerLogosContainer d-flex flex-column align-items-center justify-content-between">
-                <div v-cloak class="m-3 w-75 d-flex justify-content-around">
+                <div v-cloak class="m-3 w-75 d-flex justify-content-around containerAnchorsLogosF flex-wrap">
                     <a target="_blank" href="https://www.youtube.com/@Puente4Podcast"><img class="redLogos p-1"
                             src="../../assets/images/icons8-youtube-50.png" alt="rrsslogo"></a>
                     <a target="_blank" href="https://www.instagram.com/puente4podcast/"><img class="redLogos p-1"

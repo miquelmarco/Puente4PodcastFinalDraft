@@ -18,21 +18,23 @@ setTimeout(() => {
         },
         created() {
             this.getCurrent()
-            this.queryId = new URLSearchParams(location.search).get('id')
-            axios.get(`/api/episodes/${this.queryId}`)
-                .then(res => {
-                    this.episode = res.data
-                    this.comentaries = this.episode.comentarySet.sort((a, b) => b.id - a.id)
-                }).catch(err => console.log(err))
+            this.getData()
         },
         methods: {
+            getData() {
+                this.queryId = new URLSearchParams(location.search).get('id')
+                axios.get(`/api/episodes/${this.queryId}`)
+                    .then(res => {
+                        this.episode = res.data
+                        this.comentaries = this.episode.comentarySet.sort((a, b) => b.id - a.id)
+                    }).catch(err => console.log(err))
+            },
             logOut() {
                 axios.post("/api/logout")
                     .then(res => {
                         if (res.status == 200) {
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'success',
                                 title: 'Bye bye!',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -62,22 +64,12 @@ setTimeout(() => {
                 if (this.commentText && this.commentId) {
                     axios.post(`/api/episodes/addComment`, `comment=${this.commentText}&id=${this.commentId}`)
                         .then(res => {
-                            this.backMsg = res.data
-                            Swal.fire({
-                                position: 'center',
-                                // icon: 'success',
-                                title: `${this.backMsg}`,
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            setTimeout(() => {
-                                location.reload();
-                            }, 1600)
+                            this.getData()
+                            this.eraseTextArea()
                         }).catch(err => {
                             this.backMsg = err.response.data
                             Swal.fire({
                                 position: 'center',
-                                // icon: 'error',
                                 title: `${this.backMsg}`,
                                 showConfirmButton: false,
                                 timer: 1500
@@ -86,7 +78,6 @@ setTimeout(() => {
                 } else {
                     Swal.fire({
                         position: 'center',
-                        // icon: 'error',
                         title: `No has agregado un comentario`,
                         showConfirmButton: false,
                         timer: 1500
@@ -99,22 +90,12 @@ setTimeout(() => {
                     if (this.commentText && this.commentId) {
                         axios.post(`/api/episodes/addComment`, `comment=${this.commentText}&id=${this.commentId}`)
                             .then(res => {
-                                this.backMsg = res.data
-                                Swal.fire({
-                                    position: 'center',
-                                    // icon: 'success',
-                                    title: `${this.backMsg}`,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-                                setTimeout(() => {
-                                    location.reload();
-                                }, 1600)
+                                this.getData()
+                                this.eraseTextArea()
                             }).catch(err => {
                                 this.backMsg = err.response.data
                                 Swal.fire({
                                     position: 'center',
-                                    // icon: 'error',
                                     title: `${this.backMsg}`,
                                     showConfirmButton: false,
                                     timer: 1500
@@ -123,7 +104,6 @@ setTimeout(() => {
                     } else {
                         Swal.fire({
                             position: 'center',
-                            // icon: 'error',
                             title: `No has agregado un comentario`,
                             showConfirmButton: false,
                             timer: 1500
@@ -132,12 +112,14 @@ setTimeout(() => {
                 } else {
                     Swal.fire({
                         position: 'center',
-                        // icon: 'error',
                         title: `Debes estar logueado para comentar`,
                         showConfirmButton: false,
                         timer: 1500
                     })
                 }
+            },
+            eraseTextArea() {
+                this.commentText = ''
             }
         },
         computed: {

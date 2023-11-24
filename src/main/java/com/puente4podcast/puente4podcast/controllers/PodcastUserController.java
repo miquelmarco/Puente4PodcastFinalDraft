@@ -39,6 +39,9 @@ public class PodcastUserController {
         if (password.isBlank()) {
             return new ResponseEntity<>("Ingresa tu contraseña", HttpStatus.FORBIDDEN);
         }
+        if (password.length() < 8) {
+            return new ResponseEntity<>("La contraseña debe tener al menos 8 caracteres", HttpStatus.FORBIDDEN);
+        }
         if (firstName.isBlank()) {
             return new ResponseEntity<>("Ingresa tu nombre", HttpStatus.FORBIDDEN);
         }
@@ -71,8 +74,8 @@ public class PodcastUserController {
     public ResponseEntity<?> modPass(Authentication authentication, @RequestParam String actualPass, String newPass) {
         PodcastUser podcastUser = podcastUserRepository.findByMail(authentication.getName());
         if (!actualPass.isEmpty() && !newPass.isEmpty()) {
-            if (podcastUser != null){
-                if (passwordEncoder.matches(actualPass, podcastUser.getPassword())){
+            if (podcastUser != null) {
+                if (passwordEncoder.matches(actualPass, podcastUser.getPassword())) {
                     podcastUser.setPassword(passwordEncoder.encode(newPass));
                     podcastUserRepository.save(podcastUser);
                     return new ResponseEntity<>("Contraseña modificada!", HttpStatus.OK);
@@ -136,18 +139,6 @@ public class PodcastUserController {
         }
     }
 
-    //    @PatchMapping("/podcastUsers/giveAdmin")
-//    public ResponseEntity<?> giveAdmin(@RequestParam String giveAdminMail, Authentication authentication) {
-//        if (podcastUserRepository.findByMail(authentication.getName()) != null) {
-//            if (podcastUserRepository.findByMail(authentication.getName()).isAdmin()) {
-//                PodcastUser podcastUser = podcastUserRepository.findByMail(giveAdminMail);
-//                podcastUser.setAdmin(true);
-//                podcastUserRepository.save(podcastUser);
-//                return new ResponseEntity<>("Admin Establecido", HttpStatus.ACCEPTED);
-//            }
-//        }
-//        return new ResponseEntity<>("No tienes autorización para establecer administradores", HttpStatus.FORBIDDEN);
-//    }
     @PatchMapping("/podcastUsers/giveAdmin")
     public ResponseEntity<?> giveAdmin(@RequestParam String giveAdminMail, Authentication authentication) {
         PodcastUser loggedInUser = podcastUserRepository.findByMail(authentication.getName());
@@ -192,3 +183,4 @@ public class PodcastUserController {
         }
     }
 }
+

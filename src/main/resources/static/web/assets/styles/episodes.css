@@ -315,3 +315,19 @@ li>a:hover {
     width: 1.5rem;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 975px) {
+    .footerIndex {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+
+    .containerAnchorsLogosF,
+    .footerLogosContainer,
+    .footerIndex {
+        width: 100% !important;
+    }
+}
