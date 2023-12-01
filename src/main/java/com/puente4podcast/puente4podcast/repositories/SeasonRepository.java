@@ -8,3 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface SeasonRepository extends JpaRepository<Season, Long> {
     Season findByNumber(Byte seasonNumber);
 }
+
+
