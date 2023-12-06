@@ -56,8 +56,8 @@ setTimeout(() => {
                             timer: 1000
                         })
                         setTimeout(() => {
-                            location.reload()
-                        }, 1600)
+                            this.getFavs()
+                        }, 1200)
                     }).catch(err => {
                         console.log(err)
                         this.backMsg = err.response.data
@@ -86,8 +86,8 @@ setTimeout(() => {
                             timer: 1000
                         })
                         setTimeout(() => {
-                            location.reload()
-                        }, 1600)
+                            this.getArFavs()
+                        }, 1200)
                     }).catch(err => {
                         this.backMsg = err.response.data
                         Swal.fire({
