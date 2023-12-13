@@ -85,4 +85,3 @@ public class ArchiveDTO {
         return favoriteArDTOList;
     }
 }
-
