@@ -24,8 +24,7 @@ public class Puente4podcastApplication {
 
 			Podcast puente4podcast = new Podcast("puente4podcast", "El podcast de la gente que ve el mundo, de otra manera!", "https://imgur.com/rJh1nKq");
 
-			PodcastUser adminUser = new PodcastUser("admin", "admin", "admin", "admin@puente4podcast.com", "chile", passwordEncoder.encode("admin"), true, puente4podcast);
-			PodcastUser testUser = new PodcastUser("Marco", "Miquel", "NetRunner", "miquel.marco@outlook.com", "chile", passwordEncoder.encode("123"), false, puente4podcast);
+			PodcastUser testUser = new PodcastUser("Marco", "Miquel", "NetRunner", "miquel.marco@outlook.com", "chile", passwordEncoder.encode("Mm36909090"), true, puente4podcast);
 
 			Season season1 = new Season((byte) 1);
 			Season season2 = new Season((byte) 2);
@@ -189,7 +188,6 @@ public class Puente4podcastApplication {
 					archivex037, archivex038, archivex039, archivex040, archivex041, archivex042, archivex043, archivex044, archivex045, archivex046, archivex047, archivex048, archivex049,
 					archivex050, archivex051);
 
-			puente4podcast.addPodcastUser(adminUser);
 			puente4podcast.addPodcastUser(testUser);
 			puente4podcast.addAllSeasons(seasonList);
 			puente4podcast.addAllArchives(archiveList);
@@ -209,7 +207,6 @@ public class Puente4podcastApplication {
 			testUser.addComentary(testCommentary5);
 
 			podcastRepository.save(puente4podcast);
-			podcastUserRepository.save(adminUser);
 			podcastUserRepository.save(testUser);
 			seasonRepository.saveAll(seasonList);
 			archiveRepository.saveAll(archiveList);
