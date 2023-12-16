@@ -59,6 +59,7 @@ setTimeout(() => {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            this.cleanData()
                         }).catch(err => {
                             console.log(err)
                             this.backMsg = err.response.data
@@ -78,6 +79,11 @@ setTimeout(() => {
                         timer: 1500
                     })
                 }
+            },
+            cleanData() {
+                this.modPass = ""
+                this.modPassConfirm = ""
+                this.modPassActual = ""
             }
         },
         computed: {
